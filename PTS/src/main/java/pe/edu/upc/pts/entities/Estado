@@ -1,0 +1,38 @@
+package pe.edu.upc.pts.entities;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "Estado")
+public class Estado {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idEstado;
+
+    @Column(name = "arrivalAddressBus", nullable = false, length = 100)
+    private String tipo_estado;
+
+    public Estado() {
+    }
+
+    public Estado(int idEstado, String tipo_estado) {
+        this.idEstado = idEstado;
+        this.tipo_estado = tipo_estado;
+    }
+
+    public int getIdEstado() {
+        return idEstado;
+    }
+
+    public void setIdEstado(int idEstado) {
+        this.idEstado = idEstado;
+    }
+
+    public String getTipo_estado() {
+        return tipo_estado;
+    }
+
+    public void setTipo_estado(String tipo_estado) {
+        this.tipo_estado = tipo_estado;
+    }
+}
