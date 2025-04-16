@@ -1,4 +1,4 @@
-package pe.edu.upc.peruviantransportsolutions.dtos;
+package pe.edu.upc.pts.dtos;
 
 
 public class EstadoDTO {

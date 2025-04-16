@@ -1,6 +1,7 @@
-package pe.edu.upc.peruviantransportsolutions.servicesInterfaces;
+package pe.edu.upc.pts.serviceInterfaces;
 
-import pe.edu.upc.peruviantransportsolutions.entities.Estado;
+
+import pe.edu.upc.pts.entities.Estado;
 
 import java.util.List;
 

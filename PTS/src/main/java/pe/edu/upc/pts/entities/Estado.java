@@ -1,5 +1,4 @@
-package pe.edu.upc.peruviantransportsolutions.entities;
-
+package pe.edu.upc.pts.entities;
 import jakarta.persistence.*;
 
 @Entity

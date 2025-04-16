@@ -1,7 +1,5 @@
 package pe.edu.upc.pts.dtos;
 
-import jakarta.persistence.Column;
-
 import java.time.LocalTime;
 
 public class Item_usuarioDTO {
