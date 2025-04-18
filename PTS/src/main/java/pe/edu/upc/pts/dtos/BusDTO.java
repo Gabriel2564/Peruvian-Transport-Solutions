@@ -7,6 +7,7 @@ public class BusDTO {
     private String arrivalAddressBus;
     private int capacityBus;
     private LocalTime durationBus;
+    private Viaje viaje;
 
     public int getIdBus() {
         return idBus;
@@ -38,5 +39,13 @@ public class BusDTO {
 
     public void setDurationBus(LocalTime durationBus) {
         this.durationBus = durationBus;
+    }
+
+    public Viaje getViaje() {
+        return viaje;
+    }
+
+    public void setViaje(Viaje viaje) {
+        this.viaje = viaje;
     }
 }
