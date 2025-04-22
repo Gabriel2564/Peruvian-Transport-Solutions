@@ -16,6 +16,12 @@ public class Resenia {
     private int likes;
     @Column(name = "contenido",nullable = false,length = 1000)
     private String contenido;
+    @ManyToOne
+    @JoinColumn(name="usuario_id_usua")
+    private usuario_id_usa usuario_id_usa;
+    @ManyToOne
+    @JoinColumn(name="viaje_id_viaje")
+    private viaje_id_viaje viaje_id_viaje;
 
     public Resenia(int id_Reseña, LocalTime fecha_publicada, int likes, String contenido) {
         this.id_Resenia = id_Resenia;
