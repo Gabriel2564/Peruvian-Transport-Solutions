@@ -20,14 +20,19 @@ public class Bus {
     @Column(name = "durationBus", nullable = false)
     private LocalTime durationBus;
 
+    @OneToOne
+    @JoinColumn(name = "idViaje")
+    private Viaje viaje;
+
     public Bus() {
     }
 
-    public Bus(int idBus, String arrivalAddressBus, int capacityBus, LocalTime durationBus) {
+    public Bus(int idBus, String arrivalAddressBus, int capacityBus, LocalTime durationBus, Viaje viaje) {
         this.idBus = idBus;
         this.arrivalAddressBus = arrivalAddressBus;
         this.capacityBus = capacityBus;
         this.durationBus = durationBus;
+        this.viaje = viaje;
     }
 
     public int getIdBus() {
@@ -60,5 +65,13 @@ public class Bus {
 
     public void setDurationBus(LocalTime durationBus) {
         this.durationBus = durationBus;
+    }
+
+    public Viaje getViaje() {
+        return viaje;
+    }
+
+    public void setViaje(Viaje viaje) {
+        this.viaje = viaje;
     }
 }
