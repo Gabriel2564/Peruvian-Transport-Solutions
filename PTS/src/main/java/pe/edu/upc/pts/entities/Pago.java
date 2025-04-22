@@ -13,6 +13,13 @@ public class Pago {
     @Column(name = "tipo_pa", length = 100, nullable = false)
     private String tipoPa;
 
+    public Pago() {
+    }
+
+    public Pago(String tipoPa) {
+        this.tipoPa = tipoPa;
+    }
+
     public int getIdPago() {
         return idPago;
     }
