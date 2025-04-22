@@ -1,10 +1,10 @@
-package pe.edu.upc.peruviantransportsolutions.servicesImplements;
+package pe.edu.upc.pts.serviceImplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pe.edu.upc.peruviantransportsolutions.entities.Estado;
-import pe.edu.upc.peruviantransportsolutions.repositories.EstadoRepository;
-import pe.edu.upc.peruviantransportsolutions.servicesInterfaces.IEstadoService;
+import pe.edu.upc.pts.entities.Estado;
+import pe.edu.upc.pts.repositories.EstadoRepository;
+import pe.edu.upc.pts.serviceInterfaces.IEstadoService;
 
 import java.util.List;
 @Service

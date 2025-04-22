@@ -1,6 +1,5 @@
 package pe.edu.upc.pts.dtos;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.time.LocalTime;
 
