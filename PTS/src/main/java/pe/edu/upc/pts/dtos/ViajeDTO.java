@@ -1,5 +1,7 @@
 package pe.edu.upc.pts.dtos;
 
+import pe.edu.upc.pts.entities.Ruta;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -9,7 +11,7 @@ public class ViajeDTO {
     private Double precio;
     private LocalTime hora_salida;
 
-    private  Ruta ruta;
+    private Ruta ruta;
 
     public int getIdViaje() {
         return idViaje;

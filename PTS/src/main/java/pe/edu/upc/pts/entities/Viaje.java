@@ -19,7 +19,7 @@ public class Viaje {
     private LocalTime hora_salida;
     @ManyToOne
     @JoinColumn(name = "idRuta")
-    private  Ruta ruta;
+    private Ruta ruta;
 
     public Viaje() {
     }
