@@ -18,10 +18,10 @@ public class Resenia {
     private String contenido;
     @ManyToOne
     @JoinColumn(name="usuario_id_usua")
-    private usuario_id_usa usuario_id_usa;
+    private Usuario usuario;
     @ManyToOne
     @JoinColumn(name="viaje_id_viaje")
-    private viaje_id_viaje viaje_id_viaje;
+    private Viaje viaje;
 
     public Resenia(int id_Reseña, LocalTime fecha_publicada, int likes, String contenido) {
         this.id_Resenia = id_Resenia;
