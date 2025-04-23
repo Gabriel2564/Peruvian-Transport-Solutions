@@ -8,8 +8,8 @@ public class Asiento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idAsiento;
-    @Column(name = "numero_asiento", nullable = false)
-    private int numero_asiento;
+    @Column(name = "seat_number", nullable = false)
+    private int seat_number;
 
     @ManyToOne
     @JoinColumn(name = "idBus")
@@ -22,42 +22,26 @@ public class Asiento {
     public Asiento() {
     }
 
-    public Asiento(int idAsiento, int numero_asiento, Bus bus, Estado estado) {
+    public Asiento(int idAsiento, int seat_number, Bus bus, Estado estado) {
         this.idAsiento = idAsiento;
-        this.numero_asiento = numero_asiento;
+        this.seat_number = seat_number;
         this.bus = bus;
         this.estado = estado;
     }
 
-    public int getIdAsiento() {
-        return idAsiento;
-    }
+    public int getIdAsiento() {return idAsiento;}
 
-    public void setIdAsiento(int idAsiento) {
-        this.idAsiento = idAsiento;
-    }
+    public void setIdAsiento(int idAsiento) {this.idAsiento = idAsiento;}
 
-    public int getNumero_asiento() {
-        return numero_asiento;
-    }
+    public int getSeat_number() {return seat_number;}
 
-    public void setNumero_asiento(int numero_asiento) {
-        this.numero_asiento = numero_asiento;
-    }
+    public void setSeat_number(int seat_number) {this.seat_number = seat_number;}
 
-    public Bus getBus() {
-        return bus;
-    }
+    public Bus getBus() {return bus;}
 
-    public void setBus(Bus bus) {
-        this.bus = bus;
-    }
+    public void setBus(Bus bus) {this.bus = bus;}
 
-    public Estado getEstado() {
-        return estado;
-    }
+    public Estado getEstado() {return estado;}
 
-    public void setEstado(Estado estado) {
-        this.estado = estado;
-    }
+    public void setEstado(Estado estado) {this.estado = estado;}
 }
