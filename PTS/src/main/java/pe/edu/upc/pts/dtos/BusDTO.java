@@ -1,5 +1,7 @@
 package pe.edu.upc.pts.dtos;
 
+import pe.edu.upc.pts.entities.Viaje;
+
 import java.time.LocalTime;
 
 public class BusDTO {
