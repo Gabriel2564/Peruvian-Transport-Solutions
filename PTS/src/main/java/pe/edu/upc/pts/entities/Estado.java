@@ -9,19 +9,19 @@ public class Estado {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idEstado;
 
-    @Column(name = "n_estado", nullable = false, length = 100)
-    private String n_estado;
+    @Column(name = "state_name", nullable = false, length = 100)
+    private String state_name;
 
-    @Column(name = "tipo_estado", nullable = false, length = 100)
-    private String tipo_estado;
+    @Column(name = "state_type", nullable = false, length = 100)
+    private String state_type;
 
     public Estado() {
     }
 
-    public Estado(int idEstado, String n_estado, String tipo_estado) {
+    public Estado(int idEstado, String state_name, String state_type) {
         this.idEstado = idEstado;
-        this.n_estado = n_estado;
-        this.tipo_estado = tipo_estado;
+        this.state_name = state_name;
+        this.state_type = state_type;
     }
 
     public int getIdEstado() {
@@ -32,20 +32,20 @@ public class Estado {
         this.idEstado = idEstado;
     }
 
-    public String getN_estado() {
-        return n_estado;
+    public String getState_name() {
+        return state_name;
     }
 
-    public void setN_estado(String n_estado) {
-        this.n_estado = n_estado;
+    public void setState_name(String state_name) {
+        this.state_name = state_name;
     }
 
-    public String getTipo_estado() {
-        return tipo_estado;
+    public String getState_type() {
+        return state_type;
     }
 
-    public void setTipo_estado(String tipo_estado) {
-        this.tipo_estado = tipo_estado;
+    public void setState_type(String state_type) {
+        this.state_type = state_type;
     }
 }
 

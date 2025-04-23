@@ -3,18 +3,30 @@ package pe.edu.upc.pts.dtos;
 public class EstadoDTO {
 
     private int idEstado;
-    private String n_estado;
-    private String tipo_estado;
+    private String state_name;
+    private String state_type;
 
-    public int getIdEstado() {return idEstado;}
+    public int getIdEstado() {
+        return idEstado;
+    }
 
-    public void setIdEstado(int idEstado) {this.idEstado = idEstado;}
+    public void setIdEstado(int idEstado) {
+        this.idEstado = idEstado;
+    }
 
-    public String getN_estado() {return n_estado;}
+    public String getState_name() {
+        return state_name;
+    }
 
-    public void setN_estado(String n_estado) {this.n_estado = n_estado;}
+    public void setState_name(String state_name) {
+        this.state_name = state_name;
+    }
 
-    public String getTipo_estado() {return tipo_estado;}
+    public String getState_type() {
+        return state_type;
+    }
 
-    public void setTipo_estado(String tipo_estado) {this.tipo_estado = tipo_estado;}
+    public void setState_type(String state_type) {
+        this.state_type = state_type;
+    }
 }
