@@ -16,7 +16,10 @@ public class EstadoServiceImplement implements IEstadoService {
     public List<Estado> listar_estado() {
         return eR.findAll();
     }
-
+    @Override
+    public void insert(Estado estado){
+        eR.save(estado);
+    }
     @Override
     public List<Estado> list() {
         return eR.findAll();
