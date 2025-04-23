@@ -4,11 +4,11 @@ import pe.edu.upc.pts.entities.Item;
 
 public class RutaDTO {
     private int idRuta;
-    private String ubicacion;
-    private String longitud_inicio;
-    private String longitud_destino;
-    private String latitud_inicio;
-    private String latitud_destino;
+    private String location;
+    private String start_longitude;
+    private String destination_longitude;
+    private String start_latitude;
+    private String destination_latitude;
 
     private Item item;
 
@@ -16,25 +16,25 @@ public class RutaDTO {
 
     public void setIdRuta(int idRuta) {this.idRuta = idRuta;}
 
-    public String getUbicacion() {return ubicacion;}
+    public String getLocation() {return location;}
 
-    public void setUbicacion(String ubicacion) {this.ubicacion = ubicacion;}
+    public void setLocation(String location) {this.location = location;}
 
-    public String getLongitud_inicio() {return longitud_inicio;}
+    public String getStart_longitude() {return start_longitude;}
 
-    public void setLongitud_inicio(String longitud_inicio) {this.longitud_inicio = longitud_inicio;}
+    public void setStart_longitude(String start_longitude) {this.start_longitude = start_longitude;}
 
-    public String getLongitud_destino() {return longitud_destino;}
+    public String getDestination_longitude() {return destination_longitude;}
 
-    public void setLongitud_destino(String longitud_destino) {this.longitud_destino = longitud_destino;}
+    public void setDestination_longitude(String destination_longitude) {this.destination_longitude = destination_longitude;}
 
-    public String getLatitud_inicio() {return latitud_inicio;}
+    public String getStart_latitude() {return start_latitude;}
 
-    public void setLatitud_inicio(String latitud_inicio) {this.latitud_inicio = latitud_inicio;}
+    public void setStart_latitude(String start_latitude) {this.start_latitude = start_latitude;}
 
-    public String getLatitud_destino() {return latitud_destino;}
+    public String getDestination_latitude() {return destination_latitude;}
 
-    public void setLatitud_destino(String latitud_destino) {this.latitud_destino = latitud_destino;}
+    public void setDestination_latitude(String destination_latitude) {this.destination_latitude = destination_latitude;}
 
     public Item getItem() {return item;}
 
