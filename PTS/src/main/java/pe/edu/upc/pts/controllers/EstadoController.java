@@ -2,11 +2,10 @@ package pe.edu.upc.pts.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import pe.edu.upc.pts.dtos.EstadoDTO;
+import pe.edu.upc.pts.entities.Estado;
 import pe.edu.upc.pts.serviceInterfaces.IEstadoService;
 
 import java.util.List;
@@ -26,6 +25,14 @@ public class EstadoController {
             return m.map(x,EstadoDTO.class);
         }).collect(Collectors.toList());
     }
+    @PostMapping
+    public void insertar(@RequestBody EstadoDTO dto){
+        dto.setIdEstado(0); //Omite cualquier valor que este en el id, se genera automaticamente segun la secuencia
+        ModelMapper m = new ModelMapper();
+        Estado e = m.map(dto,Estado.class);
+        eS.insert(e);
+    }
+
 }
 
 
