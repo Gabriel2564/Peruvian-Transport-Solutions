@@ -10,21 +10,21 @@ import pe.edu.upc.pts.serviceInterfaces.IReserva_boletoService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/reservas")
+@RequestMapping("/api/reservations")
 public class Reserva_boletoController {
 
     @Autowired
-    private IReserva_boletoService reservaService;
+    private IReserva_boletoService reservationService;
 
     @GetMapping
-    public ResponseEntity<List<Reserva_boletoDTO>> listarReservas() {
-        List<Reserva_boletoDTO> lista = reservaService.listarReservas();
-        return new ResponseEntity<>(lista, HttpStatus.OK);
+    public ResponseEntity<List<Reserva_boletoDTO>> listReservations() {
+        List<Reserva_boletoDTO> list = reservationService.listReservations();
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Reserva_boletoDTO> insertarReserva(@RequestBody Reserva_boletoDTO reservaDTO) {
-        Reserva_boletoDTO nuevaReserva = reservaService.insertarReserva(reservaDTO);
-        return new ResponseEntity<>(nuevaReserva, HttpStatus.CREATED);
+    public ResponseEntity<Reserva_boletoDTO> insertReservation(@RequestBody Reserva_boletoDTO reservationDTO) {
+        Reserva_boletoDTO newReservation = reservationService.insertReservation(reservationDTO);
+        return new ResponseEntity<>(newReservation, HttpStatus.CREATED);
     }
 }
