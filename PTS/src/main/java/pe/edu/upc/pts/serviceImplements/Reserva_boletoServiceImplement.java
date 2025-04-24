@@ -2,47 +2,52 @@ package pe.edu.upc.pts.serviceImplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pe.edu.upc.pts.repositories.IPagoRepository;
-import pe.edu.upc.pts.repositories.IReserva_boletoRepository;
+import pe.edu.upc.pts.entities.Reserva_boleto;
+import pe.edu.upc.pts.dtos.Reserva_boletoDTO;
+import pe.edu.upc.pts.repositories.*;
 import pe.edu.upc.pts.serviceInterfaces.IReserva_boletoService;
+
+import java.util.List;
 
 @Service
 public class Reserva_boletoServiceImplement implements IReserva_boletoService {
 
     @Autowired
-    private IReserva_boletoRepository reservaRepo;
+    private IReserva_boletoRepository reservationRepository;
 
     @Autowired
-    private IUsuarioRepository usuarioRepo;
+    private IUsuarioRepository userRepository;
+
     @Autowired
-    private IPagoRepository pagoRepo;
+    private IPagoRepository paymentRepository;
+
     @Autowired
-    private IAsientoRepository asientoRepo;
+    private IAsientoRepository seatRepository;
 
     @Override
     public List<Reserva_boletoDTO> listarReservas() {
-        return reservaRepo.findAll().stream().map(this::convertToDTO).toList();
+        return reservationRepository.findAll().stream().map(this::convertToDTO).toList();
     }
 
     @Override
     public Reserva_boletoDTO insertarReserva(Reserva_boletoDTO dto) {
-        Reserva_boleto reserva = new Reserva_boleto();
-        reserva.setMontoBoleto(dto.getMontoBoleto());
-        reserva.setCantidadAsientos(dto.getCantidadAsientos());
-        reserva.setUsuario(usuarioRepo.findById(dto.getUsuarioId()).orElse(null));
-        reserva.setPago(pagoRepo.findById(dto.getPagoId()).orElse(null));
-        reserva.setAsiento(asientoRepo.findById(dto.getAsientoId()).orElse(null));
-        return convertToDTO(reservaRepo.save(reserva));
+        Reserva_boleto reservation = new Reserva_boleto();
+        reservation.setTicketAmount(dto.getTicketAmount());
+        reservation.setSeatQuantity(dto.getSeatQuantity());
+        reservation.setUsuario(userRepository.findById(dto.getUserId()).orElse(null));
+        reservation.setPago(paymentRepository.findById(dto.getPaymentId()).orElse(null));
+        reservation.setAsiento(seatRepository.findById(dto.getSeatId()).orElse(null));
+        return convertToDTO(reservationRepository.save(reservation));
     }
 
-    private Reserva_boletoDTO convertToDTO(Reserva_boleto reserva) {
+    private Reserva_boletoDTO convertToDTO(Reserva_boleto reservation) {
         Reserva_boletoDTO dto = new Reserva_boletoDTO();
-        dto.setIdReservabol(reserva.getIdReservabol());
-        dto.setMontoBoleto(reserva.getMontoBoleto());
-        dto.setCantidadAsientos(reserva.getCantidadAsientos());
-        dto.setUsuarioId(reserva.getUsuario().getIdUsuario());
-        dto.setPagoId(reserva.getPago().getIdPago());
-        dto.setAsientoId(reserva.getAsiento().getIdAsiento());
+        dto.setReservationId(reservation.getReservationId());
+        dto.setTicketAmount(reservation.getTicketAmount());
+        dto.setSeatQuantity(reservation.getSeatQuantity());
+        dto.setUserId(reservation.getUsuario().getIdUsuario());
+        dto.setPaymentId(reservation.getPago().getPaymentId());
+        dto.setSeatId(reservation.getAsiento().getIdAsiento());
         return dto;
     }
 }
