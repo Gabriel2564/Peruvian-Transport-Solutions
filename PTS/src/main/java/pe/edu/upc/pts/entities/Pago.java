@@ -8,31 +8,31 @@ public class Pago {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idPago;
+    private int paymentId;
 
     @Column(name = "tipo_pa", length = 100, nullable = false)
-    private String tipoPa;
+    private String paymentType;
 
     public Pago() {
     }
 
-    public Pago(String tipoPa) {
-        this.tipoPa = tipoPa;
+    public Pago(String paymentType) {
+        this.paymentType = paymentType;
     }
 
-    public int getIdPago() {
-        return idPago;
+    public int getPaymentId() {
+        return paymentId;
     }
 
-    public void setIdPago(int idPago) {
-        this.idPago = idPago;
+    public void setPaymentId(int paymentId) {
+        this.paymentId = paymentId;
     }
 
-    public String getTipoPa() {
-        return tipoPa;
+    public String getPaymentType() {
+        return paymentType;
     }
 
-    public void setTipoPa(String tipoPa) {
-        this.tipoPa = tipoPa;
+    public void setPaymentType(String paymentType) {
+        this.paymentType = paymentType;
     }
 }
