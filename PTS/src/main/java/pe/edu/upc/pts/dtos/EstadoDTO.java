@@ -1,6 +1,5 @@
 package pe.edu.upc.pts.dtos;
 
-
 public class EstadoDTO {
 
     private int idEstado;

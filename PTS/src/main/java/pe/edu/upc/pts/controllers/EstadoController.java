@@ -5,9 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import pe.edu.upc.pts.dtos.EstadoDTO;
 import pe.edu.upc.pts.serviceInterfaces.IEstadoService;
-
 
 import java.util.List;
 import java.util.stream.Collectors;

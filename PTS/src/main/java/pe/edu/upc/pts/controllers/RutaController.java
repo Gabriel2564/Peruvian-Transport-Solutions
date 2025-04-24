@@ -3,39 +3,39 @@ package pe.edu.upc.pts.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.pts.dtos.RolDTO;
-import pe.edu.upc.pts.entities.Rol;
-import pe.edu.upc.pts.serviceInterfaces.IRolService;
+import pe.edu.upc.pts.dtos.RutaDTO;
+import pe.edu.upc.pts.entities.Ruta;
+import pe.edu.upc.pts.serviceInterfaces.IRutaService;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 @RestController
-@RequestMapping("/roles")
-public class RolController {
+@RequestMapping("/rutas")
+public class RutaController {
     @Autowired
-    private IRolService rS;
+    private IRutaService rS;
 
     @GetMapping
-    public List<RolDTO> listar(){
+    public List<RutaDTO> listar(){
         return rS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
-            return m.map(x,RolDTO.class);
+            return m.map(x,RutaDTO.class);
         }).collect(Collectors.toList());
     }
-
     @PostMapping
-    public void insertar(@RequestBody RolDTO dto){
-        dto.setIdRol(0); //Omite cualquier que este en el id, se genera automaticamente segun la secuencia
+    public void insertar(@RequestBody RutaDTO dto){
+        dto.setIdRuta(0); //Omite cualquier valor que este en el id, se genera automaticamente segun la secuencia
         ModelMapper m = new ModelMapper();
-        Rol r = m.map(dto, Rol.class);
+        Ruta r = m.map(dto,Ruta.class);
         rS.insert(r);
     }
 
     @PutMapping
-    public void modificar(@RequestBody RolDTO dto){
+    public void modificar(@RequestBody RutaDTO dto){
         ModelMapper m = new ModelMapper();
-        Rol r = m.map(dto,Rol.class);
+        Ruta r = m.map(dto,Ruta.class);
         rS.update(r);
     }
 

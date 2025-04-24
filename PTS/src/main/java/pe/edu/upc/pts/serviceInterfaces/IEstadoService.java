@@ -1,6 +1,5 @@
 package pe.edu.upc.pts.serviceInterfaces;
 
-
 import pe.edu.upc.pts.entities.Estado;
 
 import java.util.List;
