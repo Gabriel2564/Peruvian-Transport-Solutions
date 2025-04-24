@@ -3,72 +3,71 @@ package pe.edu.upc.pts.dtos;
 import java.math.BigDecimal;
 
 public class Reserva_boletoDTO {
-    private int idReservabol;
-    private BigDecimal montoBoleto;
-    private Boolean cantidadAsientos;
-    private int usuarioId;
-    private int pagoId;
-    private int asientoId;
+    private int reservationId;
+    private BigDecimal ticketAmount;
+    private Boolean seatQuantity;
+    private int userId;
+    private int paymentId;
+    private int seatId;
 
     public Reserva_boletoDTO() {
     }
 
-    public Reserva_boletoDTO(int idReservabol, BigDecimal montoBoleto, Boolean cantidadAsientos,
-                             int usuarioId, int pagoId, int asientoId) {
-        this.idReservabol = idReservabol;
-        this.montoBoleto = montoBoleto;
-        this.cantidadAsientos = cantidadAsientos;
-        this.usuarioId = usuarioId;
-        this.pagoId = pagoId;
-        this.asientoId = asientoId;
+    public Reserva_boletoDTO(int reservationId, BigDecimal ticketAmount, Boolean seatQuantity,
+                             int userId, int paymentId, int seatId) {
+        this.reservationId = reservationId;
+        this.ticketAmount = ticketAmount;
+        this.seatQuantity = seatQuantity;
+        this.userId = userId;
+        this.paymentId = paymentId;
+        this.seatId = seatId;
     }
 
-    public int getIdReservabol() {
-        return idReservabol;
+    public int getReservationId() {
+        return reservationId;
     }
 
-    public void setIdReservabol(int idReservabol) {
-        this.idReservabol = idReservabol;
+    public void setReservationId(int reservationId) {
+        this.reservationId = reservationId;
     }
 
-    public BigDecimal getMontoBoleto() {
-        return montoBoleto;
+    public BigDecimal getTicketAmount() {
+        return ticketAmount;
     }
 
-    public void setMontoBoleto(BigDecimal montoBoleto) {
-        this.montoBoleto = montoBoleto;
+    public void setTicketAmount(BigDecimal ticketAmount) {
+        this.ticketAmount = ticketAmount;
     }
 
-    public Boolean getCantidadAsientos() {
-        return cantidadAsientos;
+    public Boolean getSeatQuantity() {
+        return seatQuantity;
     }
 
-    public void setCantidadAsientos(Boolean cantidadAsientos) {
-        this.cantidadAsientos = cantidadAsientos;
+    public void setSeatQuantity(Boolean seatQuantity) {
+        this.seatQuantity = seatQuantity;
     }
 
-    public int getUsuarioId() {
-        return usuarioId;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUsuarioId(int usuarioId) {
-        this.usuarioId = usuarioId;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public int getPagoId() {
-        return pagoId;
+    public int getPaymentId() {
+        return paymentId;
     }
 
-    public void setPagoId(int pagoId) {
-        this.pagoId = pagoId;
+    public void setPaymentId(int paymentId) {
+        this.paymentId = paymentId;
     }
 
-    public int getAsientoId() {
-        return asientoId;
+    public int getSeatId() {
+        return seatId;
     }
 
-    public void setAsientoId(int asientoId) {
-        this.asientoId = asientoId;
+    public void setSeatId(int seatId) {
+        this.seatId = seatId;
     }
 }
-
