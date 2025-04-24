@@ -10,44 +10,41 @@ public class Resenia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_Resenia;
-    @Column(name="fecha_publicada",nullable=false)
-    private LocalTime fecha_publicada;
+    @Column(name="date_publication",nullable=false)
+    private LocalTime date_publication;
     @Column(name = "likes",nullable = false)
     private int likes;
-    @Column(name = "contenido",nullable = false,length = 1000)
-    private String contenido;
+    @Column(name = "content",nullable = false,length = 1000)
+    private String content;
     @ManyToOne
-    @JoinColumn(name="usuario_id_usua")
+    @JoinColumn(name="id_usuario")
     private Usuario usuario;
     @ManyToOne
-    @JoinColumn(name="viaje_id_viaje")
+    @JoinColumn(name="idviaje")
     private Viaje viaje;
+    public Resenia() {}
 
-    public Resenia(int id_Reseña, LocalTime fecha_publicada, int likes, String contenido) {
+    public Resenia(int id_Resenia, LocalTime date_publication, int likes, String content) {
         this.id_Resenia = id_Resenia;
-        this.fecha_publicada = fecha_publicada;
+        this.date_publication = date_publication;
         this.likes = likes;
-        this.contenido = contenido;
-    }
-
-    public Resenia() {
-
+        this.content = content;
     }
 
     public int getId_Resenia() {
         return id_Resenia;
     }
 
-    public void setId_Reseani(int id_Reseña) {
-        this.id_Resenia = id_Reseña;
+    public void setId_Resenia(int id_Resenia) {
+        this.id_Resenia = id_Resenia;
     }
 
-    public LocalTime getFecha_publicada() {
-        return fecha_publicada;
+    public LocalTime getDate_publication() {
+        return date_publication;
     }
 
-    public void setFecha_publicada(LocalTime fecha_publicada) {
-        this.fecha_publicada = fecha_publicada;
+    public void setDate_publication(LocalTime date_publication) {
+        this.date_publication = date_publication;
     }
 
     public int getLikes() {
@@ -58,11 +55,11 @@ public class Resenia {
         this.likes = likes;
     }
 
-    public String getContenido() {
-        return contenido;
+    public String getContent() {
+        return content;
     }
 
-    public void setContenido(String contenido) {
-        this.contenido = contenido;
+    public void setContent(String content) {
+        this.content = content;
     }
 }

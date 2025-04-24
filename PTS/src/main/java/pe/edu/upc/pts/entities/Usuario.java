@@ -13,9 +13,8 @@ public class Usuario {
     @Column(name = "password",nullable = false,length = 100)
     private String password;
     @ManyToOne
-    @JoinColumn(name="rol_id_rol")
-    private rol_id_rol rol_id_rol;
-   ¡
+    @JoinColumn(name="idRol")
+    private Rol rol;
     public Usuario() {}
 
     public Usuario(int id_usuario, String username, String password) {
