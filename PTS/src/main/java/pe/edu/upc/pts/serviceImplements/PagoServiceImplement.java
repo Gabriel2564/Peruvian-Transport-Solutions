@@ -12,25 +12,25 @@ import java.util.List;
 public class PagoServiceImplement implements IPagoService {
 
     @Autowired
-    private IPagoRepository pR;
+    private IPagoRepository paymentRepository;
 
     @Override
     public List<Pago> list() {
-        return pR.findAll();
+        return paymentRepository.findAll();
     }
 
     @Override
-    public void insert(Pago p) {
-        pR.save(p);
+    public void insert(Pago payment) {
+        paymentRepository.save(payment);
     }
 
     @Override
-    public void update(Pago p) {
-        pR.save(p);
+    public void update(Pago payment) {
+        paymentRepository.save(payment);
     }
 
     @Override
     public void delete(int id) {
-        pR.deleteById(id);
+        paymentRepository.deleteById(id);
     }
 }
