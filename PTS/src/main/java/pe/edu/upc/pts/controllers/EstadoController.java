@@ -4,7 +4,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import pe.edu.upc.pts.dtos.BusDTO;
 import pe.edu.upc.pts.dtos.EstadoDTO;
+import pe.edu.upc.pts.entities.Bus;
 import pe.edu.upc.pts.entities.Estado;
 import pe.edu.upc.pts.serviceInterfaces.IEstadoService;
 
@@ -31,6 +33,17 @@ public class EstadoController {
         ModelMapper m = new ModelMapper();
         Estado e = m.map(dto,Estado.class);
         eS.insert(e);
+    }
+    @PutMapping
+    public void modificar(@RequestBody EstadoDTO dto){
+        ModelMapper m = new ModelMapper();
+        Estado e = m.map(dto,Estado.class);
+        eS.update(e);
+    }
+
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable("id") Integer id){
+        eS.delete(id);
     }
 
 }
