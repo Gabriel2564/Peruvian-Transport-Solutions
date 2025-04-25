@@ -15,6 +15,6 @@ public class ReseniaServiceImplement implements IReseniaService {
     public List<Resenia> list() {return rR.findAll();}
     @Override
     public void insert(Resenia resenia) {
-
+        rR.save(resenia);
     }
 }

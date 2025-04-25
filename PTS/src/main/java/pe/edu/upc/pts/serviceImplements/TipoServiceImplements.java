@@ -19,7 +19,7 @@ public class TipoServiceImplements implements ITipoService {
 
     @Override
     public void insert(Tipo tipo) {
-
+        tR.save(tipo);
     }
 
 }

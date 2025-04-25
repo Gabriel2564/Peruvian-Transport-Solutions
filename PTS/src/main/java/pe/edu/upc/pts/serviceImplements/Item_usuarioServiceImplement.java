@@ -18,7 +18,7 @@ public class Item_usuarioServiceImplement implements IItem_usuarioService {
 
     @Override
     public void insert(Item_usuario item_usuario) {
-
+        iR.save(item_usuario);
     }
 
 }
