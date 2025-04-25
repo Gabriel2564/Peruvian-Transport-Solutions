@@ -4,7 +4,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.pts.dtos.AsientoDTO;
+import pe.edu.upc.pts.dtos.EstadoDTO;
 import pe.edu.upc.pts.entities.Asiento;
+import pe.edu.upc.pts.entities.Estado;
 import pe.edu.upc.pts.serviceInterfaces.IAsientoService;
 
 
@@ -32,5 +34,16 @@ public class AsientoController {
         ModelMapper m = new ModelMapper();
         Asiento a = m.map(dto,Asiento.class);
         aS.insert(a);
+    }
+    @PutMapping
+    public void modificar(@RequestBody AsientoDTO dto){
+        ModelMapper m = new ModelMapper();
+        Asiento a = m.map(dto,Asiento.class);
+        aS.update(a);
+    }
+
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable("id") Integer id){
+        aS.delete(id);
     }
 }
