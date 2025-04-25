@@ -4,66 +4,39 @@ import pe.edu.upc.pts.entities.Item;
 
 public class RutaDTO {
     private int idRuta;
-    private String locationRuta;
-    private String initialLengthRuta;
-    private String finalLengthRuta;
-    private String initialLatitudeRuta;
-    private String finalLatitudeRuta;
+    private String location;
+    private String start_longitude;
+    private String destination_longitude;
+    private String start_latitude;
+    private String destination_latitude;
+
     private Item item;
 
-    public int getIdRuta() {
-        return idRuta;
-    }
+    public int getIdRuta() {return idRuta;}
 
-    public void setIdRuta(int idRuta) {
-        this.idRuta = idRuta;
-    }
+    public void setIdRuta(int idRuta) {this.idRuta = idRuta;}
 
-    public String getLocationRuta() {
-        return locationRuta;
-    }
+    public String getLocation() {return location;}
 
-    public void setLocationRuta(String locationRuta) {
-        this.locationRuta = locationRuta;
-    }
+    public void setLocation(String location) {this.location = location;}
 
-    public String getInitialLengthRuta() {
-        return initialLengthRuta;
-    }
+    public String getStart_longitude() {return start_longitude;}
 
-    public void setInitialLengthRuta(String initialLengthRuta) {
-        this.initialLengthRuta = initialLengthRuta;
-    }
+    public void setStart_longitude(String start_longitude) {this.start_longitude = start_longitude;}
 
-    public String getFinalLengthRuta() {
-        return finalLengthRuta;
-    }
+    public String getDestination_longitude() {return destination_longitude;}
 
-    public void setFinalLengthRuta(String finalLengthRuta) {
-        this.finalLengthRuta = finalLengthRuta;
-    }
+    public void setDestination_longitude(String destination_longitude) {this.destination_longitude = destination_longitude;}
 
-    public String getInitialLatitudeRuta() {
-        return initialLatitudeRuta;
-    }
+    public String getStart_latitude() {return start_latitude;}
 
-    public void setInitialLatitudeRuta(String initialLatitudeRuta) {
-        this.initialLatitudeRuta = initialLatitudeRuta;
-    }
+    public void setStart_latitude(String start_latitude) {this.start_latitude = start_latitude;}
 
-    public String getFinalLatitudeRuta() {
-        return finalLatitudeRuta;
-    }
+    public String getDestination_latitude() {return destination_latitude;}
 
-    public void setFinalLatitudeRuta(String finalLatitudeRuta) {
-        this.finalLatitudeRuta = finalLatitudeRuta;
-    }
+    public void setDestination_latitude(String destination_latitude) {this.destination_latitude = destination_latitude;}
 
-    public Item getItem() {
-        return item;
-    }
+    public Item getItem() {return item;}
 
-    public void setItem(Item item) {
-        this.item = item;
-    }
+    public void setItem(Item item) {this.item = item;}
 }

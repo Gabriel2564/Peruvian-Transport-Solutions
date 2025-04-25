@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/bus")
+@RequestMapping("/buses")
 public class BusController {
     @Autowired
     private IBusService bS;
