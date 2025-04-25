@@ -1,5 +1,4 @@
 package pe.edu.upc.pts.dtos;
-
 import pe.edu.upc.pts.entities.Item;
 
 public class RutaDTO {

@@ -2,7 +2,6 @@ package pe.edu.upc.pts.dtos;
 import pe.edu.upc.pts.entities.Bus;
 import pe.edu.upc.pts.entities.Estado;
 
-
 public class AsientoDTO {
     private int idAsiento;
     private int seat_number;
@@ -18,9 +17,7 @@ public class AsientoDTO {
         this.idAsiento = idAsiento;
     }
 
-    public int getSeat_number() {
-        return seat_number;
-    }
+    public int getSeat_number() {return seat_number;}
 
     public void setSeat_number(int seat_number) {
         this.seat_number = seat_number;

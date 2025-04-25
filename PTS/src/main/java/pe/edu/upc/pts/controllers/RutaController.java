@@ -10,7 +10,6 @@ import pe.edu.upc.pts.serviceInterfaces.IRutaService;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
 @RestController
 @RequestMapping("/rutas")
 public class RutaController {

@@ -1,6 +1,4 @@
 package pe.edu.upc.pts.dtos;
-
-
 import java.time.LocalTime;
 
 public class BusDTO {
