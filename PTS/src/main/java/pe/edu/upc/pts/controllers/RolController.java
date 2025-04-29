@@ -3,10 +3,12 @@ package pe.edu.upc.pts.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.pts.dtos.UsuarioByRolDTO;
 import pe.edu.upc.pts.dtos.RolDTO;
 import pe.edu.upc.pts.entities.Rol;
 import pe.edu.upc.pts.serviceInterfaces.IRolService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,4 +45,5 @@ public class RolController {
     public void eliminar(@PathVariable("id") Integer id){
         rS.delete(id);
     }
+
 }
