@@ -22,4 +22,10 @@ public class ReseniaServiceImplement implements IReseniaService {
     public void delete(int id_Resenia) {
         rR.deleteById(id_Resenia);
     }
+
+    @Override
+    public List<String[]> QuantityReseniaByUsuario() {
+        return rR.QuantityReseniaByUsername();
+    }
+
 }
