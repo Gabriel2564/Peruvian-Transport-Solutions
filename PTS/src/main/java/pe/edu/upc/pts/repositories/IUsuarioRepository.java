@@ -15,4 +15,5 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
             "group by r.name_rol",nativeQuery = true)
     List<String[]> QuantityUsuarioByRol();
 
+
 }

@@ -30,4 +30,8 @@ public class ReseniaController {
         Resenia r = m.map(dto,Resenia.class);
         rS.insert(r);
     }
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable("id_resenia") Integer id_Resenia){
+        rS.delete(id_Resenia);
+    }
 }

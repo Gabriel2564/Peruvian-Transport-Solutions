@@ -21,5 +21,10 @@ public class Item_usuarioServiceImplement implements IItem_usuarioService {
         iR.save(item_usuario);
     }
 
+    @Override
+    public void delete(int id_item_user){
+        iR.deleteById(id_item_user);
+    }
+
 }
 
