@@ -10,7 +10,6 @@ import java.util.List;
 
 @Service
 public class BusServiceImplement implements IBusService {
-
     @Autowired
     private IBusRepository bR;
 

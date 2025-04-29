@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/item_usuario")
-
 public class Item_usuarioController {
     @Autowired
     private IItem_usuarioService iS;
@@ -38,4 +37,3 @@ public class Item_usuarioController {
         iS.delete(id_item_user);
     }
 }
-
