@@ -4,9 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import pe.edu.upc.pts.dtos.BusDTO;
 import pe.edu.upc.pts.dtos.EstadoDTO;
-import pe.edu.upc.pts.entities.Bus;
 import pe.edu.upc.pts.entities.Estado;
 import pe.edu.upc.pts.serviceInterfaces.IEstadoService;
 
