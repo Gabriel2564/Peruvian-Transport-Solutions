@@ -20,7 +20,7 @@ public class Resenia {
     @JoinColumn(name="id_usuario")
     private Usuario usuario;
     @ManyToOne
-    @JoinColumn(name="idviaje")
+    @JoinColumn(name="id_viaje")
     private Viaje viaje;
     public Resenia() {}
 
