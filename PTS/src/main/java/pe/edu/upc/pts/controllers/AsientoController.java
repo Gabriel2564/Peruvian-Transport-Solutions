@@ -66,6 +66,7 @@ public class AsientoController {
     //devolver lista
     @GetMapping("cantidades")
     public List<CantidadBusXAsientoDTO> obtenerCantidad() {
+        log.info("Solicitud GET para obtener cantidad de asientos por bus");
         List<CantidadBusXAsientoDTO> dtolista = new ArrayList<>();//devolver cantidad
         List<String[]> filaLista = aS.quantitySeatByBus();
         for (String[] columna : filaLista) {
