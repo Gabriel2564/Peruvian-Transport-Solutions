@@ -17,29 +17,36 @@ public class RutaController {
     private IRutaService rS;
 
     @GetMapping
-    public List<RutaDTO> listar(){
-        return rS.list().stream().map(x->{
+    public List<RutaDTO> listar() {
+        return rS.list().stream().map(x -> {
             ModelMapper m = new ModelMapper();
-            return m.map(x,RutaDTO.class);
+            return m.map(x, RutaDTO.class);
         }).collect(Collectors.toList());
     }
+
     @PostMapping
-    public void insertar(@RequestBody RutaDTO dto){
+    public void insertar(@RequestBody RutaDTO dto) {
         dto.setIdRuta(0); //Omite cualquier valor que este en el id, se genera automaticamente segun la secuencia
         ModelMapper m = new ModelMapper();
-        Ruta r = m.map(dto,Ruta.class);
+        Ruta r = m.map(dto, Ruta.class);
         rS.insert(r);
     }
 
     @PutMapping
-    public void modificar(@RequestBody RutaDTO dto){
+    public void modificar(@RequestBody RutaDTO dto) {
         ModelMapper m = new ModelMapper();
-        Ruta r = m.map(dto,Ruta.class);
+        Ruta r = m.map(dto, Ruta.class);
         rS.update(r);
     }
 
     @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable("id") Integer id){
+    public void eliminar(@PathVariable("id") Integer id) {
         rS.delete(id);
+    }
+
+    //QUERY BUSCAR RUTA POR ITEM
+    @GetMapping("/item/{itemId}")
+    public List<RutaDTO> searchByItem(@PathVariable int itemId) {
+        return rS.searchByItem(itemId);
     }
 }
