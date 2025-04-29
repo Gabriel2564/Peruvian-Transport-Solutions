@@ -2,6 +2,7 @@ package pe.edu.upc.pts.serviceImplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pe.edu.upc.pts.dtos.PorcentajeEstadoXAsientoDTO;
 import pe.edu.upc.pts.entities.Bus;
 import pe.edu.upc.pts.entities.Estado;
 import pe.edu.upc.pts.repositories.EstadoRepository;
@@ -27,6 +28,11 @@ public class EstadoServiceImplement implements IEstadoService {
 
     @Override
     public void delete(int id) {eR.deleteById(id);}
+
+    @Override
+    public List<PorcentajeEstadoXAsientoDTO> listarPorcentajeEstadoAsiento() {
+        return List.of();
+    }
 
     @Override
     public List<Estado> list() {

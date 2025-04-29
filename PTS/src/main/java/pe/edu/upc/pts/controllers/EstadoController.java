@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import pe.edu.upc.pts.dtos.EstadoDTO;
+import pe.edu.upc.pts.dtos.PorcentajeEstadoXAsientoDTO;
 import pe.edu.upc.pts.entities.Estado;
 import pe.edu.upc.pts.serviceInterfaces.IEstadoService;
 
@@ -47,6 +48,11 @@ public class EstadoController {
     public void eliminar(@PathVariable("id") Integer id){
         log.warn("Solicitud DELETE para eliminar estado con ID: {}", id);
         eS.delete(id);
+    }
+    @GetMapping("/porcentaje")
+    public List<PorcentajeEstadoXAsientoDTO> obtenerPorcentajeEstadoAsiento() {
+        log.info("Solicitud GET para obtener porcentaje de estados por asiento");
+        return eS.listarPorcentajeEstadoAsiento();
     }
 
 }
