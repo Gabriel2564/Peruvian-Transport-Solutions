@@ -1,7 +1,9 @@
 package pe.edu.upc.pts.serviceImplements;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pe.edu.upc.pts.dtos.AsientoDTO;
 import pe.edu.upc.pts.entities.Asiento;
 import pe.edu.upc.pts.entities.Estado;
 import pe.edu.upc.pts.repositories.IAsientoRepository;
@@ -28,5 +30,12 @@ public class AsientoServiceImplement implements IAsientoService {
     public void delete(int id) {aR.deleteById(id);}
     @Override
     public List<Asiento> list() {return aR.findAll();
+    }
+
+    @Override
+    public AsientoDTO buscarPorNumeroYBus(int seat_number, int busId) {
+        ModelMapper modelMapper = new ModelMapper();
+        Asiento asiento = aR.findByNumberAndBusId(seat_number, busId);
+        return modelMapper.map(asiento, AsientoDTO.class);
     }
 }

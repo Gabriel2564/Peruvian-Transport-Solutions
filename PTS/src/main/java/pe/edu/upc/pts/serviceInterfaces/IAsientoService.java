@@ -1,5 +1,6 @@
 package pe.edu.upc.pts.serviceInterfaces;
 
+import pe.edu.upc.pts.dtos.AsientoDTO;
 import pe.edu.upc.pts.entities.Asiento;
 
 import java.util.List;
@@ -12,5 +13,7 @@ public interface IAsientoService {
 
     List<Asiento> list();
 
-
+    AsientoDTO buscarPorNumeroYBus(int seat_number, int busId);
 }
+
+
