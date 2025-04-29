@@ -5,10 +5,12 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.pts.dtos.AsientoDTO;
+import pe.edu.upc.pts.dtos.CantidadBusXAsientoDTO;
 import pe.edu.upc.pts.entities.Asiento;
 import pe.edu.upc.pts.serviceInterfaces.IAsientoService;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -50,6 +52,29 @@ public class AsientoController {
     public void eliminar(@PathVariable("id") Integer id) {
         log.warn("Solicitud DELETE para eliminar asiento con ID: {}", id);
         aS.delete(id);
+    }
+
+    @GetMapping("/numero_asiento")
+    public List<AsientoDTO> buscarPorNumeroAsiento(@RequestParam Integer seat_number) {
+        log.info("Solicitud GET para buscar asientos con número: {}", seat_number);
+        return aS.search(seat_number).stream().map(a -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(a, AsientoDTO.class);
+        }).collect(Collectors.toList());
+    }
+
+    //devolver lista
+    @GetMapping("cantidades")
+    public List<CantidadBusXAsientoDTO> obtenerCantidad() {
+        List<CantidadBusXAsientoDTO> dtolista = new ArrayList<>();//devolver cantidad
+        List<String[]> filaLista = aS.quantitySeatByBus();
+        for (String[] columna : filaLista) {
+            CantidadBusXAsientoDTO dto = new CantidadBusXAsientoDTO();
+            dto.setIdBus(Integer.parseInt(columna[0]));
+            dto.setQuantitySeat(Integer.parseInt(columna[1]));
+            dtolista.add(dto);
+        }
+        return dtolista;
     }
 
     @GetMapping("/buscar/{busId}/{seat_number}")

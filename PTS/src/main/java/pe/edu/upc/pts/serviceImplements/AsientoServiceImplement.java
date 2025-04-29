@@ -29,7 +29,10 @@ public class AsientoServiceImplement implements IAsientoService {
     @Override
     public void delete(int id) {aR.deleteById(id);}
     @Override
-    public List<Asiento> list() {return aR.findAll();
+    public List<Asiento> search(int seat_number) {return aR.buscarPorNumeroAsiento(seat_number);}
+    @Override
+    public List<String[]> quantitySeatByBus() {
+        return aR.quantitySeatByBus();
     }
 
     @Override
@@ -38,4 +41,5 @@ public class AsientoServiceImplement implements IAsientoService {
         Asiento asiento = aR.findByNumberAndBusId(seat_number, busId);
         return modelMapper.map(asiento, AsientoDTO.class);
     }
+
 }

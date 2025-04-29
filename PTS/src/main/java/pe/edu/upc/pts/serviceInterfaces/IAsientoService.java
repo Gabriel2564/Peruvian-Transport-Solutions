@@ -11,7 +11,8 @@ public interface IAsientoService {
     public void update(Asiento asiento);
     public void delete(int id);
 
-    List<Asiento> list();
+    public List<Asiento> search(int seat_number);
+    public List<String[]> quantitySeatByBus();
 
     AsientoDTO buscarPorNumeroYBus(int seat_number, int busId);
 }
