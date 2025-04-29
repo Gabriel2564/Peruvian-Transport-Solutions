@@ -11,34 +11,34 @@ import java.time.LocalTime;
 public class Item_usuario {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private int id_item_usuario;
+    private int id_item_user;
     @Column(name = "qualification_viaj",nullable = false,length =100 )
-    private String qualification_viaj;
+    private int qualification_viaj;
     @Column(name = "date_viaje_fav",nullable = false)
     private LocalTime date_viaje_fav;
     public Item_usuario() {
 
     }
 
-    public Item_usuario(int id_item_usuario, String qualification_viaj, LocalTime date_viaje_fav) {
-        this.id_item_usuario = id_item_usuario;
+    public Item_usuario(int id_item_user, int qualification_viaj, LocalTime date_viaje_fav) {
+        this.id_item_user = id_item_user;
         this.qualification_viaj = qualification_viaj;
         this.date_viaje_fav = date_viaje_fav;
     }
 
-    public int getId_item_usuario() {
-        return id_item_usuario;
+    public int getId_item_user() {
+        return id_item_user;
     }
 
-    public void setId_item_usuario(int id_item_usuario) {
-        this.id_item_usuario = id_item_usuario;
+    public void setId_item_user(int id_item_user) {
+        this.id_item_user = id_item_user;
     }
 
-    public String getQualification_viaj() {
+    public int getQualification_viaj() {
         return qualification_viaj;
     }
 
-    public void setQualification_viaj(String qualification_viaj) {
+    public void setQualification_viaj(int qualification_viaj) {
         this.qualification_viaj = qualification_viaj;
     }
 

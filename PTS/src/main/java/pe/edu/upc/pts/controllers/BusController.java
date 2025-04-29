@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/bus")
+@RequestMapping("/buses")
 public class BusController {
     @Autowired
     private IBusService bS;
@@ -26,7 +26,7 @@ public class BusController {
 
     @PostMapping
     public void insertar(@RequestBody BusDTO dto){
-        dto.setIdBus(0); //Omite cualquier que este en el id, se genera automaticamente segun la secuencia
+        dto.setIdBus(0); //Omite cualquier valor que este en el id, se genera automaticamente segun la secuencia
         ModelMapper m = new ModelMapper();
         Bus b = m.map(dto,Bus.class);
         bS.insert(b);

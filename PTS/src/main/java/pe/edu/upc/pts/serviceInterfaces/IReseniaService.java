@@ -7,4 +7,6 @@ import java.util.List;
 public interface IReseniaService {
     public List<Resenia> list();
     public void insert( Resenia resenia);
+    public void delete(int id_Resenia);
+    public List<String[]> QuantityReseniaByUsuario();
 }

@@ -28,4 +28,9 @@ public class ViajeServiceImplement implements IViajeService {
         rV.deleteById(idViaje);
     }
 
+    @Override
+    public List<String[]> QuantityViajeByRuta() {
+        return rV.QuantityViajeByRuta();
+    }
+
 }

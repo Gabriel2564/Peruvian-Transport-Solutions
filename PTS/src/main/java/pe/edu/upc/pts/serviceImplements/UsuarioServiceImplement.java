@@ -32,4 +32,11 @@ public class UsuarioServiceImplement implements IUsuarioService {
     public void delete(int id_usuario) {
         uR.deleteById(id_usuario);
     }
+
+    @Override
+    public List<String[]> QuantityUsuarioByRol() {
+        return uR.QuantityUsuarioByRol();
+    }
+
+
 }
