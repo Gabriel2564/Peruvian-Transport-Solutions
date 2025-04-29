@@ -27,10 +27,15 @@ public class Item_usuarioController {
 
     @PostMapping
     public void insertar(@RequestBody Item_usuarioDTO dto){
-        dto.setId_item_usuario(0);
+        dto.setId_item_user(0);
         ModelMapper m = new ModelMapper();
         Item_usuario i = m.map(dto, Item_usuario.class);
         iS.insert(i);
+    }
+
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable("id") Integer id_item_user){
+        iS.delete(id_item_user);
     }
 }
 
