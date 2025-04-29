@@ -9,12 +9,11 @@ import pe.edu.upc.pts.entities.Pago;
 
 import java.util.List;
 
-
+@Repository
 public interface IPagoRepository extends JpaRepository<Pago, Integer> {
     @Query("SELECT p FROM Pago p WHERE p.paymentType = :paymentType")
     List<Pago> findByPaymentType(@Param("paymentType") String paymentType);
 
     @Query("SELECT p.paymentType, COUNT(p) FROM Pago p GROUP BY p.paymentType")
     List<Object[]> countPaymentsByType();
-
 }
