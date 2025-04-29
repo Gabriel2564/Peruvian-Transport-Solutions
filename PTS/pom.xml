@@ -72,6 +72,12 @@
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.30</version> <!-- o la versión más reciente -->
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>

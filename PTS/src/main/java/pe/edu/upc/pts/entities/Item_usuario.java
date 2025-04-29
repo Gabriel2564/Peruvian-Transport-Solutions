@@ -13,14 +13,14 @@ public class Item_usuario {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id_item_user;
     @Column(name = "qualification_viaj",nullable = false,length =100 )
-    private String qualification_viaj;
+    private int qualification_viaj;
     @Column(name = "date_viaje_fav",nullable = false)
     private LocalTime date_viaje_fav;
     public Item_usuario() {
 
     }
 
-    public Item_usuario(int id_item_user, String qualification_viaj, LocalTime date_viaje_fav) {
+    public Item_usuario(int id_item_user, int qualification_viaj, LocalTime date_viaje_fav) {
         this.id_item_user = id_item_user;
         this.qualification_viaj = qualification_viaj;
         this.date_viaje_fav = date_viaje_fav;
@@ -34,11 +34,11 @@ public class Item_usuario {
         this.id_item_user = id_item_user;
     }
 
-    public String getQualification_viaj() {
+    public int getQualification_viaj() {
         return qualification_viaj;
     }
 
-    public void setQualification_viaj(String qualification_viaj) {
+    public void setQualification_viaj(int qualification_viaj) {
         this.qualification_viaj = qualification_viaj;
     }
 

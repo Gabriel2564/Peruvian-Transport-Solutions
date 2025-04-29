@@ -2,6 +2,7 @@ package pe.edu.upc.pts.serviceImplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pe.edu.upc.pts.dtos.Item_UsuarioByTopDTO;
 import pe.edu.upc.pts.entities.Item_usuario;
 import pe.edu.upc.pts.repositories.IItem_usuarioRepository;
 import pe.edu.upc.pts.serviceInterfaces.IItem_usuarioService;
@@ -24,6 +25,11 @@ public class Item_usuarioServiceImplement implements IItem_usuarioService {
     @Override
     public void delete(int id_item_user){
         iR.deleteById(id_item_user);
+    }
+
+    @Override
+    public List<String[]> ObtenerTopCalificados() {
+        return iR.ObtenerTopCalificados();
     }
 
 }

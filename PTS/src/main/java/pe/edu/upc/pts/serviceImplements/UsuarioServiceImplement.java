@@ -38,4 +38,5 @@ public class UsuarioServiceImplement implements IUsuarioService {
         return uR.QuantityUsuarioByRol();
     }
 
+
 }
