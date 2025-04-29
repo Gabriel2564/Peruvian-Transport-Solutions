@@ -4,10 +4,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.pts.dtos.UsuarioByRolDTO;
 import pe.edu.upc.pts.dtos.UsuarioDTO;
 import pe.edu.upc.pts.entities.Usuario;
 import pe.edu.upc.pts.serviceInterfaces.IUsuarioService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,5 +46,19 @@ public class UsuarioController {
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id){
         uS.delete(id);
+    }
+
+    @GetMapping("/query1")
+    public List<UsuarioByRolDTO> query1() {
+        List<String[]> filaLista = uS.QuantityUsuarioByRol();
+        List<UsuarioByRolDTO> dtoLista = new ArrayList<>();
+
+        for (String[] columna : filaLista) {
+            UsuarioByRolDTO dto = new UsuarioByRolDTO();
+            dto.setNameRol(columna[0]);
+            dto.setQuantityUsuario(Integer.parseInt(columna[1]));
+            dtoLista.add(dto);
+        }
+        return dtoLista;
     }
 }
