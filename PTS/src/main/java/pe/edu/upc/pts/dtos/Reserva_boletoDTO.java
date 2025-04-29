@@ -1,73 +1,78 @@
 package pe.edu.upc.pts.dtos;
 
+import pe.edu.upc.pts.entities.Usuario;
+import pe.edu.upc.pts.entities.Pago;
+import pe.edu.upc.pts.entities.Asiento;
+
 import java.math.BigDecimal;
 
 public class Reserva_boletoDTO {
-    private int reservationId;
-    private BigDecimal ticketAmount;
-    private Boolean seatQuantity;
-    private int userId;
-    private int paymentId;
-    private int seatId;
+
+    private int idReservabol;
+    private BigDecimal montoBoleto;
+    private Boolean cantidadAsientos;
+    private Usuario usuario;
+    private Pago pago;
+    private Asiento asiento;
 
     public Reserva_boletoDTO() {
     }
 
-    public Reserva_boletoDTO(int reservationId, BigDecimal ticketAmount, Boolean seatQuantity,
-                             int userId, int paymentId, int seatId) {
-        this.reservationId = reservationId;
-        this.ticketAmount = ticketAmount;
-        this.seatQuantity = seatQuantity;
-        this.userId = userId;
-        this.paymentId = paymentId;
-        this.seatId = seatId;
+    public Reserva_boletoDTO(int idReservabol, BigDecimal montoBoleto, Boolean cantidadAsientos,
+                             Usuario usuario, Pago pago, Asiento asiento) {
+        this.idReservabol = idReservabol;
+        this.montoBoleto = montoBoleto;
+        this.cantidadAsientos = cantidadAsientos;
+        this.usuario = usuario;
+        this.pago = pago;
+        this.asiento = asiento;
     }
 
-    public int getReservationId() {
-        return reservationId;
+    public int getIdReservabol() {
+        return idReservabol;
     }
 
-    public void setReservationId(int reservationId) {
-        this.reservationId = reservationId;
+    public void setIdReservabol(int idReservabol) {
+        this.idReservabol = idReservabol;
     }
 
-    public BigDecimal getTicketAmount() {
-        return ticketAmount;
+    public BigDecimal getMontoBoleto() {
+        return montoBoleto;
     }
 
-    public void setTicketAmount(BigDecimal ticketAmount) {
-        this.ticketAmount = ticketAmount;
+    public void setMontoBoleto(BigDecimal montoBoleto) {
+        this.montoBoleto = montoBoleto;
     }
 
-    public Boolean getSeatQuantity() {
-        return seatQuantity;
+    public Boolean getCantidadAsientos() {
+        return cantidadAsientos;
     }
 
-    public void setSeatQuantity(Boolean seatQuantity) {
-        this.seatQuantity = seatQuantity;
+    public void setCantidadAsientos(Boolean cantidadAsientos) {
+        this.cantidadAsientos = cantidadAsientos;
     }
 
-    public int getUserId() {
-        return userId;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
-    public int getPaymentId() {
-        return paymentId;
+    public Pago getPago() {
+        return pago;
     }
 
-    public void setPaymentId(int paymentId) {
-        this.paymentId = paymentId;
+    public void setPago(Pago pago) {
+        this.pago = pago;
     }
 
-    public int getSeatId() {
-        return seatId;
+    public Asiento getAsiento() {
+        return asiento;
     }
 
-    public void setSeatId(int seatId) {
-        this.seatId = seatId;
+    public void setAsiento(Asiento asiento) {
+        this.asiento = asiento;
     }
 }
