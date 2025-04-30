@@ -2,6 +2,7 @@ package pe.edu.upc.pts.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.pts.dtos.ViajeByRutaDTO;
 import pe.edu.upc.pts.dtos.ViajeDTO;
@@ -18,6 +19,7 @@ public class ViajeController {
     @Autowired
     private IViajeService vS;
 
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     @GetMapping
     public List<ViajeDTO> listar(){
         return vS.list().stream().map(x->{
@@ -26,6 +28,7 @@ public class ViajeController {
         }).collect(Collectors.toList());
     }
 
+    @PreAuthorize("hasAuthority('CONDUCTOR')")
     @PostMapping
     public void registrar(@RequestBody ViajeDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -33,6 +36,7 @@ public class ViajeController {
         vS.insert(v);
     }
 
+    @PreAuthorize("hasAuthority('CONDUCTOR')")
     @PutMapping
     public void modificar(@RequestBody ViajeDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -40,11 +44,14 @@ public class ViajeController {
         vS.insert(v);
     }
 
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id){
         vS.delete(id);
     }
 
+
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     @GetMapping("/query1")
     public List<ViajeByRutaDTO> query1() {
         List<String[]> filaLista = vS.QuantityViajeByRuta();
