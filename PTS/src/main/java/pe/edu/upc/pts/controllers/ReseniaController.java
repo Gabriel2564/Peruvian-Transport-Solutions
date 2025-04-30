@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.pts.dtos.ReseniaByUsernameDTO;
 import pe.edu.upc.pts.dtos.ReseniaDTO;
-import pe.edu.upc.pts.dtos.UsuarioByRolDTO;
 import pe.edu.upc.pts.entities.Resenia;
 import pe.edu.upc.pts.serviceInterfaces.IReseniaService;
 
@@ -28,14 +27,14 @@ public class ReseniaController {
     }
     @PostMapping
     public void insertar(@RequestBody ReseniaDTO dto){
-        dto.setId_Resenia(0);
+        dto.setIdResenia(0);
         ModelMapper m = new ModelMapper();
         Resenia r = m.map(dto,Resenia.class);
         rS.insert(r);
     }
     @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable("id_resenia") Integer id_Resenia){
-        rS.delete(id_Resenia);
+    public void eliminar(@PathVariable("id_resenia") Integer idResenia){
+        rS.delete(idResenia);
     }
 
     @GetMapping("/Mayor")
