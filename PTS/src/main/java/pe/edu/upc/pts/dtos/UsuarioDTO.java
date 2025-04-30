@@ -1,34 +1,53 @@
 package pe.edu.upc.pts.dtos;
 
-import jakarta.persistence.Column;
+import pe.edu.upc.pts.entities.Rol;
+
+import java.util.List;
 
 public class UsuarioDTO {
-    private int id_usuario;
-    private String username;
-    private String password;
-    public UsuarioDTO() {}
+    private Long idUsuario;
+    private String usernameUsuario;
+    private String passwordUsuario;
+    private Boolean enableUsuario;
+    private List<Rol> rol;
 
-    public int getId_usuario() {
-        return id_usuario;
+    public Long getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setId_usuario(int id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setIdUsuario(Long idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUsernameUsuario() {
+        return usernameUsuario;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsernameUsuario(String usernameUsuario) {
+        this.usernameUsuario = usernameUsuario;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPasswordUsuario() {
+        return passwordUsuario;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPasswordUsuario(String passwordUsuario) {
+        this.passwordUsuario = passwordUsuario;
+    }
+
+    public Boolean getEnableUsuario() {
+        return enableUsuario;
+    }
+
+    public void setEnableUsuario(Boolean enableUsuario) {
+        this.enableUsuario = enableUsuario;
+    }
+
+    public List<Rol> getRol() {
+        return rol;
+    }
+
+    public void setRol(List<Rol> rol) {
+        this.rol = rol;
     }
 }

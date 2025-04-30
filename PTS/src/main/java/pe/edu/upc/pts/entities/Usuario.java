@@ -2,48 +2,76 @@ package pe.edu.upc.pts.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "Usuario")
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_usuario;
-    @Column(name = "username",nullable = false,length = 100)
-    private String username;
-    @Column(name = "password",nullable = false,length = 100)
-    private String password;
-    @ManyToOne
-    @JoinColumn(name="idRol")
-    private Rol rol;
-    public Usuario() {}
+    private Long idUsuario;
 
-    public Usuario(int id_usuario, String username, String password) {
-        this.id_usuario = id_usuario;
-        this.username = username;
-        this.password = password;
+    @Column(name = "usernameUsuario",nullable = false,length = 30)
+    private String usernameUsuario;
+
+    @Column(name = "passwordUsuario",nullable = false,length = 200)
+    private String passwordUsuario;
+
+    @Column(name = "enableUsuario",nullable = false)
+    private Boolean enableUsuario;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "idRol")
+    private List<Rol> rol;
+
+    public Usuario() {
     }
 
-    public int getId_usuario() {
-        return id_usuario;
+    public Usuario(Long idUsuario, String usernameUsuario, String passwordUsuario, Boolean enableUsuario, List<Rol> rol) {
+        this.idUsuario = idUsuario;
+        this.usernameUsuario = usernameUsuario;
+        this.passwordUsuario = passwordUsuario;
+        this.enableUsuario = enableUsuario;
+        this.rol = rol;
     }
 
-    public void setId_usuario(int id_usuario) {
-        this.id_usuario = id_usuario;
+    public Long getIdUsuario() {
+        return idUsuario;
     }
 
-    public String getUsername() {
-        return username;
+    public void setIdUsuario(Long idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public String getUsernameUsuario() {
+        return usernameUsuario;
     }
 
-    public String getPassword() {
-        return password;
+    public void setUsernameUsuario(String usernameUsuario) {
+        this.usernameUsuario = usernameUsuario;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public String getPasswordUsuario() {
+        return passwordUsuario;
+    }
+
+    public void setPasswordUsuario(String passwordUsuario) {
+        this.passwordUsuario = passwordUsuario;
+    }
+
+    public Boolean getEnableUsuario() {
+        return enableUsuario;
+    }
+
+    public void setEnableUsuario(Boolean enableUsuario) {
+        this.enableUsuario = enableUsuario;
+    }
+
+    public List<Rol> getRol() {
+        return rol;
+    }
+
+    public void setRol(List<Rol> rol) {
+        this.rol = rol;
     }
 }

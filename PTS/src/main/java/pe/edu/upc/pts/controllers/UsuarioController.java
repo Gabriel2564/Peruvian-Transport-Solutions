@@ -30,7 +30,7 @@ public class UsuarioController {
 
     @PostMapping
     public void insertar(@RequestBody UsuarioDTO dto){
-        dto.setId_usuario(0);
+        dto.setIdUsuario(0L);
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(dto,Usuario.class);
         uS.insert(u);

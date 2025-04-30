@@ -28,7 +28,7 @@ public class RolController {
 
     @PostMapping
     public void insertar(@RequestBody RolDTO dto){
-        dto.setIdRol(0);
+        dto.setIdRol(0L);
         ModelMapper m = new ModelMapper();
         Rol r = m.map(dto, Rol.class);
         rS.insert(r);
