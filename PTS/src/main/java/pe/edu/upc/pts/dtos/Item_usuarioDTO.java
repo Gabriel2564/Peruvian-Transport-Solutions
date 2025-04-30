@@ -1,33 +1,54 @@
 package pe.edu.upc.pts.dtos;
 
+import pe.edu.upc.pts.entities.Item;
+import pe.edu.upc.pts.entities.Usuario;
+
 import java.time.LocalTime;
 
 public class Item_usuarioDTO {
-    private int id_item_user;
-    private int qualification_viaj;
-    private LocalTime date_viaje_fav;
+    private int idItemUsuario;
+    private int travelQualificationItemUsuario;
+    private LocalTime travelDateItemUsuario;
+    private Item item;
+    private Usuario usuario;
 
-    public int getId_item_user() {
-        return id_item_user;
+    public int getIdItemUsuario() {
+        return idItemUsuario;
     }
 
-    public void setId_item_user(int id_item_user) {
-        this.id_item_user = id_item_user;
+    public void setIdItemUsuario(int idItemUsuario) {
+        this.idItemUsuario = idItemUsuario;
     }
 
-    public int getQualification_viaj() {
-        return qualification_viaj;
+    public int getTravelQualificationItemUsuario() {
+        return travelQualificationItemUsuario;
     }
 
-    public void setQualification_viaj(int qualification_viaj) {
-        this.qualification_viaj = qualification_viaj;
+    public void setTravelQualificationItemUsuario(int travelQualificationItemUsuario) {
+        this.travelQualificationItemUsuario = travelQualificationItemUsuario;
     }
 
-    public LocalTime getDate_viaje_fav() {
-        return date_viaje_fav;
+    public LocalTime getTravelDateItemUsuario() {
+        return travelDateItemUsuario;
     }
 
-    public void setDate_viaje_fav(LocalTime date_viaje_fav) {
-        this.date_viaje_fav = date_viaje_fav;
+    public void setTravelDateItemUsuario(LocalTime travelDateItemUsuario) {
+        this.travelDateItemUsuario = travelDateItemUsuario;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

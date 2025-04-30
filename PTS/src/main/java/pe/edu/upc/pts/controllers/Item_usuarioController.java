@@ -4,8 +4,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.pts.dtos.BusDTO;
 import pe.edu.upc.pts.dtos.Item_UsuarioByTopDTO;
 import pe.edu.upc.pts.dtos.Item_usuarioDTO;
+import pe.edu.upc.pts.entities.Bus;
 import pe.edu.upc.pts.entities.Item_usuario;
 import pe.edu.upc.pts.serviceInterfaces.IItem_usuarioService;
 
@@ -29,15 +31,22 @@ public class Item_usuarioController {
 
     @PostMapping
     public void insertar(@RequestBody Item_usuarioDTO dto){
-        dto.setId_item_user(0);
+        dto.setIdItemUsuario(0);
         ModelMapper m = new ModelMapper();
         Item_usuario i = m.map(dto, Item_usuario.class);
         iS.insert(i);
     }
 
+    @PutMapping
+    public void modificar(@RequestBody Item_usuarioDTO dto){
+        ModelMapper m = new ModelMapper();
+        Item_usuario iu = m.map(dto,Item_usuario.class);
+        iS.update(iu);
+    }
+
     @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable("id") Integer id_item_user){
-        iS.delete(id_item_user);
+    public void eliminar(@PathVariable("id") Integer idItemUsuario){
+        iS.delete(idItemUsuario);
     }
 
     @GetMapping("/top-calificados")
