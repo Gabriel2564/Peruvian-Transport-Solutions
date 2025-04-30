@@ -5,49 +5,49 @@ import pe.edu.upc.pts.entities.Rol;
 import java.util.List;
 
 public class UsuarioDTO {
-    private int idUsuario;
-    private String usernameUsuario;
-    private String passwordUsuario;
-    private Boolean enableUsuario;
-    private Rol rol;
+    private Long id;
+    private String username;
+    private String password;
+    private Boolean enabled;
+    private List<Rol> roles;
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public Long getId() {
+        return id;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getUsernameUsuario() {
-        return usernameUsuario;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUsernameUsuario(String usernameUsuario) {
-        this.usernameUsuario = usernameUsuario;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getPasswordUsuario() {
-        return passwordUsuario;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswordUsuario(String passwordUsuario) {
-        this.passwordUsuario = passwordUsuario;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public Boolean getEnableUsuario() {
-        return enableUsuario;
+    public Boolean getEnabled() {
+        return enabled;
     }
 
-    public void setEnableUsuario(Boolean enableUsuario) {
-        this.enableUsuario = enableUsuario;
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
-    public Rol getRol() {
-        return rol;
+    public List<Rol> getRoles() {
+        return roles;
     }
 
-    public void setRol(Rol rol) {
-        this.rol = rol;
+    public void setRoles(List<Rol> roles) {
+        this.roles = roles;
     }
 }
