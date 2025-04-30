@@ -3,12 +3,10 @@ package pe.edu.upc.pts.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.pts.dtos.UsuarioByRolDTO;
 import pe.edu.upc.pts.dtos.RolDTO;
 import pe.edu.upc.pts.entities.Rol;
 import pe.edu.upc.pts.serviceInterfaces.IRolService;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,7 +26,6 @@ public class RolController {
 
     @PostMapping
     public void insertar(@RequestBody RolDTO dto){
-        dto.setIdRol(0L);
         ModelMapper m = new ModelMapper();
         Rol r = m.map(dto, Rol.class);
         rS.insert(r);

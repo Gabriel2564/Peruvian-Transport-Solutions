@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.pts.dtos.UsuarioByRolDTO;
 import pe.edu.upc.pts.dtos.UsuarioDTO;
+import pe.edu.upc.pts.entities.Rol;
 import pe.edu.upc.pts.entities.Usuario;
 import pe.edu.upc.pts.serviceInterfaces.IUsuarioService;
 
@@ -30,7 +31,6 @@ public class UsuarioController {
 
     @PostMapping
     public void insertar(@RequestBody UsuarioDTO dto){
-        dto.setIdUsuario(0L);
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(dto,Usuario.class);
         uS.insert(u);

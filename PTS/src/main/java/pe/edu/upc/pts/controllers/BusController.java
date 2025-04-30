@@ -26,7 +26,7 @@ public class BusController {
 
     @PostMapping
     public void insertar(@RequestBody BusDTO dto){
-        dto.setIdBus(0); //Omite cualquier valor que este en el id, se genera automaticamente segun la secuencia
+        dto.setIdBus(0);
         ModelMapper m = new ModelMapper();
         Bus b = m.map(dto,Bus.class);
         bS.insert(b);

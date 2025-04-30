@@ -9,7 +9,7 @@ import java.util.List;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idUsuario;
+    private int idUsuario;
 
     @Column(name = "usernameUsuario",nullable = false,length = 30)
     private String usernameUsuario;
@@ -20,14 +20,14 @@ public class Usuario {
     @Column(name = "enableUsuario",nullable = false)
     private Boolean enableUsuario;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "idRol")
-    private List<Rol> rol;
+    @ManyToOne
+    @JoinColumn(name="idRol")
+    private Rol rol;
 
     public Usuario() {
     }
 
-    public Usuario(Long idUsuario, String usernameUsuario, String passwordUsuario, Boolean enableUsuario, List<Rol> rol) {
+    public Usuario(int idUsuario, String usernameUsuario, String passwordUsuario, Boolean enableUsuario, Rol rol) {
         this.idUsuario = idUsuario;
         this.usernameUsuario = usernameUsuario;
         this.passwordUsuario = passwordUsuario;
@@ -35,11 +35,11 @@ public class Usuario {
         this.rol = rol;
     }
 
-    public Long getIdUsuario() {
+    public int getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(Long idUsuario) {
+    public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
 
@@ -67,11 +67,11 @@ public class Usuario {
         this.enableUsuario = enableUsuario;
     }
 
-    public List<Rol> getRol() {
+    public Rol getRol() {
         return rol;
     }
 
-    public void setRol(List<Rol> rol) {
+    public void setRol(Rol rol) {
         this.rol = rol;
     }
 }

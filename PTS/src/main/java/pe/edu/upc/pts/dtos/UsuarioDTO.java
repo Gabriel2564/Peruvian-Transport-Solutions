@@ -5,17 +5,17 @@ import pe.edu.upc.pts.entities.Rol;
 import java.util.List;
 
 public class UsuarioDTO {
-    private Long idUsuario;
+    private int idUsuario;
     private String usernameUsuario;
     private String passwordUsuario;
     private Boolean enableUsuario;
-    private List<Rol> rol;
+    private Rol rol;
 
-    public Long getIdUsuario() {
+    public int getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(Long idUsuario) {
+    public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
 
@@ -43,11 +43,11 @@ public class UsuarioDTO {
         this.enableUsuario = enableUsuario;
     }
 
-    public List<Rol> getRol() {
+    public Rol getRol() {
         return rol;
     }
 
-    public void setRol(List<Rol> rol) {
+    public void setRol(Rol rol) {
         this.rol = rol;
     }
 }
