@@ -22,8 +22,8 @@ public class UsuarioController {
     @Autowired
     private IUsuarioService uS;
 
+    @GetMapping("/listar")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
-    @GetMapping
     public List<UsuarioDTO> listar(){
         return uS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
