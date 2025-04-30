@@ -5,12 +5,11 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "Pago")
 public class Pago {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idPago;
 
-    @Column(name = "paymentTypePago", length = 100, nullable = false)
+    @Column(name = "paymentTypePago", length = 20, nullable = false)
     private String paymentTypePago;
 
     public Pago() {
