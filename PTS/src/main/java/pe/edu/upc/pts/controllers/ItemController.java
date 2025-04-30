@@ -2,6 +2,7 @@ package pe.edu.upc.pts.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.pts.dtos.ItemDTO;
 import pe.edu.upc.pts.entities.Item;
@@ -16,7 +17,8 @@ public class ItemController {
     @Autowired
     private IItemService iS;
 
-    @GetMapping
+    @GetMapping("/Listar_Item")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<ItemDTO> listar(){
         return iS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -24,7 +26,8 @@ public class ItemController {
         }).collect(Collectors.toList());
     }
 
-    @PostMapping
+    @PostMapping("/Insertar_Item")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void insertar(@RequestBody ItemDTO dto){
         dto.setIdItem(0);
         ModelMapper m = new ModelMapper();
@@ -32,7 +35,8 @@ public class ItemController {
         iS.insert(i);
     }
 
-    @PutMapping
+    @PutMapping("/Modificar_Item")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void modificar(@RequestBody ItemDTO dto){
         ModelMapper m = new ModelMapper();
         Item i = m.map(dto,Item.class);
@@ -40,6 +44,7 @@ public class ItemController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void eliminar(@PathVariable("id") Integer id){
         iS.delete(id);
     }

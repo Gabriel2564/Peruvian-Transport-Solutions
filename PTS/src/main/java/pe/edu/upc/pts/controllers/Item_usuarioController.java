@@ -2,12 +2,10 @@ package pe.edu.upc.pts.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.pts.dtos.BusDTO;
 import pe.edu.upc.pts.dtos.Item_UsuarioByTopDTO;
 import pe.edu.upc.pts.dtos.Item_usuarioDTO;
-import pe.edu.upc.pts.entities.Bus;
 import pe.edu.upc.pts.entities.Item_usuario;
 import pe.edu.upc.pts.serviceInterfaces.IItem_usuarioService;
 
@@ -21,7 +19,8 @@ public class Item_usuarioController {
     @Autowired
     private IItem_usuarioService iS;
 
-    @GetMapping
+    @GetMapping("/Listar_Itemuser")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<Item_usuarioDTO> listar(){
         return iS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -29,7 +28,8 @@ public class Item_usuarioController {
         }).collect(Collectors.toList());
     }
 
-    @PostMapping
+    @PostMapping("/Insertar_Itemuser")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void insertar(@RequestBody Item_usuarioDTO dto){
         dto.setIdItemUsuario(0);
         ModelMapper m = new ModelMapper();
@@ -37,7 +37,8 @@ public class Item_usuarioController {
         iS.insert(i);
     }
 
-    @PutMapping
+    @PutMapping("/Modificar_Itemuser")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void modificar(@RequestBody Item_usuarioDTO dto){
         ModelMapper m = new ModelMapper();
         Item_usuario iu = m.map(dto,Item_usuario.class);
@@ -45,11 +46,13 @@ public class Item_usuarioController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void eliminar(@PathVariable("id") Integer idItemUsuario){
         iS.delete(idItemUsuario);
     }
 
     @GetMapping("/top-calificados")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<Item_UsuarioByTopDTO> top5Items() {
         List<String[]> filaLista = iS.ObtenerTopCalificados();
         List<Item_UsuarioByTopDTO> dtoLista = new ArrayList<>();

@@ -2,6 +2,7 @@ package pe.edu.upc.pts.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.pts.dtos.BusDTO;
 import pe.edu.upc.pts.entities.Bus;
@@ -11,12 +12,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+
 @RequestMapping("/buses")
 public class BusController {
     @Autowired
     private IBusService bS;
 
-    @GetMapping
+    @GetMapping("/Listar_Buses")
+    @PreAuthorize("hasAnyAuthority('CONDUCTOR','ADMINISTRADOR')")
     public List<BusDTO> listar(){
         return bS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -24,7 +27,8 @@ public class BusController {
         }).collect(Collectors.toList());
     }
 
-    @PostMapping
+    @PostMapping("/Insertar_Buses")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void insertar(@RequestBody BusDTO dto){
         dto.setIdBus(0);
         ModelMapper m = new ModelMapper();
@@ -32,7 +36,8 @@ public class BusController {
         bS.insert(b);
     }
 
-    @PutMapping
+    @PutMapping("/Modificar_Buses")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void modificar(@RequestBody BusDTO dto){
         ModelMapper m = new ModelMapper();
         Bus b = m.map(dto,Bus.class);
@@ -40,6 +45,7 @@ public class BusController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") Integer id){
         bS.delete(id);
     }
