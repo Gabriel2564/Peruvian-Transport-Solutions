@@ -27,7 +27,7 @@ public class Reserva_boletoController {
 
     @PostMapping
     public void insertar(@RequestBody Reserva_boletoDTO dto) {
-        dto.setIdReservabol(0); // Se ignora el ID si viene con valor, lo genera automáticamente
+        dto.setIdReservaBoleto(0); // Se ignora el ID si viene con valor, lo genera automáticamente
         ModelMapper m = new ModelMapper();
         Reserva_boleto reserva = m.map(dto, Reserva_boleto.class);
         reservaService.insert(reserva);

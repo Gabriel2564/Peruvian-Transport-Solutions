@@ -1,55 +1,41 @@
 package pe.edu.upc.pts.dtos;
 
-import pe.edu.upc.pts.entities.Usuario;
-import pe.edu.upc.pts.entities.Pago;
 import pe.edu.upc.pts.entities.Asiento;
+import pe.edu.upc.pts.entities.Pago;
+import pe.edu.upc.pts.entities.Usuario;
 
 import java.math.BigDecimal;
 
 public class Reserva_boletoDTO {
-
-    private int idReservabol;
-    private BigDecimal montoBoleto;
-    private Boolean cantidadAsientos;
+    private int idReservaBoleto;
+    private BigDecimal ticketAmountReservaBoleto;
+    private int seatQuantityReservaBoleto;
     private Usuario usuario;
     private Pago pago;
     private Asiento asiento;
 
-    public Reserva_boletoDTO() {
+    public int getIdReservaBoleto() {
+        return idReservaBoleto;
     }
 
-    public Reserva_boletoDTO(int idReservabol, BigDecimal montoBoleto, Boolean cantidadAsientos,
-                             Usuario usuario, Pago pago, Asiento asiento) {
-        this.idReservabol = idReservabol;
-        this.montoBoleto = montoBoleto;
-        this.cantidadAsientos = cantidadAsientos;
-        this.usuario = usuario;
-        this.pago = pago;
-        this.asiento = asiento;
+    public void setIdReservaBoleto(int idReservaBoleto) {
+        this.idReservaBoleto = idReservaBoleto;
     }
 
-    public int getIdReservabol() {
-        return idReservabol;
+    public BigDecimal getTicketAmountReservaBoleto() {
+        return ticketAmountReservaBoleto;
     }
 
-    public void setIdReservabol(int idReservabol) {
-        this.idReservabol = idReservabol;
+    public void setTicketAmountReservaBoleto(BigDecimal ticketAmountReservaBoleto) {
+        this.ticketAmountReservaBoleto = ticketAmountReservaBoleto;
     }
 
-    public BigDecimal getMontoBoleto() {
-        return montoBoleto;
+    public int getSeatQuantityReservaBoleto() {
+        return seatQuantityReservaBoleto;
     }
 
-    public void setMontoBoleto(BigDecimal montoBoleto) {
-        this.montoBoleto = montoBoleto;
-    }
-
-    public Boolean getCantidadAsientos() {
-        return cantidadAsientos;
-    }
-
-    public void setCantidadAsientos(Boolean cantidadAsientos) {
-        this.cantidadAsientos = cantidadAsientos;
+    public void setSeatQuantityReservaBoleto(int seatQuantityReservaBoleto) {
+        this.seatQuantityReservaBoleto = seatQuantityReservaBoleto;
     }
 
     public Usuario getUsuario() {
