@@ -20,17 +20,29 @@ public class AsientoController {
 
     @GetMapping
     public List<AsientoDTO> listar() {
-
-        return aS.listar_asiento().stream().map(x->{
+        return aS.list().stream().map(x->{
             ModelMapper m=new ModelMapper();
             return m.map(x, AsientoDTO.class);
         }).collect(Collectors.toList());
     }
+
     @PostMapping
     public void insertar(@RequestBody AsientoDTO dto){
-        dto.setIdAsiento(0); //Omite cualquier valor que este en el id, se genera automaticamente segun la secuencia
+        dto.setIdAsiento(0);
         ModelMapper m = new ModelMapper();
         Asiento a = m.map(dto,Asiento.class);
         aS.insert(a);
+    }
+
+    @PutMapping
+    public void modificar(@RequestBody AsientoDTO dto){
+        ModelMapper m = new ModelMapper();
+        Asiento a = m.map(dto,Asiento.class);
+        aS.update(a);
+    }
+
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable("id") Integer id){
+        aS.delete(id);
     }
 }
