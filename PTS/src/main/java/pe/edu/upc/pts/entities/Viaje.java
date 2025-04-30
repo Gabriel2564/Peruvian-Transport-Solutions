@@ -11,12 +11,16 @@ public class Viaje {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idViaje;
-    @Column(name = "fecha_salida", nullable = false, length = 100)
-    private LocalDate fecha_salida;
-    @Column(name = "precio", nullable = false, length = 100)
-    private Double precio;
-    @Column(name = "hora_salida", nullable = false, length = 100)
-    private LocalTime hora_salida;
+
+    @Column(name = "departureDateViaje", nullable = false)
+    private LocalDate departureDateViaje;
+
+    @Column(name = "priceViaje", nullable = false)
+    private Double priceViaje;
+
+    @Column(name = "departureTimeViaje", nullable = false)
+    private LocalTime departureTimeViaje;
+
     @ManyToOne
     @JoinColumn(name = "idRuta")
     private Ruta ruta;
@@ -24,11 +28,11 @@ public class Viaje {
     public Viaje() {
     }
 
-    public Viaje(int idViaje, LocalDate fecha_salida, Double precio, LocalTime hora_salida, Ruta ruta) {
+    public Viaje(int idViaje, LocalDate departureDateViaje, Double priceViaje, LocalTime departureTimeViaje, Ruta ruta) {
         this.idViaje = idViaje;
-        this.fecha_salida = fecha_salida;
-        this.precio = precio;
-        this.hora_salida = hora_salida;
+        this.departureDateViaje = departureDateViaje;
+        this.priceViaje = priceViaje;
+        this.departureTimeViaje = departureTimeViaje;
         this.ruta = ruta;
     }
 
@@ -40,28 +44,28 @@ public class Viaje {
         this.idViaje = idViaje;
     }
 
-    public LocalDate getFecha_salida() {
-        return fecha_salida;
+    public LocalDate getDepartureDateViaje() {
+        return departureDateViaje;
     }
 
-    public void setFecha_salida(LocalDate fecha_salida) {
-        this.fecha_salida = fecha_salida;
+    public void setDepartureDateViaje(LocalDate departureDateViaje) {
+        this.departureDateViaje = departureDateViaje;
     }
 
-    public Double getPrecio() {
-        return precio;
+    public Double getPriceViaje() {
+        return priceViaje;
     }
 
-    public void setPrecio(Double precio) {
-        this.precio = precio;
+    public void setPriceViaje(Double priceViaje) {
+        this.priceViaje = priceViaje;
     }
 
-    public LocalTime getHora_salida() {
-        return hora_salida;
+    public LocalTime getDepartureTimeViaje() {
+        return departureTimeViaje;
     }
 
-    public void setHora_salida(LocalTime hora_salida) {
-        this.hora_salida = hora_salida;
+    public void setDepartureTimeViaje(LocalTime departureTimeViaje) {
+        this.departureTimeViaje = departureTimeViaje;
     }
 
     public Ruta getRuta() {

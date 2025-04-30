@@ -3,8 +3,6 @@ package pe.edu.upc.pts.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-//import pe.edu.upc.pts.dtos.RolDTO;
-import pe.edu.upc.pts.dtos.UsuarioByRolDTO;
 import pe.edu.upc.pts.dtos.ViajeByRutaDTO;
 import pe.edu.upc.pts.dtos.ViajeDTO;
 import pe.edu.upc.pts.entities.Viaje;
@@ -60,5 +58,4 @@ public class ViajeController {
         }
         return dtoLista;
     }
-
 }
