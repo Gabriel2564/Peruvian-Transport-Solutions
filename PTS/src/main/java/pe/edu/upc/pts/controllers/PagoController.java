@@ -17,24 +17,26 @@ public class PagoController {
     @Autowired
     private IPagoService paymentService;
 
-    private final ModelMapper modelMapper = new ModelMapper();
-
     @GetMapping
     public List<PagoDTO> list() {
-        return paymentService.list().stream()
-                .map(p -> modelMapper.map(p, PagoDTO.class))
-                .collect(Collectors.toList());
+        return paymentService.list().stream().map(p->{
+            ModelMapper m = new ModelMapper();
+            return m.map(p, PagoDTO.class);
+        }).collect(Collectors.toList());
     }
 
     @PostMapping
     public void insert(@RequestBody PagoDTO dto) {
-        Pago payment = modelMapper.map(dto, Pago.class);
+        dto.setIdPago(0);
+        ModelMapper m = new ModelMapper();
+        Pago payment = m.map(dto, Pago.class);
         paymentService.insert(payment);
     }
 
     @PutMapping
     public void update(@RequestBody PagoDTO dto) {
-        Pago payment = modelMapper.map(dto, Pago.class);
+        ModelMapper m = new ModelMapper();
+        Pago payment = m.map(dto, Pago.class);
         paymentService.update(payment);
     }
 
