@@ -3,6 +3,7 @@ package pe.edu.upc.pts.controllers;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.pts.dtos.UsuarioByRolDTO;
 import pe.edu.upc.pts.dtos.UsuarioDTO;
@@ -21,6 +22,7 @@ public class UsuarioController {
     @Autowired
     private IUsuarioService uS;
 
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     @GetMapping
     public List<UsuarioDTO> listar(){
         return uS.list().stream().map(x->{
@@ -29,6 +31,7 @@ public class UsuarioController {
         }).collect(Collectors.toList());
     }
 
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     @PostMapping
     public void insertar(@RequestBody UsuarioDTO dto){
         ModelMapper m = new ModelMapper();
@@ -36,6 +39,8 @@ public class UsuarioController {
         uS.insert(u);
     }
 
+
+    @PreAuthorize("hasAuthority('TURISTA')")
     @PutMapping
     public void modificar(@RequestBody UsuarioDTO dto){
         ModelMapper m = new ModelMapper();
@@ -43,11 +48,13 @@ public class UsuarioController {
         uS.update(u);
     }
 
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id){
         uS.delete(id);
     }
 
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     @GetMapping("/query1")
     public List<UsuarioByRolDTO> query1() {
         List<String[]> filaLista = uS.QuantityUsuarioByRol();
