@@ -26,7 +26,7 @@ public class ItemController {
 
     @PostMapping
     public void insertar(@RequestBody ItemDTO dto){
-        dto.setIdItem(0); //Omite cualquier valor que este en el id, se genera automaticamente segun la secuencia
+        dto.setIdItem(0);
         ModelMapper m = new ModelMapper();
         Item i = m.map(dto,Item.class);
         iS.insert(i);

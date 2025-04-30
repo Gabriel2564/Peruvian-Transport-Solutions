@@ -2,7 +2,6 @@ package pe.edu.upc.pts.dtos;
 
 public class RolDTO {
     private int idRol;
-
     private String nameRol;
 
     public int getIdRol() {

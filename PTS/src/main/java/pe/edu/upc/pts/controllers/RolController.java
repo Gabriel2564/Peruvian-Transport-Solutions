@@ -28,7 +28,7 @@ public class RolController {
 
     @PostMapping
     public void insertar(@RequestBody RolDTO dto){
-        dto.setIdRol(0); //Omite cualquier que este en el id, se genera automaticamente segun la secuencia
+        dto.setIdRol(0);
         ModelMapper m = new ModelMapper();
         Rol r = m.map(dto, Rol.class);
         rS.insert(r);
