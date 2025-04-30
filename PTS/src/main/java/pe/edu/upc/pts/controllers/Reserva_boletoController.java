@@ -2,6 +2,7 @@ package pe.edu.upc.pts.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.pts.dtos.Reserva_boletoDTO;
 import pe.edu.upc.pts.entities.Reserva_boleto;
@@ -17,6 +18,7 @@ public class Reserva_boletoController {
     @Autowired
     private IReserva_boletoService reservaService;
 
+    @PreAuthorize("hasAuthority('conductor')")
     @GetMapping
     public List<Reserva_boletoDTO> listar() {
         return reservaService.list().stream().map(reserva -> {
@@ -25,6 +27,7 @@ public class Reserva_boletoController {
         }).collect(Collectors.toList());
     }
 
+    @PreAuthorize("hasAuthority('turista')")
     @PostMapping
     public void insertar(@RequestBody Reserva_boletoDTO dto) {
         dto.setIdReservaBoleto(0); // Se ignora el ID si viene con valor, lo genera automáticamente
@@ -33,6 +36,7 @@ public class Reserva_boletoController {
         reservaService.insert(reserva);
     }
 
+    @PreAuthorize("hasAuthority('turista')")
     @PutMapping
     public void modificar(@RequestBody Reserva_boletoDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -40,6 +44,7 @@ public class Reserva_boletoController {
         reservaService.update(reserva);
     }
 
+    @PreAuthorize("hasAuthority('administrador')")
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") int id) {
         reservaService.delete(id);
