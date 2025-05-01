@@ -1,5 +1,6 @@
 package pe.edu.upc.pts.controllers;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,15 +17,16 @@ import pe.edu.upc.pts.securities.JwtResponse;
 import pe.edu.upc.pts.securities.JwtTokenUtil;
 import pe.edu.upc.pts.serviceImplements.JwtUserDetailsService;
 
-
 //Clase 3
 @RestController
 @CrossOrigin
 public class JwtAuthenticationController {
     @Autowired
     private AuthenticationManager authenticationManager;
+
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
+
     @Autowired
     private JwtUserDetailsService userDetailsService;
 
