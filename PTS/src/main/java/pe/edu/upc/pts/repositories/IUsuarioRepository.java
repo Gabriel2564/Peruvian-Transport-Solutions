@@ -9,6 +9,8 @@ import java.util.List;
 
 @Repository
 public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
+    public Usuario findOneByUsername(String username);
+
     @Query(value = "select r.name_rol as Rol ,count(*) as QuantityUsers\n" +
             "from Rol r inner join Usuario u\n" +
             "on r.id_rol=u.id_rol\n" +

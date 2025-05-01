@@ -8,16 +8,24 @@ public class Ruta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idRuta;
-    @Column(name = "location", nullable = false, length = 100)
-    private String location;
-    @Column(name = "start_longitude", nullable = false, length = 100)
-    private String start_longitude;
-    @Column(name = "destination_longitude", nullable = false, length = 100)
-    private String destination_longitude;
-    @Column(name = "start_latitude", nullable = false, length = 100)
-    private String start_latitude;
-    @Column(name = "destination_latitude", nullable = false, length = 100)
-    private String destination_latitude;
+
+    @Column(name = "startLocationRuta", nullable = false, length = 100)
+    private String startLocationRuta;
+
+    @Column(name = "finalLocationRuta", nullable = false, length = 100)
+    private String finalLocationRuta;
+
+    @Column(name = "startLongitudeRuta", nullable = false, length = 100)
+    private String startLongitudeRuta;
+
+    @Column(name = "finalLongitudeRuta", nullable = false, length = 100)
+    private String finalLongitudeRuta;
+
+    @Column(name = "startLatitudeRuta", nullable = false, length = 100)
+    private String startLatitudeRuta;
+
+    @Column(name = "finalLatitudeRuta", nullable = false, length = 100)
+    private String finalLatitudeRuta;
 
     @ManyToOne
     @JoinColumn(name = "idItem")
@@ -26,13 +34,14 @@ public class Ruta {
     public Ruta() {
     }
 
-    public Ruta(int idRuta, String location, String start_longitude, String destination_longitude, String start_latitude, String destination_latitude, Item item) {
+    public Ruta(int idRuta, String startLocationRuta, String finalLocationRuta, String startLongitudeRuta, String finalLongitudeRuta, String startLatitudeRuta, String finalLatitudeRuta, Item item) {
         this.idRuta = idRuta;
-        this.location = location;
-        this.start_longitude = start_longitude;
-        this.destination_longitude = destination_longitude;
-        this.start_latitude = start_latitude;
-        this.destination_latitude = destination_latitude;
+        this.startLocationRuta = startLocationRuta;
+        this.finalLocationRuta = finalLocationRuta;
+        this.startLongitudeRuta = startLongitudeRuta;
+        this.finalLongitudeRuta = finalLongitudeRuta;
+        this.startLatitudeRuta = startLatitudeRuta;
+        this.finalLatitudeRuta = finalLatitudeRuta;
         this.item = item;
     }
 
@@ -44,44 +53,52 @@ public class Ruta {
         this.idRuta = idRuta;
     }
 
-    public String getLocation() {
-        return location;
+    public String getStartLocationRuta() {
+        return startLocationRuta;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setStartLocationRuta(String startLocationRuta) {
+        this.startLocationRuta = startLocationRuta;
     }
 
-    public String getStart_longitude() {
-        return start_longitude;
+    public String getFinalLocationRuta() {
+        return finalLocationRuta;
     }
 
-    public void setStart_longitude(String start_longitude) {
-        this.start_longitude = start_longitude;
+    public void setFinalLocationRuta(String finalLocationRuta) {
+        this.finalLocationRuta = finalLocationRuta;
     }
 
-    public String getDestination_longitude() {
-        return destination_longitude;
+    public String getStartLongitudeRuta() {
+        return startLongitudeRuta;
     }
 
-    public void setDestination_longitude(String destination_longitude) {
-        this.destination_longitude = destination_longitude;
+    public void setStartLongitudeRuta(String startLongitudeRuta) {
+        this.startLongitudeRuta = startLongitudeRuta;
     }
 
-    public String getStart_latitude() {
-        return start_latitude;
+    public String getFinalLongitudeRuta() {
+        return finalLongitudeRuta;
     }
 
-    public void setStart_latitude(String start_latitude) {
-        this.start_latitude = start_latitude;
+    public void setFinalLongitudeRuta(String finalLongitudeRuta) {
+        this.finalLongitudeRuta = finalLongitudeRuta;
     }
 
-    public String getDestination_latitude() {
-        return destination_latitude;
+    public String getStartLatitudeRuta() {
+        return startLatitudeRuta;
     }
 
-    public void setDestination_latitude(String destination_latitude) {
-        this.destination_latitude = destination_latitude;
+    public void setStartLatitudeRuta(String startLatitudeRuta) {
+        this.startLatitudeRuta = startLatitudeRuta;
+    }
+
+    public String getFinalLatitudeRuta() {
+        return finalLatitudeRuta;
+    }
+
+    public void setFinalLatitudeRuta(String finalLatitudeRuta) {
+        this.finalLatitudeRuta = finalLatitudeRuta;
     }
 
     public Item getItem() {

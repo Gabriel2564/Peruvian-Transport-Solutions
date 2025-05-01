@@ -7,20 +7,24 @@ import pe.edu.upc.pts.repositories.IReseniaRepository;
 import pe.edu.upc.pts.serviceInterfaces.IReseniaService;
 
 import java.util.List;
+
 @Service
 public class ReseniaServiceImplement implements IReseniaService {
     @Autowired
     private IReseniaRepository rR;
+
     @Override
     public List<Resenia> list() {return rR.findAll();}
-    @Override
-    public void insert(Resenia resenia) {
-        rR.save(resenia);}
-
 
     @Override
-    public void delete(int id_Resenia) {
-        rR.deleteById(id_Resenia);
+    public void insert(Resenia resenia) { rR.save(resenia);}
+
+    @Override
+    public void update(Resenia resenia) { rR.save(resenia);}
+
+    @Override
+    public void delete(int id) {
+        rR.deleteById(id);
     }
 
     @Override

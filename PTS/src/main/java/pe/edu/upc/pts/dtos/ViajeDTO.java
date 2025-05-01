@@ -7,10 +7,9 @@ import java.time.LocalTime;
 
 public class ViajeDTO {
     private int idViaje;
-    private LocalDate fecha_salida;
-    private Double precio;
-    private LocalTime hora_salida;
-
+    private LocalDate departureDateViaje;
+    private Double priceViaje;
+    private LocalTime departureTimeViaje;
     private Ruta ruta;
 
     public int getIdViaje() {
@@ -21,28 +20,28 @@ public class ViajeDTO {
         this.idViaje = idViaje;
     }
 
-    public LocalDate getFecha_salida() {
-        return fecha_salida;
+    public LocalDate getDepartureDateViaje() {
+        return departureDateViaje;
     }
 
-    public void setFecha_salida(LocalDate fecha_salida) {
-        this.fecha_salida = fecha_salida;
+    public void setDepartureDateViaje(LocalDate departureDateViaje) {
+        this.departureDateViaje = departureDateViaje;
     }
 
-    public Double getPrecio() {
-        return precio;
+    public Double getPriceViaje() {
+        return priceViaje;
     }
 
-    public void setPrecio(Double precio) {
-        this.precio = precio;
+    public void setPriceViaje(Double priceViaje) {
+        this.priceViaje = priceViaje;
     }
 
-    public LocalTime getHora_salida() {
-        return hora_salida;
+    public LocalTime getDepartureTimeViaje() {
+        return departureTimeViaje;
     }
 
-    public void setHora_salida(LocalTime hora_salida) {
-        this.hora_salida = hora_salida;
+    public void setDepartureTimeViaje(LocalTime departureTimeViaje) {
+        this.departureTimeViaje = departureTimeViaje;
     }
 
     public Ruta getRuta() {

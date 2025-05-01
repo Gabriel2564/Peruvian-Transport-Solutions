@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface IReserva_boletoRepository extends JpaRepository<Reserva_boleto, Integer> {
     // Encuentra reservas por monto mayor a un valor específico
-    @Query("SELECT r FROM Reserva_boleto r WHERE r.ticketAmount > :amount")
+    @Query("SELECT r FROM Reserva_boleto r WHERE r.ticketAmountReservaBoleto > :amount")
     List<Reserva_boleto> findByTicketAmountGreaterThan(@Param("amount") BigDecimal amount);
 
 }

@@ -1,23 +1,33 @@
 package pe.edu.upc.pts.dtos;
 
+import pe.edu.upc.pts.entities.Usuario;
+
 public class RolDTO {
-    private int idRol;
+    private Long id;
+    private String rol;
+    private Usuario usuario;
 
-    private String nameRol;
-
-    public int getIdRol() {
-        return idRol;
+    public Long getId() {
+        return id;
     }
 
-    public void setIdRol(int idRol) {
-        this.idRol = idRol;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getNameRol() {
-        return nameRol;
+    public String getRol() {
+        return rol;
     }
 
-    public void setNameRol(String nameRol) {
-        this.nameRol = nameRol;
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

@@ -5,7 +5,8 @@ import pe.edu.upc.pts.entities.Asiento;
 import java.util.List;
 
 public interface IAsientoService {
-    public List<Asiento> listar_asiento();
+    public List<Asiento> list();
     public void insert(Asiento asiento);
-    List<Asiento> list();
+    public void update(Asiento asiento);
+    public void delete(int id);
 }

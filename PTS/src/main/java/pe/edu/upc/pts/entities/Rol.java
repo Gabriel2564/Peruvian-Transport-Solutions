@@ -3,36 +3,39 @@ package pe.edu.upc.pts.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Rol")
+@Table(name = "Rol", uniqueConstraints = {@UniqueConstraint(columnNames = {"idUsuario", "rol"})})
 public class Rol {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idRol;
+    private Long id;
 
-    @Column(name = "nameRol", nullable = false, length = 20)
-    private String nameRol;
+    private String rol;
 
-    public Rol() {
+    @ManyToOne
+    @JoinColumn(name = "idUsuario", nullable = false)
+    private Usuario usuario;
+
+    public Long getId() {
+        return id;
     }
 
-    public Rol(int idRol, String nameRol) {
-        this.idRol = idRol;
-        this.nameRol = nameRol;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public int getIdRol() {
-        return idRol;
+    public String getRol() {
+        return rol;
     }
 
-    public void setIdRol(int idRol) {
-        this.idRol = idRol;
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
-    public String getNameRol() {
-        return nameRol;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setNameRol(String nameRol) {
-        this.nameRol = nameRol;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

@@ -3,36 +3,36 @@ package pe.edu.upc.pts.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "pago")
+@Table(name = "Pago")
 public class Pago {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int paymentId;
+    private int idPago;
 
-    @Column(name = "tipo_pa", length = 100, nullable = false)
-    private String paymentType;
+    @Column(name = "paymentTypePago", length = 20, nullable = false)
+    private String paymentTypePago;
 
     public Pago() {
     }
 
-    public Pago(String paymentType) {
-        this.paymentType = paymentType;
+    public Pago(int idPago, String paymentTypePago) {
+        this.idPago = idPago;
+        this.paymentTypePago = paymentTypePago;
     }
 
-    public int getPaymentId() {
-        return paymentId;
+    public int getIdPago() {
+        return idPago;
     }
 
-    public void setPaymentId(int paymentId) {
-        this.paymentId = paymentId;
+    public void setIdPago(int idPago) {
+        this.idPago = idPago;
     }
 
-    public String getPaymentType() {
-        return paymentType;
+    public String getPaymentTypePago() {
+        return paymentTypePago;
     }
 
-    public void setPaymentType(String paymentType) {
-        this.paymentType = paymentType;
+    public void setPaymentTypePago(String paymentTypePago) {
+        this.paymentTypePago = paymentTypePago;
     }
 }

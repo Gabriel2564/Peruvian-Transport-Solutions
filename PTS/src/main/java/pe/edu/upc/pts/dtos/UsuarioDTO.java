@@ -1,19 +1,22 @@
 package pe.edu.upc.pts.dtos;
 
-import jakarta.persistence.Column;
+import pe.edu.upc.pts.entities.Rol;
+
+import java.util.List;
 
 public class UsuarioDTO {
-    private int id_usuario;
+    private Long id;
     private String username;
     private String password;
-    public UsuarioDTO() {}
+    private Boolean enabled;
+    private List<Rol> roles;
 
-    public int getId_usuario() {
-        return id_usuario;
+    public Long getId() {
+        return id;
     }
 
-    public void setId_usuario(int id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -30,5 +33,21 @@ public class UsuarioDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public List<Rol> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Rol> roles) {
+        this.roles = roles;
     }
 }

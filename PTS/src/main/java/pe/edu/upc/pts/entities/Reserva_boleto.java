@@ -6,87 +6,85 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "reserva_boleto")
 public class Reserva_boleto {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int reservationId;
+    private int idReservaBoleto;
 
-    @Column(name = "monto_boleto", nullable = false)
-    private BigDecimal ticketAmount;
+    @Column(name = "ticketAmountReservaBoleto", nullable = false)
+    private BigDecimal ticketAmountReservaBoleto;
 
-    @Column(name = "cantidad_asientos", nullable = false)
-    private Boolean seatQuantity;
-
-    @ManyToOne
-    @JoinColumn(name = "usuario_id_usuario", nullable = false)
-    private Usuario user;
+    @Column(name = "seatQuantityReservaBoleto", nullable = false)
+    private int seatQuantityReservaBoleto;
 
     @ManyToOne
-    @JoinColumn(name = "pago_id_pago", nullable = false)
-    private Pago payment;
+    @JoinColumn(name = "idUsuario", nullable = false)
+    private Usuario usuario;
 
     @ManyToOne
-    @JoinColumn(name = "asiento_id_asient", nullable = false)
-    private Asiento seat;
+    @JoinColumn(name = "idPago", nullable = false)
+    private Pago pago;
+
+    @ManyToOne
+    @JoinColumn(name = "idAsiento", nullable = false)
+    private Asiento asiento;
 
     public Reserva_boleto() {
     }
 
-    public Reserva_boleto(int reservationId, BigDecimal ticketAmount, Boolean seatQuantity,
-                          Usuario user, Pago payment, Asiento seat) {
-        this.reservationId = reservationId;
-        this.ticketAmount = ticketAmount;
-        this.seatQuantity = seatQuantity;
-        this.user = user;
-        this.payment = payment;
-        this.seat = seat;
+    public Reserva_boleto(int idReservaBoleto, BigDecimal ticketAmountReservaBoleto, int seatQuantityReservaBoleto, Usuario usuario, Pago pago, Asiento asiento) {
+        this.idReservaBoleto = idReservaBoleto;
+        this.ticketAmountReservaBoleto = ticketAmountReservaBoleto;
+        this.seatQuantityReservaBoleto = seatQuantityReservaBoleto;
+        this.usuario = usuario;
+        this.pago = pago;
+        this.asiento = asiento;
     }
 
-    public int getReservationId() {
-        return reservationId;
+    public int getIdReservaBoleto() {
+        return idReservaBoleto;
     }
 
-    public void setReservationId(int reservationId) {
-        this.reservationId = reservationId;
+    public void setIdReservaBoleto(int idReservaBoleto) {
+        this.idReservaBoleto = idReservaBoleto;
     }
 
-    public BigDecimal getTicketAmount() {
-        return ticketAmount;
+    public BigDecimal getTicketAmountReservaBoleto() {
+        return ticketAmountReservaBoleto;
     }
 
-    public void setTicketAmount(BigDecimal ticketAmount) {
-        this.ticketAmount = ticketAmount;
+    public void setTicketAmountReservaBoleto(BigDecimal ticketAmountReservaBoleto) {
+        this.ticketAmountReservaBoleto = ticketAmountReservaBoleto;
     }
 
-    public Boolean getSeatQuantity() {
-        return seatQuantity;
+    public int getSeatQuantityReservaBoleto() {
+        return seatQuantityReservaBoleto;
     }
 
-    public void setSeatQuantity(Boolean seatQuantity) {
-        this.seatQuantity = seatQuantity;
+    public void setSeatQuantityReservaBoleto(int seatQuantityReservaBoleto) {
+        this.seatQuantityReservaBoleto = seatQuantityReservaBoleto;
     }
 
-    public Usuario getUser() {
-        return user;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setUser(Usuario user) {
-        this.user = user;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
-    public Pago getPayment() {
-        return payment;
+    public Pago getPago() {
+        return pago;
     }
 
-    public void setPayment(Pago payment) {
-        this.payment = payment;
+    public void setPago(Pago pago) {
+        this.pago = pago;
     }
 
-    public Asiento getSeat() {
-        return seat;
+    public Asiento getAsiento() {
+        return asiento;
     }
 
-    public void setSeat(Asiento seat) {
-        this.seat = seat;
+    public void setAsiento(Asiento asiento) {
+        this.asiento = asiento;
     }
 }

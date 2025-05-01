@@ -1,47 +1,48 @@
 package pe.edu.upc.pts.dtos;
 
 import pe.edu.upc.pts.entities.Usuario;
+import pe.edu.upc.pts.entities.Viaje;
 
 import java.time.LocalTime;
 
 public class ReseniaDTO {
-    private int id_Resenia;
-    private LocalTime fecha_publicada;
-    private int likes;
-    private String contenido;
+    private int idResenia;
+    private LocalTime publicationDateResenia;
+    private int likesResenia;
+    private String contentResenia;
     private Usuario usuario;
     private Viaje viaje;
 
-    public int getId_Resenia() {
-        return id_Resenia;
+    public int getIdResenia() {
+        return idResenia;
     }
 
-    public void setId_Resenia(int id_Resenia) {
-        this.id_Resenia = id_Resenia;
+    public void setIdResenia(int idResenia) {
+        this.idResenia = idResenia;
     }
 
-    public LocalTime getFecha_publicada() {
-        return fecha_publicada;
+    public LocalTime getPublicationDateResenia() {
+        return publicationDateResenia;
     }
 
-    public void setFecha_publicada(LocalTime fecha_publicada) {
-        this.fecha_publicada = fecha_publicada;
+    public void setPublicationDateResenia(LocalTime publicationDateResenia) {
+        this.publicationDateResenia = publicationDateResenia;
     }
 
-    public int getLikes() {
-        return likes;
+    public int getLikesResenia() {
+        return likesResenia;
     }
 
-    public void setLikes(int likes) {
-        this.likes = likes;
+    public void setLikesResenia(int likesResenia) {
+        this.likesResenia = likesResenia;
     }
 
-    public String getContenido() {
-        return contenido;
+    public String getContentResenia() {
+        return contentResenia;
     }
 
-    public void setContenido(String contenido) {
-        this.contenido = contenido;
+    public void setContentResenia(String contentResenia) {
+        this.contentResenia = contentResenia;
     }
 
     public Usuario getUsuario() {

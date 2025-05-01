@@ -14,14 +14,13 @@ public class AsientoServiceImplement implements IAsientoService {
     private IAsientoRepository aR;
 
     @Override
-    public List<Asiento> listar_asiento() {
-        return aR.findAll();
-    }
+    public List<Asiento> list() { return aR.findAll(); }
     @Override
-    public void insert(Asiento asiento){
-        aR.save(asiento);
-    }
+    public void insert(Asiento asiento){ aR.save(asiento); }
+
     @Override
-    public List<Asiento> list() {return aR.findAll();
-    }
+    public void update(Asiento asiento) { aR.save(asiento); }
+
+    @Override
+    public void delete(int id) { aR.deleteById(id); }
 }
