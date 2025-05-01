@@ -1,22 +1,22 @@
 package pe.edu.upc.pts.dtos;
 
 public class PagoDTO {
-    private int paymentId;
-    private String paymentType;
+    private int idPago;
+    private String paymentTypePago;
 
-    public int getPaymentId() {
-        return paymentId;
+    public int getIdPago() {
+        return idPago;
     }
 
-    public void setPaymentId(int paymentId) {
-        this.paymentId = paymentId;
+    public void setIdPago(int idPago) {
+        this.idPago = idPago;
     }
 
-    public String getPaymentType() {
-        return paymentType;
+    public String getPaymentTypePago() {
+        return paymentTypePago;
     }
 
-    public void setPaymentType(String paymentType) {
-        this.paymentType = paymentType;
+    public void setPaymentTypePago(String paymentTypePago) {
+        this.paymentTypePago = paymentTypePago;
     }
 }
