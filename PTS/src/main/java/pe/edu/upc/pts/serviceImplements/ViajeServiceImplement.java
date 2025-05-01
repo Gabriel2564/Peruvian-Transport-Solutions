@@ -14,18 +14,26 @@ public class ViajeServiceImplement implements IViajeService {
     private IViajeRepository rV;
 
     @Override
-    public void insert(Viaje viaje) {
-        rV.save(viaje);
-    }
-
-    @Override
     public List<Viaje> list() {
         return rV.findAll();
     }
 
     @Override
-    public void delete(int idViaje) {
-        rV.deleteById(idViaje);
+    public void insert(Viaje viaje) {
+        rV.save(viaje);
+    }
+
+    @Override
+    public void update(Viaje viaje) { rV.save(viaje); }
+
+    @Override
+    public void delete(int id) {
+        rV.deleteById(id);
+    }
+
+    @Override
+    public List<String[]> QuantityViajeByRuta() {
+        return rV.QuantityViajeByRuta();
     }
 
 }

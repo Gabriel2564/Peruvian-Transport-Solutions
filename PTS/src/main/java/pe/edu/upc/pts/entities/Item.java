@@ -9,8 +9,8 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idItem;
 
-    @Column(name = "numItem", nullable = false, length = 100)
-    private String numItem;
+    @Column(name = "titleItem", nullable = false, length = 50)
+    private String titleItem;
 
     @Column(name = "descriptionItem", nullable = false, length = 1000)
     private String descriptionItem;
@@ -18,15 +18,15 @@ public class Item {
     @Column(name = "imageItem", nullable = false, length = 500)
     private String imageItem;
 
-    @Column(name = "formatItem", nullable = false, length = 500)
+    @Column(name = "formatItem", nullable = false, length = 10)
     private String formatItem;
 
     public Item() {
     }
 
-    public Item(int idItem, String numItem, String descriptionItem, String imageItem, String formatItem) {
+    public Item(int idItem, String titleItem, String descriptionItem, String imageItem, String formatItem) {
         this.idItem = idItem;
-        this.numItem = numItem;
+        this.titleItem = titleItem;
         this.descriptionItem = descriptionItem;
         this.imageItem = imageItem;
         this.formatItem = formatItem;
@@ -40,12 +40,12 @@ public class Item {
         this.idItem = idItem;
     }
 
-    public String getNumItem() {
-        return numItem;
+    public String getTitleItem() {
+        return titleItem;
     }
 
-    public void setNumItem(String numItem) {
-        this.numItem = numItem;
+    public void setTitleItem(String titleItem) {
+        this.titleItem = titleItem;
     }
 
     public String getDescriptionItem() {
