@@ -1,19 +1,16 @@
-# Etapa 1: construir el .jar
-FROM eclipse-temurin:23-jdk AS builder
+FROM eclipse-temurin:21.0.3_9-jdk
 
 WORKDIR /app
 
-COPY . .
+COPY .mvn .mvn
+COPY mvnw .
+COPY pom.xml .
+RUN ./mvnw dependency:go-offline
+
+COPY src ./src
 
 RUN ./mvnw clean package -DskipTests
 
-# Etapa 2: ejecutar la app
-FROM eclipse-temurin:23-jre
+EXPOSE 8084
 
-WORKDIR /app
-
-COPY --from=builder /app/target/*.jar app.jar
-
-EXPOSE 8080
-
-ENTRYPOINT ["java", "-jar", "pts-app.jar"]
+ENTRYPOINT ["java", "-jar", "target/PTS-0.0.1-SNAPSHOT.jar"]
