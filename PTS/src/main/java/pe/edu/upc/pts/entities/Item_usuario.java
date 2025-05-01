@@ -1,9 +1,6 @@
 package pe.edu.upc.pts.entities;
 
 import jakarta.persistence.*;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import javax.annotation.processing.Generated;
 import java.time.LocalTime;
 
 @Entity
@@ -11,42 +8,70 @@ import java.time.LocalTime;
 public class Item_usuario {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private int id_item_usuario;
-    @Column(name = "qualification_viaj",nullable = false,length =100 )
-    private String qualification_viaj;
-    @Column(name = "date_viaje_fav",nullable = false)
-    private LocalTime date_viaje_fav;
+    private int idItemUsuario;
+
+    @Column(name = "travelQualificationItemUsuario",nullable = false)
+    private int travelQualificationItemUsuario;
+
+    @Column(name = "travelDateItemUsuario",nullable = false)
+    private LocalTime travelDateItemUsuario;
+
+    @ManyToOne
+    @JoinColumn(name="idItem")
+    private Item item;
+
+    @ManyToOne
+    @JoinColumn(name="idUsuario")
+    private Usuario usuario;
+
     public Item_usuario() {
-
     }
 
-    public Item_usuario(int id_item_usuario, String qualification_viaj, LocalTime date_viaje_fav) {
-        this.id_item_usuario = id_item_usuario;
-        this.qualification_viaj = qualification_viaj;
-        this.date_viaje_fav = date_viaje_fav;
+    public Item_usuario(int idItemUsuario, int travelQualificationItemUsuario, LocalTime travelDateItemUsuario, Item item, Usuario usuario) {
+        this.idItemUsuario = idItemUsuario;
+        this.travelQualificationItemUsuario = travelQualificationItemUsuario;
+        this.travelDateItemUsuario = travelDateItemUsuario;
+        this.item = item;
+        this.usuario = usuario;
     }
 
-    public int getId_item_usuario() {
-        return id_item_usuario;
+    public int getIdItemUsuario() {
+        return idItemUsuario;
     }
 
-    public void setId_item_usuario(int id_item_usuario) {
-        this.id_item_usuario = id_item_usuario;
+    public void setIdItemUsuario(int idItemUsuario) {
+        this.idItemUsuario = idItemUsuario;
     }
 
-    public String getQualification_viaj() {
-        return qualification_viaj;
+    public int getTravelQualificationItemUsuario() {
+        return travelQualificationItemUsuario;
     }
 
-    public void setQualification_viaj(String qualification_viaj) {
-        this.qualification_viaj = qualification_viaj;
+    public void setTravelQualificationItemUsuario(int travelQualificationItemUsuario) {
+        this.travelQualificationItemUsuario = travelQualificationItemUsuario;
     }
 
-    public LocalTime getDate_viaje_fav() {
-        return date_viaje_fav;
+    public LocalTime getTravelDateItemUsuario() {
+        return travelDateItemUsuario;
     }
 
-    public void setDate_viaje_fav(LocalTime date_viaje_fav) {
-        this.date_viaje_fav = date_viaje_fav;
+    public void setTravelDateItemUsuario(LocalTime travelDateItemUsuario) {
+        this.travelDateItemUsuario = travelDateItemUsuario;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

@@ -8,5 +8,6 @@ public interface IUsuarioService {
     public List<Usuario> list();
     public void insert(Usuario usuario);
     public void update(Usuario usuario);
-    public void delete(int id_usuario);
+    public void delete(int id);
+    public List<String[]> QuantityUsuarioByRol();
 }

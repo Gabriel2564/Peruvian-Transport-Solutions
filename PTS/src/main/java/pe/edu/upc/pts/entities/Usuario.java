@@ -2,33 +2,33 @@ package pe.edu.upc.pts.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "Usuario")
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_usuario;
-    @Column(name = "username",nullable = false,length = 100)
+    private Long id;
+
+    @Column(length = 30, unique = true)
     private String username;
-    @Column(name = "password",nullable = false,length = 100)
+
+    @Column(length = 200)
     private String password;
-    @ManyToOne
-    @JoinColumn(name="idRol")
-    private Rol rol;
-    public Usuario() {}
 
-    public Usuario(int id_usuario, String username, String password) {
-        this.id_usuario = id_usuario;
-        this.username = username;
-        this.password = password;
+    private Boolean enabled;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "idUsuario")
+    private List<Rol> roles;
+
+    public Long getId() {
+        return id;
     }
 
-    public int getId_usuario() {
-        return id_usuario;
-    }
-
-    public void setId_usuario(int id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -45,5 +45,21 @@ public class Usuario {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public List<Rol> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Rol> roles) {
+        this.roles = roles;
     }
 }

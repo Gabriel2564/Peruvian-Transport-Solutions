@@ -1,33 +1,54 @@
 package pe.edu.upc.pts.dtos;
 
+import pe.edu.upc.pts.entities.Item;
+import pe.edu.upc.pts.entities.Usuario;
+
 import java.time.LocalTime;
 
 public class Item_usuarioDTO {
-    private int id_item_usuario;
-    private String calificacion_viaj;
-    private LocalTime fecha_viaje_fav;
+    private int idItemUsuario;
+    private int travelQualificationItemUsuario;
+    private LocalTime travelDateItemUsuario;
+    private Item item;
+    private Usuario usuario;
 
-    public int getId_item_usuario() {
-        return id_item_usuario;
+    public int getIdItemUsuario() {
+        return idItemUsuario;
     }
 
-    public void setId_item_usuario(int id_item_usuario) {
-        this.id_item_usuario = id_item_usuario;
+    public void setIdItemUsuario(int idItemUsuario) {
+        this.idItemUsuario = idItemUsuario;
     }
 
-    public String getCalificacion_viaj() {
-        return calificacion_viaj;
+    public int getTravelQualificationItemUsuario() {
+        return travelQualificationItemUsuario;
     }
 
-    public void setCalificacion_viaj(String calificacion_viaj) {
-        this.calificacion_viaj = calificacion_viaj;
+    public void setTravelQualificationItemUsuario(int travelQualificationItemUsuario) {
+        this.travelQualificationItemUsuario = travelQualificationItemUsuario;
     }
 
-    public LocalTime getFecha_viaje_fav() {
-        return fecha_viaje_fav;
+    public LocalTime getTravelDateItemUsuario() {
+        return travelDateItemUsuario;
     }
 
-    public void setFecha_viaje_fav(LocalTime fecha_viaje_fav) {
-        this.fecha_viaje_fav = fecha_viaje_fav;
+    public void setTravelDateItemUsuario(LocalTime travelDateItemUsuario) {
+        this.travelDateItemUsuario = travelDateItemUsuario;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

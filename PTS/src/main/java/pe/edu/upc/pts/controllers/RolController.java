@@ -2,6 +2,7 @@ package pe.edu.upc.pts.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.pts.dtos.RolDTO;
 import pe.edu.upc.pts.entities.Rol;
@@ -16,6 +17,7 @@ public class RolController {
     @Autowired
     private IRolService rS;
 
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     @GetMapping
     public List<RolDTO> listar(){
         return rS.list().stream().map(x->{
@@ -24,14 +26,15 @@ public class RolController {
         }).collect(Collectors.toList());
     }
 
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     @PostMapping
     public void insertar(@RequestBody RolDTO dto){
-        dto.setIdRol(0); //Omite cualquier que este en el id, se genera automaticamente segun la secuencia
         ModelMapper m = new ModelMapper();
         Rol r = m.map(dto, Rol.class);
         rS.insert(r);
     }
 
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     @PutMapping
     public void modificar(@RequestBody RolDTO dto){
         ModelMapper m = new ModelMapper();
@@ -39,8 +42,10 @@ public class RolController {
         rS.update(r);
     }
 
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id){
         rS.delete(id);
     }
+
 }

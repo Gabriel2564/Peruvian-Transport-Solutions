@@ -13,16 +13,23 @@ public class EstadoServiceImplement implements IEstadoService {
     private IEstadoRepository eR;
 
     @Override
-    public List<Estado> listar_estado() {
+    public List<Estado> list() {
         return eR.findAll();
     }
+
     @Override
     public void insert(Estado estado){
         eR.save(estado);
     }
+
     @Override
-    public List<Estado> list() {
-        return eR.findAll();
+    public void update(Estado estado) {
+        eR.save(estado);
+    }
+
+    @Override
+    public void delete(int id) {
+        eR.deleteById(id);
     }
 
 }

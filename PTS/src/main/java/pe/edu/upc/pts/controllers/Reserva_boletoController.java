@@ -1,30 +1,52 @@
 package pe.edu.upc.pts.controllers;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.pts.dtos.Reserva_boletoDTO;
+import pe.edu.upc.pts.entities.Reserva_boleto;
 import pe.edu.upc.pts.serviceInterfaces.IReserva_boletoService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/reservations")
+@RequestMapping("/reservas")
 public class Reserva_boletoController {
 
     @Autowired
-    private IReserva_boletoService reservationService;
+    private IReserva_boletoService reservaService;
 
+    @PreAuthorize("hasAuthority('CONDUCTOR')")
     @GetMapping
-    public ResponseEntity<List<Reserva_boletoDTO>> listReservations() {
-        List<Reserva_boletoDTO> list = reservationService.listReservations();
-        return new ResponseEntity<>(list, HttpStatus.OK);
+    public List<Reserva_boletoDTO> listar() {
+        return reservaService.list().stream().map(reserva -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(reserva, Reserva_boletoDTO.class);
+        }).collect(Collectors.toList());
     }
 
+    @PreAuthorize("hasAuthority('TURISTA')")
     @PostMapping
-    public ResponseEntity<Reserva_boletoDTO> insertReservation(@RequestBody Reserva_boletoDTO reservationDTO) {
-        Reserva_boletoDTO newReservation = reservationService.insertReservation(reservationDTO);
-        return new ResponseEntity<>(newReservation, HttpStatus.CREATED);
+    public void insertar(@RequestBody Reserva_boletoDTO dto) {
+        dto.setIdReservaBoleto(0); // Se ignora el ID si viene con valor, lo genera automáticamente
+        ModelMapper m = new ModelMapper();
+        Reserva_boleto reserva = m.map(dto, Reserva_boleto.class);
+        reservaService.insert(reserva);
+    }
+
+    @PreAuthorize("hasAuthority('TURISTA')")
+    @PutMapping
+    public void modificar(@RequestBody Reserva_boletoDTO dto) {
+        ModelMapper m = new ModelMapper();
+        Reserva_boleto reserva = m.map(dto, Reserva_boleto.class);
+        reservaService.update(reserva);
+    }
+
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable("id") int id) {
+        reservaService.delete(id);
     }
 }

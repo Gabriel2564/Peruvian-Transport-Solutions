@@ -5,7 +5,8 @@ import pe.edu.upc.pts.entities.Estado;
 import java.util.List;
 
 public interface IEstadoService {
-    public List<Estado> listar_estado();
+    public List<Estado> list();
     public void insert(Estado estado);
-    List<Estado> list();
+    public void update(Estado estado);
+    public void delete(int id);
 }
