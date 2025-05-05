@@ -24,4 +24,9 @@ public class ItemServiceImplement implements IItemService {
 
     @Override
     public void delete(int id) { iR.deleteById(id); }
+
+    @Override
+    public List<Item> ItemByFormato(String formato) {
+        return iR.ItemByFormato(formato);
+    }
 }
