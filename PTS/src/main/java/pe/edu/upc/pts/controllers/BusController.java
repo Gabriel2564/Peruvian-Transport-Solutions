@@ -8,6 +8,7 @@ import pe.edu.upc.pts.dtos.BusDTO;
 import pe.edu.upc.pts.entities.Bus;
 import pe.edu.upc.pts.serviceInterfaces.IBusService;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,5 +49,13 @@ public class BusController {
     @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") Integer id){
         bS.delete(id);
+    }
+
+    @GetMapping("/busporfechaylugar")
+    public List<BusDTO> BusByDateViajeAndArrivalAddressBus(@RequestParam LocalDate fecha, String lugar) {
+        return bS.BusByDateViajeAndArrivalAddressBus(fecha, lugar).stream().map(y->{
+            ModelMapper m = new ModelMapper();
+            return m.map(y,BusDTO.class);
+        }).collect(Collectors.toList());
     }
 }
