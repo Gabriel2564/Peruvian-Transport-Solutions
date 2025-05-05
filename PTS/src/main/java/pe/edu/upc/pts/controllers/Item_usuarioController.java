@@ -19,7 +19,7 @@ public class Item_usuarioController {
     @Autowired
     private IItem_usuarioService iS;
 
-    @GetMapping("/Listar_Itemuser")
+    @GetMapping("/listar")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<Item_usuarioDTO> listar(){
         return iS.list().stream().map(x->{
@@ -28,7 +28,7 @@ public class Item_usuarioController {
         }).collect(Collectors.toList());
     }
 
-    @PostMapping("/Insertar_Itemuser")
+    @PostMapping("/insertar")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void insertar(@RequestBody Item_usuarioDTO dto){
         dto.setIdItemUsuario(0);
@@ -37,7 +37,7 @@ public class Item_usuarioController {
         iS.insert(i);
     }
 
-    @PutMapping("/Modificar_Itemuser")
+    @PutMapping("/modificar")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void modificar(@RequestBody Item_usuarioDTO dto){
         ModelMapper m = new ModelMapper();
@@ -51,7 +51,7 @@ public class Item_usuarioController {
         iS.delete(idItemUsuario);
     }
 
-    @GetMapping("/top-calificados")
+    @GetMapping("/topCalificados")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<Item_UsuarioByTopDTO> top5Items() {
         List<String[]> filaLista = iS.ObtenerTopCalificados();

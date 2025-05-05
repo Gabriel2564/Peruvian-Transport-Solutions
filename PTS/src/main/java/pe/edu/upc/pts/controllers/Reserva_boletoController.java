@@ -18,8 +18,8 @@ public class Reserva_boletoController {
     @Autowired
     private IReserva_boletoService reservaService;
 
+    @GetMapping("/listar")
     @PreAuthorize("hasAuthority('CONDUCTOR')")
-    @GetMapping
     public List<Reserva_boletoDTO> listar() {
         return reservaService.list().stream().map(reserva -> {
             ModelMapper m = new ModelMapper();
@@ -27,8 +27,8 @@ public class Reserva_boletoController {
         }).collect(Collectors.toList());
     }
 
+    @PostMapping("/insertar")
     @PreAuthorize("hasAuthority('TURISTA')")
-    @PostMapping
     public void insertar(@RequestBody Reserva_boletoDTO dto) {
         dto.setIdReservaBoleto(0); // Se ignora el ID si viene con valor, lo genera automáticamente
         ModelMapper m = new ModelMapper();
@@ -36,16 +36,16 @@ public class Reserva_boletoController {
         reservaService.insert(reserva);
     }
 
+    @PutMapping("/modificar")
     @PreAuthorize("hasAuthority('TURISTA')")
-    @PutMapping
     public void modificar(@RequestBody Reserva_boletoDTO dto) {
         ModelMapper m = new ModelMapper();
         Reserva_boleto reserva = m.map(dto, Reserva_boleto.class);
         reservaService.update(reserva);
     }
 
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void eliminar(@PathVariable("id") int id) {
         reservaService.delete(id);
     }

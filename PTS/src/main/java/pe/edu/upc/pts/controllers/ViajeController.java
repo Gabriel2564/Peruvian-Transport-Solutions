@@ -19,8 +19,8 @@ public class ViajeController {
     @Autowired
     private IViajeService vS;
 
+    @GetMapping("/listar")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
-    @GetMapping
     public List<ViajeDTO> listar(){
         return vS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -28,31 +28,31 @@ public class ViajeController {
         }).collect(Collectors.toList());
     }
 
+    @PostMapping("/insertar")
     @PreAuthorize("hasAuthority('CONDUCTOR')")
-    @PostMapping
     public void registrar(@RequestBody ViajeDTO dto) {
         ModelMapper m = new ModelMapper();
         Viaje v = m.map(dto, Viaje.class);
         vS.insert(v);
     }
 
+    @PutMapping("/modificar")
     @PreAuthorize("hasAuthority('CONDUCTOR')")
-    @PutMapping
     public void modificar(@RequestBody ViajeDTO dto) {
         ModelMapper m = new ModelMapper();
         Viaje v = m.map(dto, Viaje.class);
         vS.insert(v);
     }
 
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void eliminar(@PathVariable("id") Integer id){
         vS.delete(id);
     }
 
 
+    @GetMapping("/viajePorRuta")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
-    @GetMapping("/query1")
     public List<ViajeByRutaDTO> query1() {
         List<String[]> filaLista = vS.QuantityViajeByRuta();
         List<ViajeByRutaDTO> dtoLista = new ArrayList<>();

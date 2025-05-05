@@ -18,7 +18,7 @@ public class PagoController {
     @Autowired
     private IPagoService paymentService;
 
-    @GetMapping("/Listar_Pago")
+    @GetMapping("/listar")
     @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','TURISTA')")
     public List<PagoDTO> list() {
         return paymentService.list().stream().map(p->{
@@ -27,7 +27,7 @@ public class PagoController {
         }).collect(Collectors.toList());
     }
 
-    @PostMapping("/Insertar_Pago")
+    @PostMapping("/insertar")
     @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','TURISTA')")
     public void insert(@RequestBody PagoDTO dto) {
         dto.setIdPago(0);
@@ -36,7 +36,7 @@ public class PagoController {
         paymentService.insert(payment);
     }
 
-    @PutMapping("/Update_Pago")
+    @PutMapping("/modificar")
     @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','TURISTA')")
     public void update(@RequestBody PagoDTO dto) {
         ModelMapper m = new ModelMapper();

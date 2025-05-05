@@ -18,7 +18,7 @@ public class BusController {
     @Autowired
     private IBusService bS;
 
-    @GetMapping("/Listar_Buses")
+    @GetMapping("/listar")
     @PreAuthorize("hasAnyAuthority('CONDUCTOR','ADMINISTRADOR')")
     public List<BusDTO> listar(){
         return bS.list().stream().map(x->{
@@ -27,7 +27,7 @@ public class BusController {
         }).collect(Collectors.toList());
     }
 
-    @PostMapping("/Insertar_Buses")
+    @PostMapping("/insertar")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void insertar(@RequestBody BusDTO dto){
         dto.setIdBus(0);
@@ -36,7 +36,7 @@ public class BusController {
         bS.insert(b);
     }
 
-    @PutMapping("/Modificar_Buses")
+    @PutMapping("/modificar")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void modificar(@RequestBody BusDTO dto){
         ModelMapper m = new ModelMapper();

@@ -19,7 +19,7 @@ public class AsientoController {
     @Autowired
     private IAsientoService aS;
 
-    @GetMapping("/Listar_Asiento")
+    @GetMapping("/listar")
     @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','TURISTA')")
     public List<AsientoDTO> listar() {
         return aS.list().stream().map(x->{
@@ -28,7 +28,7 @@ public class AsientoController {
         }).collect(Collectors.toList());
     }
 
-    @PostMapping("/Insertar_Asiento")
+    @PostMapping("/insertar")
     @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','TURISTA')")
     public void insertar(@RequestBody AsientoDTO dto){
         dto.setIdAsiento(0);
@@ -37,7 +37,7 @@ public class AsientoController {
         aS.insert(a);
     }
 
-    @PutMapping("/Modificar_Asiento")
+    @PutMapping("/modificar")
     @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','TURISTA')")
     public void modificar(@RequestBody AsientoDTO dto){
         ModelMapper m = new ModelMapper();

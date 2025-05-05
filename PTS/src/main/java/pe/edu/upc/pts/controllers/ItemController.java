@@ -17,7 +17,7 @@ public class ItemController {
     @Autowired
     private IItemService iS;
 
-    @GetMapping("/Listar_Item")
+    @GetMapping("/listar")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<ItemDTO> listar(){
         return iS.list().stream().map(x->{
@@ -26,7 +26,7 @@ public class ItemController {
         }).collect(Collectors.toList());
     }
 
-    @PostMapping("/Insertar_Item")
+    @PostMapping("/insertar")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void insertar(@RequestBody ItemDTO dto){
         dto.setIdItem(0);
@@ -35,7 +35,7 @@ public class ItemController {
         iS.insert(i);
     }
 
-    @PutMapping("/Modificar_Item")
+    @PutMapping("/modificar")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void modificar(@RequestBody ItemDTO dto){
         ModelMapper m = new ModelMapper();

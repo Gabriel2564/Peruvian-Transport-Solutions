@@ -19,8 +19,8 @@ public class RutaController {
     private IRutaService rS;
 
 
+    @GetMapping("/listar")
     @PreAuthorize("hasAuthority('CONDUCTOR')")
-    @GetMapping
     public List<RutaDTO> listar(){
         return rS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -28,8 +28,8 @@ public class RutaController {
         }).collect(Collectors.toList());
     }
 
+    @PostMapping("/insertar")
     @PreAuthorize("hasAuthority('CONDUCTOR')")
-    @PostMapping
     public void insertar(@RequestBody RutaDTO dto){
         dto.setIdRuta(0); //Omite cualquier valor que este en el id, se genera automaticamente segun la secuencia
         ModelMapper m = new ModelMapper();
@@ -37,16 +37,16 @@ public class RutaController {
         rS.insert(r);
     }
 
+    @PutMapping("/modificar")
     @PreAuthorize("hasAuthority('CONDUCTOR')")
-    @PutMapping
     public void modificar(@RequestBody RutaDTO dto){
         ModelMapper m = new ModelMapper();
         Ruta r = m.map(dto,Ruta.class);
         rS.update(r);
     }
 
-    @PreAuthorize("hasAuthority('CONDUCTOR')")
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('CONDUCTOR')")
     public void eliminar(@PathVariable("id") Integer id){
         rS.delete(id);
     }

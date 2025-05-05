@@ -18,7 +18,7 @@ public class EstadoController {
     @Autowired
     private IEstadoService eS;
 
-    @GetMapping("/Lista_Estado")
+    @GetMapping("/lista")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<EstadoDTO> listar() {
         return eS.list().stream().map(x->{
@@ -27,7 +27,7 @@ public class EstadoController {
         }).collect(Collectors.toList());
     }
 
-    @PostMapping("/Insertar_Estado")
+    @PostMapping("/insertar")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void insertar(@RequestBody EstadoDTO dto){
         dto.setIdEstado(0);
@@ -36,7 +36,7 @@ public class EstadoController {
         eS.insert(e);
     }
 
-    @PutMapping("/Modificar_Estado")
+    @PutMapping("/modificar")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void modificar(@RequestBody EstadoDTO dto){
         ModelMapper m = new ModelMapper();

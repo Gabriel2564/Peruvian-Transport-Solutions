@@ -31,8 +31,8 @@ public class UsuarioController {
         }).collect(Collectors.toList());
     }
 
+    @PostMapping("/insertar")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
-    @PostMapping
     public void insertar(@RequestBody UsuarioDTO dto){
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(dto,Usuario.class);
@@ -40,22 +40,22 @@ public class UsuarioController {
     }
 
 
+    @PutMapping("/modificar")
     @PreAuthorize("hasAuthority('TURISTA')")
-    @PutMapping
     public void modificar(@RequestBody UsuarioDTO dto){
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(dto,Usuario.class);
         uS.update(u);
     }
 
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void eliminar(@PathVariable("id") Integer id){
         uS.delete(id);
     }
 
+    @GetMapping("/usuarioRol")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
-    @GetMapping("/query1")
     public List<UsuarioByRolDTO> query1() {
         List<String[]> filaLista = uS.QuantityUsuarioByRol();
         List<UsuarioByRolDTO> dtoLista = new ArrayList<>();
