@@ -4,10 +4,12 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.pts.dtos.BusDTO;
 import pe.edu.upc.pts.dtos.ItemDTO;
 import pe.edu.upc.pts.entities.Item;
 import pe.edu.upc.pts.serviceInterfaces.IItemService;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,5 +49,13 @@ public class ItemController {
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void eliminar(@PathVariable("id") Integer id){
         iS.delete(id);
+    }
+
+    @GetMapping("/itemporformato")
+    public List<ItemDTO> ItemByFormato(@RequestParam String formato) {
+        return iS.ItemByFormato(formato).stream().map(y->{
+            ModelMapper m = new ModelMapper();
+            return m.map(y,ItemDTO.class);
+        }).collect(Collectors.toList());
     }
 }
