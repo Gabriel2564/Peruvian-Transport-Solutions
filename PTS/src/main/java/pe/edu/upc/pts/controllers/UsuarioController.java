@@ -7,7 +7,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.pts.dtos.UsuarioByRolDTO;
 import pe.edu.upc.pts.dtos.UsuarioDTO;
-import pe.edu.upc.pts.entities.Rol;
 import pe.edu.upc.pts.entities.Usuario;
 import pe.edu.upc.pts.serviceInterfaces.IUsuarioService;
 

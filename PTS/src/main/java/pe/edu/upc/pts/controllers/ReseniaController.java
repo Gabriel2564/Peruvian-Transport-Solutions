@@ -37,6 +37,14 @@ public class ReseniaController {
         rS.insert(r);
     }
 
+    @PutMapping("/modificar")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    public void modificar(@RequestBody ReseniaDTO dto){
+        ModelMapper m = new ModelMapper();
+        Resenia r = m.map(dto,Resenia.class);
+        rS.update(r);
+    }
+
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void eliminar(@PathVariable("id_resenia") Integer idResenia){

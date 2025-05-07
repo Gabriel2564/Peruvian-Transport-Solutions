@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import pe.edu.upc.pts.entities.Item;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface IItemRepository extends JpaRepository<Item, Integer> {
