@@ -2,10 +2,12 @@ package pe.edu.upc.pts.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import pe.edu.upc.pts.entities.Usuario;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
@@ -17,5 +19,7 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
             "group by r.name_rol",nativeQuery = true)
     List<String[]> QuantityUsuarioByRol();
 
+    @Query("SELECT u FROM Usuario u WHERE u.id = :id")
+    Optional<Usuario> findUsuarioById(@Param("id") int id);
 
 }

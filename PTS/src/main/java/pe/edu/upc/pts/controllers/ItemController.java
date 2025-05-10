@@ -2,6 +2,7 @@ package pe.edu.upc.pts.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.pts.dtos.ItemDTO;
@@ -55,5 +56,14 @@ public class ItemController {
             ModelMapper m = new ModelMapper();
             return m.map(y,ItemDTO.class);
         }).collect(Collectors.toList());
+    }
+
+    @GetMapping("/listar{id}")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    public ResponseEntity<ItemDTO> FindById(@PathVariable("id") int id) {
+        Item item = iS.findById(id);
+        ModelMapper m = new ModelMapper();
+        ItemDTO dto = m.map(item, ItemDTO.class);
+        return ResponseEntity.ok(dto);
     }
 }

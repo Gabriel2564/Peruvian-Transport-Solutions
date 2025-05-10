@@ -10,4 +10,6 @@ public interface IItem_usuarioService {
     public void update( Item_usuario item_usuario);
     public void delete(int id_item_user);
     public List<String[]> ObtenerTopCalificados();
+    public Item_usuario findById(int id);
+
 }

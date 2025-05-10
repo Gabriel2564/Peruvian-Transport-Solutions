@@ -2,6 +2,7 @@ package pe.edu.upc.pts.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.pts.dtos.ViajeByRutaDTO;
@@ -64,5 +65,14 @@ public class ViajeController {
             dtoLista.add(dto);
         }
         return dtoLista;
+    }
+
+    @GetMapping("/listar{id}")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    public ResponseEntity<ViajeDTO> obtenerPorId(@PathVariable("id") int id) {
+        Viaje viaje = vS.findById(id);
+        ModelMapper modelMapper = new ModelMapper();
+        ViajeDTO dto = modelMapper.map(viaje, ViajeDTO.class);
+        return ResponseEntity.ok(dto);
     }
 }

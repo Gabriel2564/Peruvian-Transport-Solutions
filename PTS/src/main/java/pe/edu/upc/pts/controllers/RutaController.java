@@ -2,6 +2,7 @@ package pe.edu.upc.pts.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.pts.dtos.RutaDTO;
@@ -49,5 +50,14 @@ public class RutaController {
     @PreAuthorize("hasAuthority('CONDUCTOR')")
     public void eliminar(@PathVariable("id") Integer id){
         rS.delete(id);
+    }
+
+    @GetMapping("/listar{id}")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    public ResponseEntity<RutaDTO> obtenerPorId(@PathVariable("id") int id) {
+        Ruta ruta = rS.findById(id);
+        ModelMapper modelMapper = new ModelMapper();
+        RutaDTO dto = modelMapper.map(ruta, RutaDTO.class);
+        return ResponseEntity.ok(dto);
     }
 }

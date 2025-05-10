@@ -29,4 +29,10 @@ public class ItemServiceImplement implements IItemService {
     public List<Item> ItemByFormato(String formato) {
         return iR.ItemByFormato(formato);
     }
+
+    @Override
+    public Item findById(int id) {
+        return iR.findItemById(id)
+                .orElseThrow(() -> new RuntimeException("Item no encontrado"));
+    }
 }

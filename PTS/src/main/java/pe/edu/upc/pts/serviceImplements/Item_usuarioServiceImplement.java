@@ -34,5 +34,10 @@ public class Item_usuarioServiceImplement implements IItem_usuarioService {
         return iR.ObtenerTopCalificados();
     }
 
+    @Override
+    public Item_usuario findById(int id) {
+        return iR.findByIdItemUsuario(id)
+                .orElseThrow(() -> new RuntimeException("ItemUsuario no encontrado"));
+    }
 }
 

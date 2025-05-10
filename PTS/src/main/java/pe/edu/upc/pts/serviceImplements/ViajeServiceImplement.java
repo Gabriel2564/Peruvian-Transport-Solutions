@@ -36,4 +36,10 @@ public class ViajeServiceImplement implements IViajeService {
         return rV.QuantityViajeByRuta();
     }
 
+    @Override
+    public Viaje findById(int id) {
+        return rV.findByIdViaje(id)
+                .orElseThrow(() -> new RuntimeException("Viaje no encontrado"));
+    }
+
 }

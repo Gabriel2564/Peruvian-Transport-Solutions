@@ -38,5 +38,9 @@ public class UsuarioServiceImplement implements IUsuarioService {
         return uR.QuantityUsuarioByRol();
     }
 
+    @Override
+    public Usuario findById(int id) {
+        return uR.findUsuarioById(id).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+    }
 
 }

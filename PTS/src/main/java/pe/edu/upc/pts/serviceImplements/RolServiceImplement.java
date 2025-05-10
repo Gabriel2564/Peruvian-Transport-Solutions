@@ -37,4 +37,10 @@ public class RolServiceImplement implements IRolService {
     public List<String[]> quantityUserByRol() {
         return rR.quantityUserByRol();
     }
+
+    @Override
+    public Rol findById(Long id) {
+        return rR.findRolById(id)
+                .orElseThrow(() -> new RuntimeException("Rol no encontrado"));
+    }
 }

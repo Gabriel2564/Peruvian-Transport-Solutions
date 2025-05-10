@@ -10,4 +10,6 @@ public interface IRolService {
     public void update(Rol rol);
     public void delete(int id);
     List<String[]> quantityUserByRol();
+    public Rol findById(Long id);
+
 }

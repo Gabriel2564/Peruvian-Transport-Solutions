@@ -3,6 +3,7 @@ package pe.edu.upc.pts.controllers;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.pts.dtos.UsuarioByRolDTO;
@@ -66,5 +67,14 @@ public class UsuarioController {
             dtoLista.add(dto);
         }
         return dtoLista;
+    }
+
+    @GetMapping("/listar{id}")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    public ResponseEntity<UsuarioDTO> obtenerPorId(@PathVariable("id") int id) {
+        Usuario usuario = uS.findById(id);
+        ModelMapper m = new ModelMapper();
+        UsuarioDTO dto = m.map(usuario, UsuarioDTO.class);
+        return ResponseEntity.ok(dto);
     }
 }

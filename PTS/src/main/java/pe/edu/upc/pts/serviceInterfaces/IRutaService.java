@@ -9,4 +9,5 @@ public interface IRutaService {
     public void insert(Ruta ruta);
     public void update(Ruta ruta);
     public void delete(int id);
+    public Ruta findById(int id);
 }
