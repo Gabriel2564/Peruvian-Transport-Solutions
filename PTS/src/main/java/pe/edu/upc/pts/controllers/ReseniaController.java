@@ -2,6 +2,7 @@ package pe.edu.upc.pts.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.pts.dtos.ReseniaByUsernameDTO;
@@ -64,5 +65,14 @@ public class ReseniaController {
             dtoLista.add(dto);
         }
         return dtoLista;
+    }
+
+    @GetMapping("/listar{id}")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    public ResponseEntity<ReseniaDTO> obtenerPorId(@PathVariable("id") int id) {
+        Resenia resenia = rS.findById(id);
+        ModelMapper modelMapper = new ModelMapper();
+        ReseniaDTO dto = modelMapper.map(resenia, ReseniaDTO.class);
+        return ResponseEntity.ok(dto);
     }
 }

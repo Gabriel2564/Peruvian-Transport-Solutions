@@ -23,4 +23,9 @@ public class AsientoServiceImplement implements IAsientoService {
 
     @Override
     public void delete(int id) { aR.deleteById(id); }
+
+    @Override
+    public Asiento findById(int id) {
+        return aR.findByIdAsiento(id).orElseThrow(() -> new RuntimeException("Asiento no encontrado"));
+    }
 }

@@ -2,6 +2,7 @@ package pe.edu.upc.pts.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.pts.dtos.PagoDTO;
@@ -48,5 +49,14 @@ public class PagoController {
     @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','TURISTA')")
     public void delete(@PathVariable("id") Integer id) {
         paymentService.delete(id);
+    }
+
+    @GetMapping("/listar{id}")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    public ResponseEntity<PagoDTO> obtenerPorId(@PathVariable("id") int id) {
+        Pago pago = paymentService.findById(id);
+        ModelMapper modelMapper = new ModelMapper();
+        PagoDTO dto = modelMapper.map(pago, PagoDTO.class);
+        return ResponseEntity.ok(dto);
     }
 }

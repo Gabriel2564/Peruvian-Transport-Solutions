@@ -11,4 +11,5 @@ public interface IBusService {
     public void update(Bus bus);
     public void delete(int id);
     public List<Bus> BusByDateViajeAndArrivalAddressBus(LocalDate fecha, String lugar);
+    public Bus findById(int id);
 }
