@@ -41,6 +41,7 @@ public class UsuarioController {
         if (u.getRoles() != null) {
             for (Rol r : u.getRoles()) {
                 r.setUsuario(u);
+                r.setId(null); // ← obligatorio para evitar conflicto con clave primaria
             }
         }
         uS.insert(u);

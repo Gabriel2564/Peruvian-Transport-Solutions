@@ -1,6 +1,7 @@
 package pe.edu.upc.pts.serviceImplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.pts.entities.Usuario;
 import pe.edu.upc.pts.repositories.IUsuarioRepository;
@@ -13,6 +14,9 @@ public class UsuarioServiceImplement implements IUsuarioService {
     @Autowired
     private IUsuarioRepository uR;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
     public List<Usuario> list(){
         return uR.findAll();
@@ -20,7 +24,8 @@ public class UsuarioServiceImplement implements IUsuarioService {
 
     @Override
     public void insert(Usuario usuario) {
-      uR.save(usuario);
+        usuario.setPassword(passwordEncoder.encode(usuario.getPassword())); // ← ESTA LÍNEA ES CLAVE
+        uR.save(usuario);
     }
 
     @Override
