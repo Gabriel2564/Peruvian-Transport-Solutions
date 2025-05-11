@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.pts.dtos.ListarUsuarioDTO;
 import pe.edu.upc.pts.dtos.UsuarioByRolDTO;
 import pe.edu.upc.pts.dtos.UsuarioDTO;
 import pe.edu.upc.pts.entities.Rol;
@@ -25,10 +26,10 @@ public class UsuarioController {
 
     @GetMapping("/listar")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
-    public List<UsuarioDTO> listar(){
+    public List<ListarUsuarioDTO> listar(){
         return uS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
-            return m.map(x,UsuarioDTO.class);
+            return m.map(x,ListarUsuarioDTO.class);
         }).collect(Collectors.toList());
     }
 
@@ -77,10 +78,10 @@ public class UsuarioController {
 
     @GetMapping("/listar{id}")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
-    public ResponseEntity<UsuarioDTO> obtenerPorId(@PathVariable("id") int id) {
+    public ResponseEntity<ListarUsuarioDTO> obtenerPorId(@PathVariable("id") int id) {
         Usuario usuario = uS.findById(id);
         ModelMapper m = new ModelMapper();
-        UsuarioDTO dto = m.map(usuario, UsuarioDTO.class);
+        ListarUsuarioDTO dto = m.map(usuario, ListarUsuarioDTO.class);
         return ResponseEntity.ok(dto);
     }
 }
