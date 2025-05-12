@@ -66,6 +66,7 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(req -> req
                         .requestMatchers(
                                 antMatcher("/login"),
+                                antMatcher("/usuarios/insertar"),
                                 antMatcher("/v3/api-docs/**"),
                                 antMatcher("/swagger-ui/**"),
                                 antMatcher("/swagger-ui.html"),

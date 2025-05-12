@@ -34,14 +34,13 @@ public class UsuarioController {
     }
 
     @PostMapping("/insertar")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void insertar(@RequestBody UsuarioDTO dto){
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(dto, Usuario.class);
         if (u.getRoles() != null) {
             for (Rol r : u.getRoles()) {
                 r.setUsuario(u);
-                r.setId(null); // ← obligatorio para evitar conflicto con clave primaria
+                r.setId(null);
             }
         }
         uS.insert(u);
