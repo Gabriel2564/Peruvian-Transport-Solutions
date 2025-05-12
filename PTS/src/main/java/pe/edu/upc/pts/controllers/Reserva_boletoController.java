@@ -20,7 +20,7 @@ public class Reserva_boletoController {
     private IReserva_boletoService reservaService;
 
     @GetMapping("/listar")
-    @PreAuthorize("hasAuthority('CONDUCTOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
     public List<Reserva_boletoDTO> listar() {
         return reservaService.list().stream().map(reserva -> {
             ModelMapper m = new ModelMapper();
@@ -29,7 +29,7 @@ public class Reserva_boletoController {
     }
 
     @PostMapping("/insertar")
-    @PreAuthorize("hasAuthority('TURISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA')")
     public void insertar(@RequestBody Reserva_boletoDTO dto) {
         dto.setIdReservaBoleto(0); // Se ignora el ID si viene con valor, lo genera automáticamente
         ModelMapper m = new ModelMapper();
@@ -38,7 +38,7 @@ public class Reserva_boletoController {
     }
 
     @PutMapping("/modificar")
-    @PreAuthorize("hasAuthority('TURISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA')")
     public void modificar(@RequestBody Reserva_boletoDTO dto) {
         ModelMapper m = new ModelMapper();
         Reserva_boleto reserva = m.map(dto, Reserva_boleto.class);
@@ -46,7 +46,7 @@ public class Reserva_boletoController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
     public void eliminar(@PathVariable("id") int id) {
         reservaService.delete(id);
     }

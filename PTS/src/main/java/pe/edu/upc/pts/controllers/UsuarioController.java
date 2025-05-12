@@ -34,7 +34,6 @@ public class UsuarioController {
     }
 
     @PostMapping("/insertar")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void insertar(@RequestBody UsuarioDTO dto){
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(dto, Usuario.class);
@@ -49,7 +48,7 @@ public class UsuarioController {
 
 
     @PutMapping("/modificar")
-    @PreAuthorize("hasAuthority('TURISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
     public void modificar(@RequestBody UsuarioDTO dto){
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(dto,Usuario.class);
@@ -57,7 +56,7 @@ public class UsuarioController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
     public void eliminar(@PathVariable("id") Integer id){
         uS.delete(id);
     }

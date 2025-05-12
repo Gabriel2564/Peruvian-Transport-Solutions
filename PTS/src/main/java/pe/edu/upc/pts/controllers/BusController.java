@@ -21,7 +21,7 @@ public class BusController {
     private IBusService bS;
 
     @GetMapping("/listar")
-    @PreAuthorize("hasAnyAuthority('CONDUCTOR','ADMINISTRADOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
     public List<BusDTO> listar(){
         return bS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -30,7 +30,7 @@ public class BusController {
     }
 
     @PostMapping("/insertar")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
     public void insertar(@RequestBody BusDTO dto){
         dto.setIdBus(0);
         ModelMapper m = new ModelMapper();
@@ -39,7 +39,7 @@ public class BusController {
     }
 
     @PutMapping("/modificar")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
     public void modificar(@RequestBody BusDTO dto){
         ModelMapper m = new ModelMapper();
         Bus b = m.map(dto,Bus.class);
@@ -47,12 +47,13 @@ public class BusController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
     public void eliminar(@PathVariable("id") Integer id){
         bS.delete(id);
     }
 
     @GetMapping("/busporfechaylugar")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
     public List<BusDTO> BusByDateViajeAndArrivalAddressBus(@RequestParam LocalDate fecha, String lugar) {
         return bS.BusByDateViajeAndArrivalAddressBus(fecha, lugar).stream().map(y->{
             ModelMapper m = new ModelMapper();

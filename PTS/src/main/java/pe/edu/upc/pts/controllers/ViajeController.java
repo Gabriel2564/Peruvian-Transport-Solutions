@@ -21,7 +21,7 @@ public class ViajeController {
     private IViajeService vS;
 
     @GetMapping("/listar")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
     public List<ViajeDTO> listar(){
         return vS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -30,7 +30,7 @@ public class ViajeController {
     }
 
     @PostMapping("/insertar")
-    @PreAuthorize("hasAuthority('CONDUCTOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
     public void registrar(@RequestBody ViajeDTO dto) {
         ModelMapper m = new ModelMapper();
         Viaje v = m.map(dto, Viaje.class);
@@ -38,7 +38,7 @@ public class ViajeController {
     }
 
     @PutMapping("/modificar")
-    @PreAuthorize("hasAuthority('CONDUCTOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
     public void modificar(@RequestBody ViajeDTO dto) {
         ModelMapper m = new ModelMapper();
         Viaje v = m.map(dto, Viaje.class);
@@ -46,7 +46,7 @@ public class ViajeController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
     public void eliminar(@PathVariable("id") Integer id){
         vS.delete(id);
     }

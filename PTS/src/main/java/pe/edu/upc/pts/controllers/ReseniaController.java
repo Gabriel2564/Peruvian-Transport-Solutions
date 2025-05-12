@@ -21,7 +21,7 @@ public class ReseniaController {
     private IReseniaService rS;
 
     @GetMapping("/listar")
-    @PreAuthorize("hasAuthority('CONDUCTOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
     public List<ReseniaDTO> list(){
         return rS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -30,7 +30,7 @@ public class ReseniaController {
     }
 
     @PostMapping("/insertar")
-    @PreAuthorize("hasAuthority('TURISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA')")
     public void insertar(@RequestBody ReseniaDTO dto){
         dto.setIdResenia(0);
         ModelMapper m = new ModelMapper();
@@ -39,7 +39,7 @@ public class ReseniaController {
     }
 
     @PutMapping("/modificar")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA')")
     public void modificar(@RequestBody ReseniaDTO dto){
         ModelMapper m = new ModelMapper();
         Resenia r = m.map(dto,Resenia.class);
@@ -47,13 +47,13 @@ public class ReseniaController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA')")
     public void eliminar(@PathVariable("id_resenia") Integer idResenia){
         rS.delete(idResenia);
     }
 
     @GetMapping("/busquedaPorNombre")
-    @PreAuthorize("hasAuthority('CONDUCTOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
     public List<ReseniaByUsernameDTO> Mayor() {
         List<String[]> filaLista = rS.QuantityReseniaByUsuario();
         List<ReseniaByUsernameDTO> dtoLista = new ArrayList<>();

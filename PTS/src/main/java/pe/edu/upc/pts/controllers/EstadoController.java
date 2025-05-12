@@ -19,7 +19,7 @@ public class EstadoController {
     private IEstadoService eS;
 
     @GetMapping("/lista")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
     public List<EstadoDTO> listar() {
         return eS.list().stream().map(x->{
             ModelMapper m=new ModelMapper();
@@ -28,7 +28,7 @@ public class EstadoController {
     }
 
     @PostMapping("/insertar")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
     public void insertar(@RequestBody EstadoDTO dto){
         dto.setIdEstado(0);
         ModelMapper m = new ModelMapper();
@@ -37,7 +37,7 @@ public class EstadoController {
     }
 
     @PutMapping("/modificar")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
     public void modificar(@RequestBody EstadoDTO dto){
         ModelMapper m = new ModelMapper();
         Estado e = m.map(dto,Estado.class);
@@ -45,13 +45,13 @@ public class EstadoController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
     public void eliminar(@PathVariable("id") Integer id){
         eS.delete(id);
     }
 
     @GetMapping("/listar{id}")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
     public ResponseEntity<EstadoDTO> obtenerPorId(@PathVariable("id") int id) {
         Estado estado = eS.findById(id);
         ModelMapper modelMapper = new ModelMapper();

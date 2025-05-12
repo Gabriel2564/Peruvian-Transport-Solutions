@@ -21,7 +21,7 @@ public class RutaController {
 
 
     @GetMapping("/listar")
-    @PreAuthorize("hasAuthority('CONDUCTOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
     public List<RutaDTO> listar(){
         return rS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -30,7 +30,7 @@ public class RutaController {
     }
 
     @PostMapping("/insertar")
-    @PreAuthorize("hasAuthority('CONDUCTOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
     public void insertar(@RequestBody RutaDTO dto){
         dto.setIdRuta(0); //Omite cualquier valor que este en el id, se genera automaticamente segun la secuencia
         ModelMapper m = new ModelMapper();
@@ -39,7 +39,7 @@ public class RutaController {
     }
 
     @PutMapping("/modificar")
-    @PreAuthorize("hasAuthority('CONDUCTOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
     public void modificar(@RequestBody RutaDTO dto){
         ModelMapper m = new ModelMapper();
         Ruta r = m.map(dto,Ruta.class);
@@ -47,13 +47,13 @@ public class RutaController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('CONDUCTOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
     public void eliminar(@PathVariable("id") Integer id){
         rS.delete(id);
     }
 
     @GetMapping("/listar{id}")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
     public ResponseEntity<RutaDTO> obtenerPorId(@PathVariable("id") int id) {
         Ruta ruta = rS.findById(id);
         ModelMapper modelMapper = new ModelMapper();
