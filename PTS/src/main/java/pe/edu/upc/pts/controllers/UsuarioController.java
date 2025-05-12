@@ -34,6 +34,7 @@ public class UsuarioController {
     }
 
     @PostMapping("/insertar")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void insertar(@RequestBody UsuarioDTO dto){
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(dto, Usuario.class);
