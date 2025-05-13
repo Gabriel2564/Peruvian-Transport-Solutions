@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import pe.edu.upc.pts.entities.Asiento;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface IAsientoRepository extends JpaRepository<Asiento, Integer> {
