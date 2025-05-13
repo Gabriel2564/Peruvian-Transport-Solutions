@@ -64,34 +64,5 @@ public class AsientoController {
         return ResponseEntity.ok(dto);
     }
 
-    @GetMapping("/cantidadAsientosPorBus")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
-    public List<CantidadAsientosDTO> obtenerCantidadAsientosPorBus() {
-        List<String[]> filaLista = aS.contarAsientosPorBus();
-        List<CantidadAsientosDTO> dtoLista = new ArrayList<>();
 
-        for (String[] columna : filaLista) {
-            CantidadAsientosDTO dto = new CantidadAsientosDTO();
-            dto.setIdBus(Integer.parseInt(columna[0]));
-            dto.setCantidadAsientos(Integer.parseInt(columna[1]));
-            dtoLista.add(dto);
-        }
-        return dtoLista;
-    }
-
-    @GetMapping("/porcentajeEstadoPorBus")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
-    public List<PorcentajeEstadoAsientoDTO> obtenerPorcentajeEstadoPorBus() {
-        List<String[]> filaLista = aS.obtenerPorcentajeEstadoPorBus();
-        List<PorcentajeEstadoAsientoDTO> dtoLista = new ArrayList<>();
-
-        for (String[] columna : filaLista) {
-            PorcentajeEstadoAsientoDTO dto = new PorcentajeEstadoAsientoDTO();
-            dto.setIdBus(Integer.parseInt(columna[0]));
-            dto.setTipoEstado(columna[1]);
-            dto.setPorcentaje(Double.parseDouble(columna[2]));
-            dtoLista.add(dto);
-        }
-        return dtoLista;
-    }
 }
