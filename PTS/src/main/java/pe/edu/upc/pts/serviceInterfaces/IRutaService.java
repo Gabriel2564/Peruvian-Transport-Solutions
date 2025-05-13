@@ -1,5 +1,6 @@
 package pe.edu.upc.pts.serviceInterfaces;
 
+import pe.edu.upc.pts.dtos.RutaDTO;
 import pe.edu.upc.pts.entities.Ruta;
 
 import java.util.List;

@@ -8,6 +8,7 @@ import pe.edu.upc.pts.entities.Item;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public interface IItemRepository extends JpaRepository<Item, Integer> {
 
     @Query(value = "SELECT i FROM Item i WHERE i.formatItem = :formato")
