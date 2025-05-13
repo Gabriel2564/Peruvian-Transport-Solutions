@@ -28,4 +28,14 @@ public class AsientoServiceImplement implements IAsientoService {
     public Asiento findById(int id) {
         return aR.findByIdAsiento(id).orElseThrow(() -> new RuntimeException("Asiento no encontrado"));
     }
+
+    @Override
+    public List<String[]> contarAsientosPorBus(){
+        return aR.contarAsientosPorBus();
+    }
+
+    @Override
+    public List<String[]> obtenerPorcentajeEstadoPorBus(){
+        return aR.obtenerPorcentajeEstadoPorBus();
+    }
 }
