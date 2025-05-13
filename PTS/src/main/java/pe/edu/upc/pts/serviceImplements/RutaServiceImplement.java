@@ -24,4 +24,10 @@ public class RutaServiceImplement implements IRutaService {
 
     @Override
     public void delete(int id) { rR.deleteById(id); }
+
+    @Override
+    public Ruta findById(int id) {
+        return rR.findByIdRuta(id)
+                .orElseThrow(() -> new RuntimeException("Ruta no encontrada"));
+    }
 }

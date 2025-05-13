@@ -9,4 +9,7 @@ public interface IAsientoService {
     public void insert(Asiento asiento);
     public void update(Asiento asiento);
     public void delete(int id);
+    public Asiento findById(int id);
+    public List<String[]> obtenerPorcentajeEstadoPorBus();
+    public List<String[]> contarAsientosPorBus();
 }

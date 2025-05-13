@@ -1,16 +1,12 @@
-FROM eclipse-temurin:21.0.3_9-jdk
-
+# Etapa de construcción
+FROM amazoncorretto:23.0.2-alpine3.18 as build
 WORKDIR /app
-
-COPY .mvn .mvn
-COPY mvnw .
-COPY pom.xml .
-RUN ./mvnw dependency:go-offline
-
-COPY src ./src
-
+COPY . .
 RUN ./mvnw clean package -DskipTests
 
+# Etapa final
+FROM amazoncorretto:23.0.2-alpine3.18
+WORKDIR /app
+COPY --from=build /app/target/PTS-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8084
-
-ENTRYPOINT ["java", "-jar", "target/PTS-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]

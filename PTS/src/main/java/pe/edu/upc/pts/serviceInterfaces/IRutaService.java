@@ -10,6 +10,5 @@ public interface IRutaService {
     public void insert(Ruta ruta);
     public void update(Ruta ruta);
     public void delete(int id);
-    //QUERY BUSCAR POR ITEM
-    List<RutaDTO> searchByItem(int itemId);
+    public Ruta findById(int id);
 }

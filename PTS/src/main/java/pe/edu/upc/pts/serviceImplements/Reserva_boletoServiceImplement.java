@@ -33,4 +33,9 @@ public class Reserva_boletoServiceImplement implements IReserva_boletoService {
     public void delete(int id) {
         reservaRepo.deleteById(id);
     }
+
+    @Override
+    public Reserva_boleto findById(int id) {
+        return reservaRepo.findByIdReservaBoleto(id).orElseThrow(() -> new RuntimeException("Reserva de Boleto no encontrado"));
+    }
 }

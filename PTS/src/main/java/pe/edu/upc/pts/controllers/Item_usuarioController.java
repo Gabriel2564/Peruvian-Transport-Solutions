@@ -2,6 +2,7 @@ package pe.edu.upc.pts.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.pts.dtos.Item_UsuarioByTopDTO;
@@ -19,7 +20,7 @@ public class Item_usuarioController {
     @Autowired
     private IItem_usuarioService iS;
 
-    @GetMapping("/Listar_Itemuser")
+    @GetMapping("/listar")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<Item_usuarioDTO> listar(){
         return iS.list().stream().map(x->{
@@ -28,7 +29,7 @@ public class Item_usuarioController {
         }).collect(Collectors.toList());
     }
 
-    @PostMapping("/Insertar_Itemuser")
+    @PostMapping("/insertar")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void insertar(@RequestBody Item_usuarioDTO dto){
         dto.setIdItemUsuario(0);
@@ -37,7 +38,7 @@ public class Item_usuarioController {
         iS.insert(i);
     }
 
-    @PutMapping("/Modificar_Itemuser")
+    @PutMapping("/modificar")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void modificar(@RequestBody Item_usuarioDTO dto){
         ModelMapper m = new ModelMapper();
@@ -51,7 +52,7 @@ public class Item_usuarioController {
         iS.delete(idItemUsuario);
     }
 
-    @GetMapping("/top-calificados")
+    @GetMapping("/topCalificados")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<Item_UsuarioByTopDTO> top5Items() {
         List<String[]> filaLista = iS.ObtenerTopCalificados();
@@ -64,5 +65,14 @@ public class Item_usuarioController {
             dtoLista.add(dto);
         }
         return dtoLista;
+    }
+
+    @GetMapping("/listar{id}")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    public ResponseEntity<Item_usuarioDTO> obtenerPorId(@PathVariable("id") int id) {
+        Item_usuario entity = iS.findById(id);
+        ModelMapper m = new ModelMapper();
+        Item_usuarioDTO dto = m.map(entity, Item_usuarioDTO.class);
+        return ResponseEntity.ok(dto);
     }
 }

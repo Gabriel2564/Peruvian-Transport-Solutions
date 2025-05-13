@@ -2,6 +2,7 @@ package pe.edu.upc.pts.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.pts.dtos.PagoDTO;
@@ -18,7 +19,7 @@ public class PagoController {
     @Autowired
     private IPagoService paymentService;
 
-    @GetMapping("/Listar_Pago")
+    @GetMapping("/listar")
     @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','TURISTA')")
     public List<PagoDTO> list() {
         return paymentService.list().stream().map(p->{
@@ -27,7 +28,7 @@ public class PagoController {
         }).collect(Collectors.toList());
     }
 
-    @PostMapping("/Insertar_Pago")
+    @PostMapping("/insertar")
     @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','TURISTA')")
     public void insert(@RequestBody PagoDTO dto) {
         dto.setIdPago(0);
@@ -36,7 +37,7 @@ public class PagoController {
         paymentService.insert(payment);
     }
 
-    @PutMapping("/Update_Pago")
+    @PutMapping("/modificar")
     @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','TURISTA')")
     public void update(@RequestBody PagoDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -48,5 +49,14 @@ public class PagoController {
     @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','TURISTA')")
     public void delete(@PathVariable("id") Integer id) {
         paymentService.delete(id);
+    }
+
+    @GetMapping("/listar{id}")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    public ResponseEntity<PagoDTO> obtenerPorId(@PathVariable("id") int id) {
+        Pago pago = paymentService.findById(id);
+        ModelMapper modelMapper = new ModelMapper();
+        PagoDTO dto = modelMapper.map(pago, PagoDTO.class);
+        return ResponseEntity.ok(dto);
     }
 }

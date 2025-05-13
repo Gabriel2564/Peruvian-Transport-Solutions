@@ -10,17 +10,29 @@ import java.util.List;
 
 @Repository
 public interface IAsientoRepository extends JpaRepository<Asiento, Integer> {
+    @Query("SELECT a FROM Asiento a WHERE a.idAsiento = :id")
+    Optional<Asiento> findByIdAsiento(@Param("id") int id);
 
-    @Query("SELECT a FROM Asiento a WHERE a.seat_number = :seat")
-    public List<Asiento> buscarPorNumeroAsiento(@Param("seat") int seat);
+    @Query(value = "SELECT \n" +
+            "    a.id_bus AS id_bus,\n" +
+            "    e.status_type_estado AS tipo_estado,\n" +
+            "    COUNT(*) * 100.0 / total.total_asientos AS porcentaje\n" +
+            "FROM asiento a\n" +
+            "JOIN estado e ON a.id_estado = e.id_estado\n" +
+            "JOIN (\n" +
+            "    SELECT id_bus, COUNT(*) AS total_asientos\n" +
+            "    FROM asiento\n" +
+            "    GROUP BY id_bus\n" +
+            ") AS total ON a.id_bus = total.id_bus\n" +
+            "GROUP BY a.id_bus, e.status_type_estado, total.total_asientos;", nativeQuery = true)
+    List<String[]> obtenerPorcentajeEstadoPorBus();
 
-    // Buscar asiento por número de asiento en un bus
-    @Query("SELECT a FROM Asiento a WHERE a.seat_number = :seat_number AND a.bus.idBus = :busId")
-    Asiento findByNumberAndBusId(@Param("seat_number") int seat_number, @Param("busId") int busId);
-
-    @Query(value = "SELECT a.id_bus, COUNT(a.id_asiento) AS cantidad_asientos " +
-            "FROM asiento a GROUP BY a.id_bus",
-            nativeQuery = true)
-    List<String[]> quantitySeatByBus();
-
+    @Query(value = "SELECT \n" +
+            "    id_bus AS id_bus,\n" +
+            "    COUNT(id_asiento) AS cantidad_asientos\n" +
+            "FROM \n" +
+            "    asiento\n" +
+            "GROUP BY \n" +
+            "    id_bus;", nativeQuery = true)
+    List<String[]> contarAsientosPorBus();
 }

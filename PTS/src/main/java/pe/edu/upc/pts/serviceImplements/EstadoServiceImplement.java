@@ -32,4 +32,9 @@ public class EstadoServiceImplement implements IEstadoService {
         eR.deleteById(id);
     }
 
+    @Override
+    public Estado findById(int id) {
+        return eR.findByIdEstado(id).orElseThrow(() -> new RuntimeException("Estado no encontrado"));
+    }
+
 }
