@@ -2,6 +2,7 @@ package pe.edu.upc.pts.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,7 @@ import pe.edu.upc.pts.dtos.Reserva_boletoDTO;
 import pe.edu.upc.pts.entities.Reserva_boleto;
 import pe.edu.upc.pts.serviceInterfaces.IReserva_boletoService;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -50,6 +52,19 @@ public class Reserva_boletoController {
     public void eliminar(@PathVariable("id") int id) {
         reservaService.delete(id);
     }
+
+    @GetMapping("/monto-mayor-a/{amount}")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    public ResponseEntity<List<Reserva_boletoDTO>> getReservasMayoresA(@PathVariable BigDecimal amount) {
+        List<Reserva_boleto> reservas = reservaService.findByTicketAmountGreaterThan(amount);
+        ModelMapper modelMapper = new ModelMapper();
+        List<Reserva_boletoDTO> dto = reservas.stream()
+                .map(r -> modelMapper.map(r, Reserva_boletoDTO.class))
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(dto);
+    }
+
 
     @GetMapping("/listar{id}")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
