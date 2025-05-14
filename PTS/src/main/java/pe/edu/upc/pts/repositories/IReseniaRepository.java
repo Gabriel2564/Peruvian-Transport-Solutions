@@ -13,11 +13,10 @@ import java.util.Optional;
 @Repository
 public interface IReseniaRepository extends JpaRepository<Resenia, Integer> {
     @Query(value = "SELECT u.username AS Username, COUNT(*) AS QuantityResenia " +
-            "FROM Usuario u " +
-            "INNER JOIN Resenia r ON u.id_usuario = r.id_usuario " +
+            "FROM usuario u " +
+            "INNER JOIN resenia r ON u.id = r.id_usuario " +
             "GROUP BY u.username " +
-            "ORDER BY COUNT(*) DESC " +
-            "LIMIT 1", nativeQuery = true)
+            "ORDER BY COUNT(*) DESC ", nativeQuery = true)
     List<String[]> QuantityReseniaByUsername();
 
     @Query("SELECT r FROM Resenia r WHERE r.idResenia = :id")

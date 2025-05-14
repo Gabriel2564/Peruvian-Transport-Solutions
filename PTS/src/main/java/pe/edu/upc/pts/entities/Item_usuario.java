@@ -1,7 +1,8 @@
 package pe.edu.upc.pts.entities;
 
 import jakarta.persistence.*;
-import java.time.LocalTime;
+
+import java.time.LocalDate;
 
 @Entity
 @Table(name="Item_usuario")
@@ -14,7 +15,7 @@ public class Item_usuario {
     private int travelQualificationItemUsuario;
 
     @Column(name = "travelDateItemUsuario",nullable = false)
-    private LocalTime travelDateItemUsuario;
+    private LocalDate travelDateItemUsuario;
 
     @ManyToOne
     @JoinColumn(name="idItem")
@@ -27,7 +28,7 @@ public class Item_usuario {
     public Item_usuario() {
     }
 
-    public Item_usuario(int idItemUsuario, int travelQualificationItemUsuario, LocalTime travelDateItemUsuario, Item item, Usuario usuario) {
+    public Item_usuario(int idItemUsuario, int travelQualificationItemUsuario, LocalDate travelDateItemUsuario, Item item, Usuario usuario) {
         this.idItemUsuario = idItemUsuario;
         this.travelQualificationItemUsuario = travelQualificationItemUsuario;
         this.travelDateItemUsuario = travelDateItemUsuario;
@@ -51,11 +52,11 @@ public class Item_usuario {
         this.travelQualificationItemUsuario = travelQualificationItemUsuario;
     }
 
-    public LocalTime getTravelDateItemUsuario() {
+    public LocalDate getTravelDateItemUsuario() {
         return travelDateItemUsuario;
     }
 
-    public void setTravelDateItemUsuario(LocalTime travelDateItemUsuario) {
+    public void setTravelDateItemUsuario(LocalDate travelDateItemUsuario) {
         this.travelDateItemUsuario = travelDateItemUsuario;
     }
 

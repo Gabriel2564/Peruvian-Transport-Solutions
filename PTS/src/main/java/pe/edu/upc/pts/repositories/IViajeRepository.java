@@ -11,10 +11,10 @@ import java.util.Optional;
 
 @Repository
 public interface IViajeRepository extends JpaRepository<Viaje, Integer> {
-    @Query(value = "select r.location as Ruta ,count(*) as QuantityViaje\n" +
-            "from Ruta r inner join Viaje v\n" +
-            "on r.id_ruta=v.id_ruta\n" +
-            "group by r.location",nativeQuery = true)
+    @Query(value = "SELECT r.start_location_ruta AS Ruta, COUNT(*) AS QuantityViaje " +
+            "FROM ruta r INNER JOIN viaje v " +
+            "ON r.id_ruta = v.id_ruta " +
+            "GROUP BY r.start_location_ruta", nativeQuery = true)
     List<String[]> QuantityViajeByRuta();
 
     @Query("SELECT v FROM Viaje v WHERE v.idViaje = :id")
