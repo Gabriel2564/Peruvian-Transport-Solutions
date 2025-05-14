@@ -33,7 +33,6 @@ public class Reserva_boletoController {
     @PostMapping("/insertar")
     @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA')")
     public void insertar(@RequestBody Reserva_boletoDTO dto) {
-        dto.setIdReservaBoleto(0); // Se ignora el ID si viene con valor, lo genera automáticamente
         ModelMapper m = new ModelMapper();
         Reserva_boleto reserva = m.map(dto, Reserva_boleto.class);
         reservaService.insert(reserva);

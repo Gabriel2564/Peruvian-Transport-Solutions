@@ -30,7 +30,6 @@ public class EstadoController {
     @PostMapping("/insertar")
     @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
     public void insertar(@RequestBody EstadoDTO dto){
-        dto.setIdEstado(0);
         ModelMapper m = new ModelMapper();
         Estado e = m.map(dto,Estado.class);
         eS.insert(e);

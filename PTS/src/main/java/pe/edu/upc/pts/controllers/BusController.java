@@ -32,7 +32,6 @@ public class BusController {
     @PostMapping("/insertar")
     @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
     public void insertar(@RequestBody BusDTO dto){
-        dto.setIdBus(0);
         ModelMapper m = new ModelMapper();
         Bus b = m.map(dto,Bus.class);
         bS.insert(b);

@@ -33,7 +33,6 @@ public class PagoController {
     @PostMapping("/insertar")
     @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','TURISTA')")
     public void insert(@RequestBody PagoDTO dto) {
-        dto.setIdPago(0);
         ModelMapper m = new ModelMapper();
         Pago payment = m.map(dto, Pago.class);
         paymentService.insert(payment);
