@@ -9,7 +9,9 @@ import pe.edu.upc.pts.dtos.PagoDTO;
 import pe.edu.upc.pts.entities.Pago;
 import pe.edu.upc.pts.serviceInterfaces.IPagoService;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -31,7 +33,6 @@ public class PagoController {
     @PostMapping("/insertar")
     @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','TURISTA')")
     public void insert(@RequestBody PagoDTO dto) {
-        dto.setIdPago(0);
         ModelMapper m = new ModelMapper();
         Pago payment = m.map(dto, Pago.class);
         paymentService.insert(payment);
@@ -50,6 +51,30 @@ public class PagoController {
     public void delete(@PathVariable("id") Integer id) {
         paymentService.delete(id);
     }
+
+    @GetMapping("/tipo/{tipo}")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    public ResponseEntity<List<Pago>> getPagosPorTipo(@PathVariable("tipo") String tipo) {
+        List<Pago> dto = paymentService.findByPaymentType(tipo);
+
+        return ResponseEntity.ok(dto);
+    }
+
+    @GetMapping("/resumen")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    public ResponseEntity<List<Map<String, Object>>> resumenPagos() {
+        List<Object[]> conteo = paymentService.countPaymentsByType();
+
+        List<Map<String, Object>> dto = conteo.stream().map(obj -> {
+            Map<String, Object> map = new HashMap<>();
+            map.put("tipoPago", obj[0]);
+            map.put("total", obj[1]);
+            return map;
+        }).collect(Collectors.toList());
+
+        return ResponseEntity.ok(dto);
+    }
+
 
     @GetMapping("/listar{id}")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")

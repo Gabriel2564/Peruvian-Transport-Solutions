@@ -35,7 +35,6 @@ public class AsientoController {
     @PostMapping("/insertar")
     @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','TURISTA')")
     public void insertar(@RequestBody AsientoDTO dto){
-        dto.setIdAsiento(0);
         ModelMapper m = new ModelMapper();
         Asiento a = m.map(dto,Asiento.class);
         aS.insert(a);

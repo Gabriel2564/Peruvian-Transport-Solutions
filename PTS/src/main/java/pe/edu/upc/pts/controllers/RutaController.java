@@ -32,7 +32,6 @@ public class RutaController {
     @PostMapping("/insertar")
     @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
     public void insertar(@RequestBody RutaDTO dto){
-        dto.setIdRuta(0); //Omite cualquier valor que este en el id, se genera automaticamente segun la secuencia
         ModelMapper m = new ModelMapper();
         Ruta r = m.map(dto,Ruta.class);
         rS.insert(r);

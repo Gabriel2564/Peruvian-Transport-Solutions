@@ -32,7 +32,6 @@ public class ReseniaController {
     @PostMapping("/insertar")
     @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA')")
     public void insertar(@RequestBody ReseniaDTO dto){
-        dto.setIdResenia(0);
         ModelMapper m = new ModelMapper();
         Resenia r = m.map(dto,Resenia.class);
         rS.insert(r);

@@ -30,7 +30,6 @@ public class ItemController {
     @PostMapping("/insertar")
     @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
     public void insertar(@RequestBody ItemDTO dto){
-        dto.setIdItem(0);
         ModelMapper m = new ModelMapper();
         Item i = m.map(dto,Item.class);
         iS.insert(i);

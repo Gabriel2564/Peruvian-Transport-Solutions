@@ -32,7 +32,6 @@ public class Item_usuarioController {
     @PostMapping("/insertar")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void insertar(@RequestBody Item_usuarioDTO dto){
-        dto.setIdItemUsuario(0);
         ModelMapper m = new ModelMapper();
         Item_usuario i = m.map(dto, Item_usuario.class);
         iS.insert(i);
@@ -60,8 +59,8 @@ public class Item_usuarioController {
 
         for (String[] columna : filaLista) {
             Item_UsuarioByTopDTO dto = new Item_UsuarioByTopDTO();
-            dto.setId_item_user((Integer.parseInt((String) columna[0])));
-            dto.setQualification_viaj((int) Integer.parseInt((String) columna[1]));
+            dto.setId_item_usuario(Integer.parseInt(columna[0]));
+            dto.setQualification_viaj(Integer.parseInt(columna[1]));
             dtoLista.add(dto);
         }
         return dtoLista;

@@ -35,7 +35,6 @@ public class RolController {
     @PostMapping("/insertar")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void insertar(@RequestBody RolDTO dto){
-        dto.setId(0L);
         ModelMapper m = new ModelMapper();
         Rol r = m.map(dto, Rol.class);
         rS.insert(r);

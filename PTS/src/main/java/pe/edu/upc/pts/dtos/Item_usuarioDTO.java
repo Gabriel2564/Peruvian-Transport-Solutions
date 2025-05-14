@@ -3,12 +3,12 @@ package pe.edu.upc.pts.dtos;
 import pe.edu.upc.pts.entities.Item;
 import pe.edu.upc.pts.entities.Usuario;
 
-import java.time.LocalTime;
+import java.time.LocalDate;
 
 public class Item_usuarioDTO {
     private int idItemUsuario;
     private int travelQualificationItemUsuario;
-    private LocalTime travelDateItemUsuario;
+    private LocalDate travelDateItemUsuario;
     private Item item;
     private Usuario usuario;
 
@@ -28,11 +28,11 @@ public class Item_usuarioDTO {
         this.travelQualificationItemUsuario = travelQualificationItemUsuario;
     }
 
-    public LocalTime getTravelDateItemUsuario() {
+    public LocalDate getTravelDateItemUsuario() {
         return travelDateItemUsuario;
     }
 
-    public void setTravelDateItemUsuario(LocalTime travelDateItemUsuario) {
+    public void setTravelDateItemUsuario(LocalDate travelDateItemUsuario) {
         this.travelDateItemUsuario = travelDateItemUsuario;
     }
 
