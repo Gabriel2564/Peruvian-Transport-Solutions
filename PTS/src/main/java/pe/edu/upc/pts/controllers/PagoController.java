@@ -22,7 +22,7 @@ public class PagoController {
     private IPagoService paymentService;
 
     @GetMapping("/listar")
-    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','TURISTA')")
+    //@PreAuthorize("hasAnyAuthority('ADMINISTRADOR','TURISTA')")
     public List<PagoDTO> list() {
         return paymentService.list().stream().map(p->{
             ModelMapper m = new ModelMapper();
@@ -31,7 +31,7 @@ public class PagoController {
     }
 
     @PostMapping("/insertar")
-    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','TURISTA')")
+    //@PreAuthorize("hasAnyAuthority('ADMINISTRADOR','TURISTA')")
     public void insert(@RequestBody PagoDTO dto) {
         ModelMapper m = new ModelMapper();
         Pago payment = m.map(dto, Pago.class);
@@ -39,7 +39,7 @@ public class PagoController {
     }
 
     @PutMapping("/modificar")
-    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','TURISTA')")
+    //@PreAuthorize("hasAnyAuthority('ADMINISTRADOR','TURISTA')")
     public void update(@RequestBody PagoDTO dto) {
         ModelMapper m = new ModelMapper();
         Pago payment = m.map(dto, Pago.class);
@@ -47,13 +47,13 @@ public class PagoController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','TURISTA')")
+    //@PreAuthorize("hasAnyAuthority('ADMINISTRADOR','TURISTA')")
     public void delete(@PathVariable("id") Integer id) {
         paymentService.delete(id);
     }
 
     @GetMapping("/tipo/{tipo}")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public ResponseEntity<List<Pago>> getPagosPorTipo(@PathVariable("tipo") String tipo) {
         List<Pago> dto = paymentService.findByPaymentType(tipo);
 
@@ -61,7 +61,7 @@ public class PagoController {
     }
 
     @GetMapping("/resumen")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public ResponseEntity<List<Map<String, Object>>> resumenPagos() {
         List<Object[]> conteo = paymentService.countPaymentsByType();
 
@@ -76,8 +76,8 @@ public class PagoController {
     }
 
 
-    @GetMapping("/listar{id}")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @GetMapping("/listar/{id}")
+    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public ResponseEntity<PagoDTO> obtenerPorId(@PathVariable("id") int id) {
         Pago pago = paymentService.findById(id);
         ModelMapper modelMapper = new ModelMapper();

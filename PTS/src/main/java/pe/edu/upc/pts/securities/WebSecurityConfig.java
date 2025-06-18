@@ -58,28 +58,48 @@ public class WebSecurityConfig {
         auth.userDetailsService(jwtUserDetailsService).passwordEncoder(passwordEncoder());
     }
 
+//    @Bean
+//    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+//        //Desde Spring Boot 3.1+
+//        httpSecurity
+//                .csrf(AbstractHttpConfigurer::disable)
+//                .authorizeHttpRequests(req -> req
+//                        .requestMatchers(
+//                                antMatcher("/login"),
+//                                antMatcher("/usuarios/insertar"),
+//                                antMatcher("/v3/api-docs/**"),
+//                                antMatcher("/swagger-ui/**"),
+//                                antMatcher("/swagger-ui.html"),
+//                                antMatcher("/swagger-resources/**"),
+//                                antMatcher("/webjars/**")
+//                        ).permitAll()
+//                        .anyRequest().authenticated()
+//                )
+//                .httpBasic(Customizer.withDefaults())
+//                .formLogin(AbstractHttpConfigurer::disable)
+//                .exceptionHandling(e -> e.authenticationEntryPoint(jwtAuthenticationEntryPoint))
+//                .sessionManagement(Customizer.withDefaults());
+//        httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+//        return httpSecurity.build();
+//    }
+//}
+
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        //Desde Spring Boot 3.1+
         httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req -> req
-                        .requestMatchers(
-                                antMatcher("/login"),
-                                antMatcher("/usuarios/insertar"),
-                                antMatcher("/v3/api-docs/**"),
-                                antMatcher("/swagger-ui/**"),
-                                antMatcher("/swagger-ui.html"),
-                                antMatcher("/swagger-resources/**"),
-                                antMatcher("/webjars/**")
-                        ).permitAll()
-                        .anyRequest().authenticated()
+                        .requestMatchers("/**").permitAll()
                 )
                 .httpBasic(Customizer.withDefaults())
                 .formLogin(AbstractHttpConfigurer::disable)
                 .exceptionHandling(e -> e.authenticationEntryPoint(jwtAuthenticationEntryPoint))
                 .sessionManagement(Customizer.withDefaults());
-        httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+
+        // 🔴 Desactiva esto temporalmente
+        // httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+
         return httpSecurity.build();
     }
 }
