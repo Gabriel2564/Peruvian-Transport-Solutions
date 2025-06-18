@@ -47,8 +47,8 @@ public class ReseniaController {
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA')")
-    public void eliminar(@PathVariable("id_resenia") Integer idResenia){
-        rS.delete(idResenia);
+    public void eliminar(@PathVariable("id") Integer id){
+        rS.delete(id);
     }
 
     @GetMapping("/busquedaPorNombre")
