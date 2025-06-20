@@ -76,7 +76,7 @@ public class UsuarioController {
         return dtoLista;
     }
 
-    @GetMapping("/listar{id}")
+    @GetMapping("/listar/{id}")
     //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public ResponseEntity<ListarUsuarioDTO> obtenerPorId(@PathVariable("id") int id) {
         Usuario usuario = uS.findById(id);

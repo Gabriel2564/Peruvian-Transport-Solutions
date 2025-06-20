@@ -21,7 +21,7 @@ public class BusController {
     private IBusService bS;
 
     @GetMapping("/listar")
-    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
+    //@PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
     public List<BusDTO> listar(){
         return bS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -30,7 +30,7 @@ public class BusController {
     }
 
     @PostMapping("/insertar")
-    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
+    //@PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
     public void insertar(@RequestBody BusDTO dto){
         ModelMapper m = new ModelMapper();
         Bus b = m.map(dto,Bus.class);
@@ -38,7 +38,7 @@ public class BusController {
     }
 
     @PutMapping("/modificar")
-    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
+    //@PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
     public void modificar(@RequestBody BusDTO dto){
         ModelMapper m = new ModelMapper();
         Bus b = m.map(dto,Bus.class);
@@ -46,13 +46,13 @@ public class BusController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
+    //@PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
     public void eliminar(@PathVariable("id") Integer id){
         bS.delete(id);
     }
 
     @GetMapping("/busporfechaylugar")
-    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
+    //@PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
     public List<BusDTO> BusByDateViajeAndArrivalAddressBus(@RequestParam LocalDate fecha, String lugar) {
         return bS.BusByDateViajeAndArrivalAddressBus(fecha, lugar).stream().map(y->{
             ModelMapper m = new ModelMapper();
@@ -60,8 +60,8 @@ public class BusController {
         }).collect(Collectors.toList());
     }
 
-    @GetMapping("/listar{id}")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @GetMapping("/listar/{id}")
+    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public ResponseEntity<BusDTO> obtenerPorId(@PathVariable("id") int id) {
         Bus bus = bS.findById(id);
         ModelMapper modelMapper = new ModelMapper();

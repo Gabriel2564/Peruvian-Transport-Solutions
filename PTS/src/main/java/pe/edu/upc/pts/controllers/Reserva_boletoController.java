@@ -22,7 +22,7 @@ public class Reserva_boletoController {
     private IReserva_boletoService reservaService;
 
     @GetMapping("/listar")
-    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
+    //@PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
     public List<Reserva_boletoDTO> listar() {
         return reservaService.list().stream().map(reserva -> {
             ModelMapper m = new ModelMapper();
@@ -31,7 +31,7 @@ public class Reserva_boletoController {
     }
 
     @PostMapping("/insertar")
-    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA')")
+    //@PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA')")
     public void insertar(@RequestBody Reserva_boletoDTO dto) {
         ModelMapper m = new ModelMapper();
         Reserva_boleto reserva = m.map(dto, Reserva_boleto.class);
@@ -39,7 +39,7 @@ public class Reserva_boletoController {
     }
 
     @PutMapping("/modificar")
-    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA')")
+    //@PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA')")
     public void modificar(@RequestBody Reserva_boletoDTO dto) {
         ModelMapper m = new ModelMapper();
         Reserva_boleto reserva = m.map(dto, Reserva_boleto.class);
@@ -47,13 +47,13 @@ public class Reserva_boletoController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
+    //@PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
     public void eliminar(@PathVariable("id") int id) {
         reservaService.delete(id);
     }
 
     @GetMapping("/monto-mayor-a/{amount}")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public ResponseEntity<List<Reserva_boletoDTO>> getReservasMayoresA(@PathVariable BigDecimal amount) {
         List<Reserva_boleto> reservas = reservaService.findByTicketAmountGreaterThan(amount);
         ModelMapper modelMapper = new ModelMapper();
@@ -65,8 +65,8 @@ public class Reserva_boletoController {
     }
 
 
-    @GetMapping("/listar{id}")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @GetMapping("/listar/{id}")
+    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public ResponseEntity<Reserva_boletoDTO> obtenerPorId(@PathVariable("id") int id) {
         Reserva_boleto reservaBoleto = reservaService.findById(id);
         ModelMapper modelMapper = new ModelMapper();
