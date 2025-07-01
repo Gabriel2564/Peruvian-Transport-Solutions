@@ -24,8 +24,8 @@ public class UsuarioController {
     @Autowired
     private IUsuarioService uS;
 
-    @GetMapping("/listar")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @GetMapping
+    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<ListarUsuarioDTO> listar(){
         return uS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -33,7 +33,7 @@ public class UsuarioController {
         }).collect(Collectors.toList());
     }
 
-    @PostMapping("/insertar")
+    @PostMapping
     public void insertar(@RequestBody UsuarioDTO dto){
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(dto, Usuario.class);
@@ -47,8 +47,8 @@ public class UsuarioController {
     }
 
 
-    @PutMapping("/modificar")
-    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
+    @PutMapping
+    //@PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
     public void modificar(@RequestBody UsuarioDTO dto){
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(dto,Usuario.class);
@@ -56,13 +56,13 @@ public class UsuarioController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
+    //@PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
     public void eliminar(@PathVariable("id") Integer id){
         uS.delete(id);
     }
 
     @GetMapping("/usuarioRol")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+   // @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<UsuarioByRolDTO> query1() {
         List<String[]> filaLista = uS.QuantityUsuarioByRol();
         List<UsuarioByRolDTO> dtoLista = new ArrayList<>();
@@ -76,8 +76,8 @@ public class UsuarioController {
         return dtoLista;
     }
 
-    @GetMapping("/listar{id}")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @GetMapping("/{id}")
+    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public ResponseEntity<ListarUsuarioDTO> obtenerPorId(@PathVariable("id") int id) {
         Usuario usuario = uS.findById(id);
         ModelMapper m = new ModelMapper();
