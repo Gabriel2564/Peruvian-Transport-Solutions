@@ -24,7 +24,7 @@ public class AsientoController {
     private IAsientoService aS;
 
     @GetMapping("/listar")
-    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','TURISTA')")
+    //@PreAuthorize("hasAnyAuthority('ADMINISTRADOR','TURISTA')")
     public List<AsientoDTO> listar() {
         return aS.list().stream().map(x->{
             ModelMapper m=new ModelMapper();
@@ -33,7 +33,7 @@ public class AsientoController {
     }
 
     @PostMapping("/insertar")
-    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','TURISTA')")
+    //@PreAuthorize("hasAnyAuthority('ADMINISTRADOR','TURISTA')")
     public void insertar(@RequestBody AsientoDTO dto){
         ModelMapper m = new ModelMapper();
         Asiento a = m.map(dto,Asiento.class);
@@ -41,7 +41,7 @@ public class AsientoController {
     }
 
     @PutMapping("/modificar")
-    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','TURISTA')")
+    //@PreAuthorize("hasAnyAuthority('ADMINISTRADOR','TURISTA')")
     public void modificar(@RequestBody AsientoDTO dto){
         ModelMapper m = new ModelMapper();
         Asiento a = m.map(dto,Asiento.class);
@@ -49,13 +49,13 @@ public class AsientoController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','TURISTA')")
+    //@PreAuthorize("hasAnyAuthority('ADMINISTRADOR','TURISTA')")
     public void eliminar(@PathVariable("id") Integer id){
         aS.delete(id);
     }
 
-    @GetMapping("/listar{id}")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @GetMapping("/listar/{id}")
+    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public ResponseEntity<AsientoDTO> obtenerPorId(@PathVariable("id") int id) {
         Asiento asiento = aS.findById(id);
         ModelMapper modelMapper = new ModelMapper();
@@ -64,7 +64,7 @@ public class AsientoController {
     }
 
     @GetMapping("/cantidadAsientosPorBus")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<CantidadAsientosDTO> obtenerCantidadAsientosPorBus() {
         List<String[]> filaLista = aS.contarAsientosPorBus();
         List<CantidadAsientosDTO> dtoLista = new ArrayList<>();
@@ -79,7 +79,7 @@ public class AsientoController {
     }
 
     @GetMapping("/porcentajeEstadoPorBus")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<PorcentajeEstadoAsientoDTO> obtenerPorcentajeEstadoPorBus() {
         List<String[]> filaLista = aS.obtenerPorcentajeEstadoPorBus();
         List<PorcentajeEstadoAsientoDTO> dtoLista = new ArrayList<>();
