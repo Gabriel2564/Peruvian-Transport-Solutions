@@ -2,6 +2,7 @@ package pe.edu.upc.pts.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.pts.dtos.ViajeByRutaDTO;
@@ -19,8 +20,8 @@ public class ViajeController {
     @Autowired
     private IViajeService vS;
 
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
-    @GetMapping
+    @GetMapping("/listar")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
     public List<ViajeDTO> listar(){
         return vS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -28,31 +29,31 @@ public class ViajeController {
         }).collect(Collectors.toList());
     }
 
-    @PreAuthorize("hasAuthority('CONDUCTOR')")
-    @PostMapping
+    @PostMapping("/insertar")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
     public void registrar(@RequestBody ViajeDTO dto) {
         ModelMapper m = new ModelMapper();
         Viaje v = m.map(dto, Viaje.class);
         vS.insert(v);
     }
 
-    @PreAuthorize("hasAuthority('CONDUCTOR')")
-    @PutMapping
+    @PutMapping("/modificar")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
     public void modificar(@RequestBody ViajeDTO dto) {
         ModelMapper m = new ModelMapper();
         Viaje v = m.map(dto, Viaje.class);
         vS.insert(v);
     }
 
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
     public void eliminar(@PathVariable("id") Integer id){
         vS.delete(id);
     }
 
 
+    @GetMapping("/viajePorRuta")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
-    @GetMapping("/query1")
     public List<ViajeByRutaDTO> query1() {
         List<String[]> filaLista = vS.QuantityViajeByRuta();
         List<ViajeByRutaDTO> dtoLista = new ArrayList<>();
@@ -64,5 +65,14 @@ public class ViajeController {
             dtoLista.add(dto);
         }
         return dtoLista;
+    }
+
+    @GetMapping("/listar{id}")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    public ResponseEntity<ViajeDTO> obtenerPorId(@PathVariable("id") int id) {
+        Viaje viaje = vS.findById(id);
+        ModelMapper modelMapper = new ModelMapper();
+        ViajeDTO dto = modelMapper.map(viaje, ViajeDTO.class);
+        return ResponseEntity.ok(dto);
     }
 }

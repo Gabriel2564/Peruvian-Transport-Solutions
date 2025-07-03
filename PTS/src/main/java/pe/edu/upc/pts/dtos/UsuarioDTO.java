@@ -7,6 +7,7 @@ import java.util.List;
 public class UsuarioDTO {
     private Long id;
     private String username;
+    private String password;
     private Boolean enabled;
     private List<Rol> roles;
 
@@ -24,6 +25,14 @@ public class UsuarioDTO {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Boolean getEnabled() {

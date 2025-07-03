@@ -3,8 +3,10 @@ package pe.edu.upc.pts.controllers;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.pts.dtos.ListarUsuarioDTO;
 import pe.edu.upc.pts.dtos.UsuarioByRolDTO;
 import pe.edu.upc.pts.dtos.UsuarioDTO;
 import pe.edu.upc.pts.entities.Rol;
@@ -22,40 +24,45 @@ public class UsuarioController {
     @Autowired
     private IUsuarioService uS;
 
-    @GetMapping("/listar")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
-    public List<UsuarioDTO> listar(){
+    @GetMapping
+    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    public List<ListarUsuarioDTO> listar(){
         return uS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
-            return m.map(x,UsuarioDTO.class);
+            return m.map(x,ListarUsuarioDTO.class);
         }).collect(Collectors.toList());
     }
 
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     @PostMapping
     public void insertar(@RequestBody UsuarioDTO dto){
         ModelMapper m = new ModelMapper();
-        Usuario u = m.map(dto,Usuario.class);
+        Usuario u = m.map(dto, Usuario.class);
+        if (u.getRoles() != null) {
+            for (Rol r : u.getRoles()) {
+                r.setUsuario(u);
+                r.setId(null);
+            }
+        }
         uS.insert(u);
     }
 
 
-    @PreAuthorize("hasAuthority('TURISTA')")
     @PutMapping
+    //@PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
     public void modificar(@RequestBody UsuarioDTO dto){
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(dto,Usuario.class);
         uS.update(u);
     }
 
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     @DeleteMapping("/{id}")
+    //@PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
     public void eliminar(@PathVariable("id") Integer id){
         uS.delete(id);
     }
 
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
-    @GetMapping("/query1")
+    @GetMapping("/usuarioRol")
+   // @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<UsuarioByRolDTO> query1() {
         List<String[]> filaLista = uS.QuantityUsuarioByRol();
         List<UsuarioByRolDTO> dtoLista = new ArrayList<>();
@@ -67,5 +74,14 @@ public class UsuarioController {
             dtoLista.add(dto);
         }
         return dtoLista;
+    }
+
+    @GetMapping("/{id}")
+    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    public ResponseEntity<ListarUsuarioDTO> obtenerPorId(@PathVariable("id") int id) {
+        Usuario usuario = uS.findById(id);
+        ModelMapper m = new ModelMapper();
+        ListarUsuarioDTO dto = m.map(usuario, ListarUsuarioDTO.class);
+        return ResponseEntity.ok(dto);
     }
 }

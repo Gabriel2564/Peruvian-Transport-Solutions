@@ -33,4 +33,19 @@ public class PagoServiceImplement implements IPagoService {
     public void delete(int id) {
         paymentRepository.deleteById(id);
     }
+
+    @Override
+    public List<Pago> findByPaymentType(String paymentTypePago) {
+        return paymentRepository.findByPaymentType(paymentTypePago);
+    }
+
+    @Override
+    public List<Object[]> countPaymentsByType() {
+        return paymentRepository.countPaymentsByType();
+    }
+
+    @Override
+    public Pago findById(int id) {
+        return paymentRepository.findByIdPago(id).orElseThrow(() -> new RuntimeException("Pago no encontrado"));
+    }
 }

@@ -9,4 +9,5 @@ public interface IEstadoService {
     public void insert(Estado estado);
     public void update(Estado estado);
     public void delete(int id);
+    public Estado findById(int id);
 }

@@ -10,4 +10,5 @@ public interface IReseniaService {
     public void update( Resenia resenia);
     public void delete(int id);
     public List<String[]> QuantityReseniaByUsuario();
+    public Resenia findById(int id);
 }

@@ -9,4 +9,6 @@ public interface IItemService {
     public void insert(Item item);
     public void update(Item item);
     public void delete(int id);
+    public List<Item> ItemByFormato(String formato);
+    public Item findById(int id);
 }

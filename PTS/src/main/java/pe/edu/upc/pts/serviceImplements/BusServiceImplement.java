@@ -6,6 +6,7 @@ import pe.edu.upc.pts.entities.Bus;
 import pe.edu.upc.pts.repositories.IBusRepository;
 import pe.edu.upc.pts.serviceInterfaces.IBusService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -31,5 +32,15 @@ public class BusServiceImplement implements IBusService {
     @Override
     public void delete(int id){
         bR.deleteById(id);
+    }
+
+    @Override
+    public List<Bus> BusByDateViajeAndArrivalAddressBus(LocalDate fecha, String lugar) {
+        return bR.BusByDateViajeAndArrivalAddressBus(fecha, lugar);
+    }
+
+    @Override
+    public Bus findById(int id) {
+        return bR.findByIdBus(id).orElseThrow(() -> new RuntimeException("Bus no encontrado"));
     }
 }

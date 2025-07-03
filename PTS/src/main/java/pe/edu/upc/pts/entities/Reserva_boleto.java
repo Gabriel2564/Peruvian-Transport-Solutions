@@ -20,9 +20,9 @@ public class Reserva_boleto {
     @JoinColumn(name = "idUsuario", nullable = false)
     private Usuario usuario;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idPago", nullable = false)
-    private Pago pago;
+    private Pago pago;;
 
     @ManyToOne
     @JoinColumn(name = "idAsiento", nullable = false)

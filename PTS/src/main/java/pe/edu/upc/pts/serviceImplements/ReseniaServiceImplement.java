@@ -32,4 +32,9 @@ public class ReseniaServiceImplement implements IReseniaService {
         return rR.QuantityReseniaByUsername();
     }
 
+    @Override
+    public Resenia findById(int id) {
+        return rR.findByIdResenia(id).orElseThrow(() -> new RuntimeException("Reseña no encontrada"));
+    }
+
 }

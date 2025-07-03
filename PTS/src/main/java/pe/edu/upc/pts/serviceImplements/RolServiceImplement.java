@@ -32,4 +32,15 @@ public class RolServiceImplement implements IRolService {
     public void delete(int id) {
         rR.deleteById(id);
     }
+
+    @Override
+    public List<String[]> quantityUserByRol() {
+        return rR.quantityUserByRol();
+    }
+
+    @Override
+    public Rol findById(Long id) {
+        return rR.findRolById(id)
+                .orElseThrow(() -> new RuntimeException("Rol no encontrado"));
+    }
 }

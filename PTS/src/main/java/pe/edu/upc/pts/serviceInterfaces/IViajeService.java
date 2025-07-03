@@ -11,4 +11,5 @@ public interface IViajeService {
     public void delete(int idRol);
 
     public List<String[]> QuantityViajeByRuta();
+    public Viaje findById(int id);
 }
