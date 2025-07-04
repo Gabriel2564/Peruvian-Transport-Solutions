@@ -1,7 +1,5 @@
 package pe.edu.upc.pts.securities;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -13,7 +11,7 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,10 +19,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 
-import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
-
-//@Profile(value = {"development", "production"})
-//Clase S7
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -44,62 +38,66 @@ public class WebSecurityConfig {
     private HandlerExceptionResolver exceptionResolver;
 
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
-    }
-
-    @Bean
     public static PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(jwtUserDetailsService).passwordEncoder(passwordEncoder());
+        auth
+                .userDetailsService(jwtUserDetailsService)
+                .passwordEncoder(passwordEncoder());
     }
 
-//    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-//        //Desde Spring Boot 3.1+
-//        httpSecurity
-//                .csrf(AbstractHttpConfigurer::disable)
-//                .authorizeHttpRequests(req -> req
-//                        .requestMatchers(
-//                                antMatcher("/login"),
-//                                antMatcher("/usuarios/insertar"),
-//                                antMatcher("/v3/api-docs/**"),
-//                                antMatcher("/swagger-ui/**"),
-//                                antMatcher("/swagger-ui.html"),
-//                                antMatcher("/swagger-resources/**"),
-//                                antMatcher("/webjars/**")
-//                        ).permitAll()
-//                        .anyRequest().authenticated()
-//                )
-//                .httpBasic(Customizer.withDefaults())
-//                .formLogin(AbstractHttpConfigurer::disable)
-//                .exceptionHandling(e -> e.authenticationEntryPoint(jwtAuthenticationEntryPoint))
-//                .sessionManagement(Customizer.withDefaults());
-//        httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-//        return httpSecurity.build();
-//    }
-//}
-
+    @Bean
+    public AuthenticationManager authenticationManager(
+            AuthenticationConfiguration authenticationConfiguration
+    ) throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
+    }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity
-                .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(req -> req
-                        .requestMatchers("/**").permitAll()
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+                // Deshabilitar CSRF porque usaremos tokens
+                .csrf(csrf -> csrf.disable())
+
+                // No creamos sesión; cada request debe llevar su JWT
+                .sessionManagement(sm -> sm
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
-                .httpBasic(Customizer.withDefaults())
-                .formLogin(AbstractHttpConfigurer::disable)
-                .exceptionHandling(e -> e.authenticationEntryPoint(jwtAuthenticationEntryPoint))
-                .sessionManagement(Customizer.withDefaults());
 
-        // Desactiva esto temporalmente
-        // httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+                // Definir endpoints públicos
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers(
+                                "/login",
+                                "/usuarios/insertar",
+                                "/v3/api-docs/**",
+                                "/swagger-ui/**",
+                                "/swagger-ui.html",
+                                "/swagger-resources/**",
+                                "/webjars/**"
+                        ).permitAll()
+                        .anyRequest().authenticated()
+                )
 
-        return httpSecurity.build();
+                // Configurar manejo de errores de autenticación
+                .exceptionHandling(ex -> ex
+                        .authenticationEntryPoint(jwtAuthenticationEntryPoint)
+                )
+
+                // Deshabilitar el login por formulario
+                .formLogin(form -> form.disable())
+
+                // (Opcional) Puedes mantener httpBasic si lo necesitas para debug
+                .httpBasic(Customizer.withDefaults());
+
+        // Insertar nuestro filtro para validar JWT antes de procesar credenciales
+        http.addFilterBefore(
+                jwtRequestFilter,
+                UsernamePasswordAuthenticationFilter.class
+        );
+
+        return http.build();
     }
 }

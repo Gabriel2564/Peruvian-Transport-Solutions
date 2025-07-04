@@ -21,7 +21,7 @@ public class Item_usuarioController {
     private IItem_usuarioService iS;
 
     @GetMapping("/listar")
-    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<Item_usuarioDTO> listar(){
         return iS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -30,7 +30,7 @@ public class Item_usuarioController {
     }
 
     @PostMapping("/insertar")
-    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void insertar(@RequestBody Item_usuarioDTO dto){
         ModelMapper m = new ModelMapper();
         Item_usuario i = m.map(dto, Item_usuario.class);
@@ -38,7 +38,7 @@ public class Item_usuarioController {
     }
 
     @PutMapping("/modificar")
-    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void modificar(@RequestBody Item_usuarioDTO dto){
         ModelMapper m = new ModelMapper();
         Item_usuario iu = m.map(dto,Item_usuario.class);
@@ -46,13 +46,13 @@ public class Item_usuarioController {
     }
 
     @DeleteMapping("/{id}")
-    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void eliminar(@PathVariable("id") Integer idItemUsuario){
         iS.delete(idItemUsuario);
     }
 
     @GetMapping("/topCalificados")
-    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<Item_UsuarioByTopDTO> top5Items() {
         List<String[]> filaLista = iS.ObtenerTopCalificados();
         List<Item_UsuarioByTopDTO> dtoLista = new ArrayList<>();
@@ -67,7 +67,7 @@ public class Item_usuarioController {
     }
 
     @GetMapping("/listar/{id}")
-    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public ResponseEntity<Item_usuarioDTO> obtenerPorId(@PathVariable("id") int id) {
         Item_usuario entity = iS.findById(id);
         ModelMapper m = new ModelMapper();

@@ -13,3 +13,4 @@ public interface IViajeService {
     public List<String[]> QuantityViajeByRuta();
     public Viaje findById(int id);
 }
+

@@ -21,7 +21,7 @@ public class ReseniaController {
     private IReseniaService rS;
 
     @GetMapping("/listar")
-    //@PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
     public List<ReseniaDTO> list(){
         return rS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -30,7 +30,7 @@ public class ReseniaController {
     }
 
     @PostMapping("/insertar")
-    //@PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA')")
     public void insertar(@RequestBody ReseniaDTO dto){
         ModelMapper m = new ModelMapper();
         Resenia r = m.map(dto,Resenia.class);
@@ -38,7 +38,7 @@ public class ReseniaController {
     }
 
     @PutMapping("/modificar")
-    //@PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA')")
     public void modificar(@RequestBody ReseniaDTO dto){
         ModelMapper m = new ModelMapper();
         Resenia r = m.map(dto,Resenia.class);
@@ -46,13 +46,13 @@ public class ReseniaController {
     }
 
     @DeleteMapping("/{id}")
-    //@PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA')")
     public void eliminar(@PathVariable("id") Integer id){
         rS.delete(id);
     }
 
     @GetMapping("/busquedaPorNombre")
-    //@PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
     public List<ReseniaByUsernameDTO> Mayor() {
         List<String[]> filaLista = rS.QuantityReseniaByUsuario();
         List<ReseniaByUsernameDTO> dtoLista = new ArrayList<>();
@@ -66,7 +66,7 @@ public class ReseniaController {
     }
 
     @GetMapping("/listar/{id}")
-    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public ResponseEntity<ReseniaDTO> obtenerPorId(@PathVariable("id") int id) {
         Resenia resenia = rS.findById(id);
         ModelMapper modelMapper = new ModelMapper();
