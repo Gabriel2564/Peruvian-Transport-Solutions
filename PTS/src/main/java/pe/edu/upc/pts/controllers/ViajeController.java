@@ -21,7 +21,7 @@ public class ViajeController {
     private IViajeService vS;
 
     @GetMapping("/listar")
-    //@PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
     public List<ViajeDTO> listar(){
         return vS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -30,7 +30,7 @@ public class ViajeController {
     }
 
     @PostMapping("/insertar")
-    //@PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
     public void registrar(@RequestBody ViajeDTO dto) {
         ModelMapper m = new ModelMapper();
         Viaje v = m.map(dto, Viaje.class);
@@ -38,7 +38,7 @@ public class ViajeController {
     }
 
     @PutMapping("/modificar")
-    //@PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
     public void modificar(@RequestBody ViajeDTO dto) {
         ModelMapper m = new ModelMapper();
         Viaje v = m.map(dto, Viaje.class);
@@ -46,14 +46,14 @@ public class ViajeController {
     }
 
     @DeleteMapping("/{id}")
-    //@PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
     public void eliminar(@PathVariable("id") Integer id){
         vS.delete(id);
     }
 
 
     @GetMapping("/viajePorRuta")
-    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<ViajeByRutaDTO> query1() {
         List<String[]> filaLista = vS.QuantityViajeByRuta();
         List<ViajeByRutaDTO> dtoLista = new ArrayList<>();
@@ -68,7 +68,7 @@ public class ViajeController {
     }
 
     @GetMapping("/listar/{id}")
-    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public ResponseEntity<ViajeDTO> obtenerPorId(@PathVariable("id") int id) {
         Viaje viaje = vS.findById(id);
         ModelMapper modelMapper = new ModelMapper();

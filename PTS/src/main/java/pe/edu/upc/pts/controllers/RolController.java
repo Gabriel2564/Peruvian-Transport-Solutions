@@ -24,7 +24,7 @@ public class RolController {
     private IRolService rS;
 
     @GetMapping("/listar")
-    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<RolDTO> listar(){
         return rS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -33,7 +33,7 @@ public class RolController {
     }
 
     @PostMapping("/insertar")
-    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void insertar(@RequestBody RolDTO dto){
         ModelMapper m = new ModelMapper();
         Rol r = m.map(dto, Rol.class);
@@ -41,7 +41,7 @@ public class RolController {
     }
 
     @PutMapping("/modificar")
-    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void modificar(@RequestBody RolDTO dto){
         ModelMapper m = new ModelMapper();
         Rol r = m.map(dto,Rol.class);
@@ -49,13 +49,13 @@ public class RolController {
     }
 
     @DeleteMapping("/{id}")
-    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void eliminar(@PathVariable("id") Integer id){
         rS.delete(id);
     }
 
     @GetMapping("/totalDeUsuariosPorRol")
-    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<QuantityUserByRolDTO> totalDeUsuariosPorRol() {
         List<String[]> filaLista = rS.quantityUserByRol();
         List<QuantityUserByRolDTO> dtoLista = new ArrayList<>();
@@ -70,7 +70,7 @@ public class RolController {
     }
 
     @GetMapping("/listar/{id}")
-    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public ResponseEntity<RolDTO> obtenerPorId(@PathVariable("id") Long id) {
         Rol rol = rS.findById(id);
         ModelMapper m = new ModelMapper();

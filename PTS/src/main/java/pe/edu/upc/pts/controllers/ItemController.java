@@ -19,7 +19,7 @@ public class ItemController {
     private IItemService iS;
 
     @GetMapping("/listar")
-    //@PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
     public List<ItemDTO> listar(){
         return iS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -28,7 +28,7 @@ public class ItemController {
     }
 
     @PostMapping("/insertar")
-    //@PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
     public void insertar(@RequestBody ItemDTO dto){
         ModelMapper m = new ModelMapper();
         Item i = m.map(dto,Item.class);
@@ -36,7 +36,7 @@ public class ItemController {
     }
 
     @PutMapping("/modificar")
-    //@PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
     public void modificar(@RequestBody ItemDTO dto){
         ModelMapper m = new ModelMapper();
         Item i = m.map(dto,Item.class);
@@ -44,13 +44,13 @@ public class ItemController {
     }
 
     @DeleteMapping("/{id}")
-    //@PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
     public void eliminar(@PathVariable("id") Integer id){
         iS.delete(id);
     }
 
     @GetMapping("/itemporformato")
-    //@PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<ItemDTO> ItemByFormato(@RequestParam String formato) {
         return iS.ItemByFormato(formato).stream().map(y->{
             ModelMapper m = new ModelMapper();
