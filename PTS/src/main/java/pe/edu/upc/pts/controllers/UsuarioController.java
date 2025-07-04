@@ -24,6 +24,7 @@ public class UsuarioController {
     @Autowired
     private IUsuarioService uS;
 
+
     @GetMapping("/listar")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<ListarUsuarioDTO> listar(){
@@ -33,7 +34,7 @@ public class UsuarioController {
         }).collect(Collectors.toList());
     }
 
-    @PostMapping("/insertar")
+    @PostMapping
     public void insertar(@RequestBody UsuarioDTO dto){
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(dto, Usuario.class);
@@ -45,6 +46,7 @@ public class UsuarioController {
         }
         uS.insert(u);
     }
+
 
 
     @PutMapping("/modificar")
@@ -75,6 +77,7 @@ public class UsuarioController {
         }
         return dtoLista;
     }
+
 
     @GetMapping("/listar/{id}")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
