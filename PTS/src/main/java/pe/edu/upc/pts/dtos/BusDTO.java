@@ -6,7 +6,6 @@ import java.time.LocalTime;
 
 public class BusDTO {
     private int idBus;
-    private String arrivalAddressBus;
     private int capacityBus;
     private LocalTime durationBus;
     private Viaje viaje;
@@ -17,14 +16,6 @@ public class BusDTO {
 
     public void setIdBus(int idBus) {
         this.idBus = idBus;
-    }
-
-    public String getArrivalAddressBus() {
-        return arrivalAddressBus;
-    }
-
-    public void setArrivalAddressBus(String arrivalAddressBus) {
-        this.arrivalAddressBus = arrivalAddressBus;
     }
 
     public int getCapacityBus() {

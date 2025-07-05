@@ -7,6 +7,7 @@ import java.time.LocalTime;
 
 public class ViajeDTO {
     private int idViaje;
+    private String arrivalAddressBus;
     private LocalDate departureDateViaje;
     private Double priceViaje;
     private LocalTime departureTimeViaje;
@@ -18,6 +19,14 @@ public class ViajeDTO {
 
     public void setIdViaje(int idViaje) {
         this.idViaje = idViaje;
+    }
+
+    public String getArrivalAddressBus() {
+        return arrivalAddressBus;
+    }
+
+    public void setArrivalAddressBus(String arrivalAddressBus) {
+        this.arrivalAddressBus = arrivalAddressBus;
     }
 
     public LocalDate getDepartureDateViaje() {

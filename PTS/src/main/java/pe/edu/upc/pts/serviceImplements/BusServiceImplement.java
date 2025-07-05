@@ -35,11 +35,6 @@ public class BusServiceImplement implements IBusService {
     }
 
     @Override
-    public List<Bus> BusByDateViajeAndArrivalAddressBus(LocalDate fecha, String lugar) {
-        return bR.BusByDateViajeAndArrivalAddressBus(fecha, lugar);
-    }
-
-    @Override
     public Bus findById(int id) {
         return bR.findByIdBus(id).orElseThrow(() -> new RuntimeException("Bus no encontrado"));
     }

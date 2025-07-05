@@ -12,6 +12,9 @@ public class Viaje {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idViaje;
 
+    @Column(name = "arrivalAddressBus", nullable = false, length = 100)
+    private String arrivalAddressBus;
+
     @Column(name = "departureDateViaje", nullable = false)
     private LocalDate departureDateViaje;
 
@@ -28,8 +31,9 @@ public class Viaje {
     public Viaje() {
     }
 
-    public Viaje(int idViaje, LocalDate departureDateViaje, Double priceViaje, LocalTime departureTimeViaje, Ruta ruta) {
+    public Viaje(int idViaje, String arrivalAddressBus, LocalDate departureDateViaje, Double priceViaje, LocalTime departureTimeViaje, Ruta ruta) {
         this.idViaje = idViaje;
+        this.arrivalAddressBus = arrivalAddressBus;
         this.departureDateViaje = departureDateViaje;
         this.priceViaje = priceViaje;
         this.departureTimeViaje = departureTimeViaje;
@@ -42,6 +46,14 @@ public class Viaje {
 
     public void setIdViaje(int idViaje) {
         this.idViaje = idViaje;
+    }
+
+    public String getArrivalAddressBus() {
+        return arrivalAddressBus;
+    }
+
+    public void setArrivalAddressBus(String arrivalAddressBus) {
+        this.arrivalAddressBus = arrivalAddressBus;
     }
 
     public LocalDate getDepartureDateViaje() {

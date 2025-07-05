@@ -51,15 +51,6 @@ public class BusController {
         bS.delete(id);
     }
 
-    @GetMapping("/busporfechaylugar")
-    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
-    public List<BusDTO> BusByDateViajeAndArrivalAddressBus(@RequestParam LocalDate fecha, String lugar) {
-        return bS.BusByDateViajeAndArrivalAddressBus(fecha, lugar).stream().map(y->{
-            ModelMapper m = new ModelMapper();
-            return m.map(y,BusDTO.class);
-        }).collect(Collectors.toList());
-    }
-
     @GetMapping("/listar/{id}")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public ResponseEntity<BusDTO> obtenerPorId(@PathVariable("id") int id) {

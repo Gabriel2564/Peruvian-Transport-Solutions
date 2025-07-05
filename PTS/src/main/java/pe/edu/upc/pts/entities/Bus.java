@@ -11,9 +11,6 @@ public class Bus {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idBus;
 
-    @Column(name = "arrivalAddressBus", nullable = false, length = 100)
-    private String arrivalAddressBus;
-
     @Column(name = "capacityBus", nullable = false)
     private int capacityBus;
 
@@ -27,9 +24,8 @@ public class Bus {
     public Bus() {
     }
 
-    public Bus(int idBus, String arrivalAddressBus, int capacityBus, LocalTime durationBus, Viaje viaje) {
+    public Bus(int idBus, int capacityBus, LocalTime durationBus, Viaje viaje) {
         this.idBus = idBus;
-        this.arrivalAddressBus = arrivalAddressBus;
         this.capacityBus = capacityBus;
         this.durationBus = durationBus;
         this.viaje = viaje;
@@ -41,14 +37,6 @@ public class Bus {
 
     public void setIdBus(int idBus) {
         this.idBus = idBus;
-    }
-
-    public String getArrivalAddressBus() {
-        return arrivalAddressBus;
-    }
-
-    public void setArrivalAddressBus(String arrivalAddressBus) {
-        this.arrivalAddressBus = arrivalAddressBus;
     }
 
     public int getCapacityBus() {
