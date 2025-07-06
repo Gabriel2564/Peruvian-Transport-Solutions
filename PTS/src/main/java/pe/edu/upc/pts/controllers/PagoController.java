@@ -6,12 +6,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.pts.dtos.PagoDTO;
+import pe.edu.upc.pts.dtos.PaymentsByTypeDTO;
 import pe.edu.upc.pts.entities.Pago;
 import pe.edu.upc.pts.serviceInterfaces.IPagoService;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -60,19 +60,19 @@ public class PagoController {
         return ResponseEntity.ok(dto);
     }
 
-    @GetMapping("/resumen")
+    @GetMapping("/paymentsByType")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
-    public ResponseEntity<List<Map<String, Object>>> resumenPagos() {
-        List<Object[]> conteo = paymentService.countPaymentsByType();
+    public List<PaymentsByTypeDTO> countPaymentsByType() {
+        List<String[]> filaLista = paymentService.countPaymentsByType();
+        List<PaymentsByTypeDTO> dtoLista = new ArrayList<>();
 
-        List<Map<String, Object>> dto = conteo.stream().map(obj -> {
-            Map<String, Object> map = new HashMap<>();
-            map.put("tipoPago", obj[0]);
-            map.put("total", obj[1]);
-            return map;
-        }).collect(Collectors.toList());
-
-        return ResponseEntity.ok(dto);
+        for (String[] columna : filaLista) {
+            PaymentsByTypeDTO dto = new PaymentsByTypeDTO();
+            dto.setTotal(Integer.parseInt(columna[1]));
+            dto.setTipoPago(columna[0]);
+            dtoLista.add(dto);
+        }
+        return dtoLista;
     }
 
 

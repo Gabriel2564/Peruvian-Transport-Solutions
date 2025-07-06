@@ -10,5 +10,5 @@ public interface IPagoService {
     void delete(int id);
     public Pago findById(int id);
     public List<Pago> findByPaymentType(String paymentTypePago);
-    public List<Object[]> countPaymentsByType();
+    public List<String[]> countPaymentsByType();
 }
