@@ -3,12 +3,8 @@ import pe.edu.upc.pts.entities.Item;
 
 public class RutaDTO {
     private int idRuta;
-    private String startLocationRuta;
-    private String finalLocationRuta;
-    private String startLongitudeRuta;
-    private String finalLongitudeRuta;
-    private String startLatitudeRuta;
-    private String finalLatitudeRuta;
+    private String lat;
+    private String lng;
     private Item item;
 
     public int getIdRuta() {
@@ -19,52 +15,20 @@ public class RutaDTO {
         this.idRuta = idRuta;
     }
 
-    public String getStartLocationRuta() {
-        return startLocationRuta;
+    public String getLat() {
+        return lat;
     }
 
-    public void setStartLocationRuta(String startLocationRuta) {
-        this.startLocationRuta = startLocationRuta;
+    public void setLat(String lat) {
+        this.lat = lat;
     }
 
-    public String getFinalLocationRuta() {
-        return finalLocationRuta;
+    public String getLng() {
+        return lng;
     }
 
-    public void setFinalLocationRuta(String finalLocationRuta) {
-        this.finalLocationRuta = finalLocationRuta;
-    }
-
-    public String getStartLongitudeRuta() {
-        return startLongitudeRuta;
-    }
-
-    public void setStartLongitudeRuta(String startLongitudeRuta) {
-        this.startLongitudeRuta = startLongitudeRuta;
-    }
-
-    public String getFinalLongitudeRuta() {
-        return finalLongitudeRuta;
-    }
-
-    public void setFinalLongitudeRuta(String finalLongitudeRuta) {
-        this.finalLongitudeRuta = finalLongitudeRuta;
-    }
-
-    public String getStartLatitudeRuta() {
-        return startLatitudeRuta;
-    }
-
-    public void setStartLatitudeRuta(String startLatitudeRuta) {
-        this.startLatitudeRuta = startLatitudeRuta;
-    }
-
-    public String getFinalLatitudeRuta() {
-        return finalLatitudeRuta;
-    }
-
-    public void setFinalLatitudeRuta(String finalLatitudeRuta) {
-        this.finalLatitudeRuta = finalLatitudeRuta;
+    public void setLng(String lng) {
+        this.lng = lng;
     }
 
     public Item getItem() {
