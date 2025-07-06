@@ -16,7 +16,7 @@ public interface IPagoRepository extends JpaRepository<Pago, Integer> {
     List<Pago> findByPaymentType(@Param("paymentTypePago") String paymentType);
 
     @Query("SELECT p.paymentTypePago, COUNT(p) FROM Pago p GROUP BY p.paymentTypePago")
-    List<Object[]> countPaymentsByType();
+    List<String[]> countPaymentsByType();
 
     @Query("SELECT p FROM Pago p WHERE p.idPago = :id")
     Optional<Pago> findByIdPago(@Param("id") int id);

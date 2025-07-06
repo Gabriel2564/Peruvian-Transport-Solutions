@@ -40,7 +40,7 @@ public class PagoServiceImplement implements IPagoService {
     }
 
     @Override
-    public List<Object[]> countPaymentsByType() {
+    public List<String[]> countPaymentsByType() {
         return paymentRepository.countPaymentsByType();
     }
 

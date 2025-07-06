@@ -5,14 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.pts.dtos.BusDTO;
 import pe.edu.upc.pts.dtos.QuantityUserByRolDTO;
-import pe.edu.upc.pts.dtos.ReseniaByUsernameDTO;
 import pe.edu.upc.pts.dtos.RolDTO;
 import pe.edu.upc.pts.entities.Rol;
 import pe.edu.upc.pts.serviceInterfaces.IRolService;
-
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
