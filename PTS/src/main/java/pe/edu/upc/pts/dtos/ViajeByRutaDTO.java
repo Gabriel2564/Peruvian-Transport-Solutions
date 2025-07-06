@@ -2,7 +2,6 @@ package pe.edu.upc.pts.dtos;
 
 public class ViajeByRutaDTO {
     private String location;
-
     private int quantityViaje;
 
     public String getLocation() {

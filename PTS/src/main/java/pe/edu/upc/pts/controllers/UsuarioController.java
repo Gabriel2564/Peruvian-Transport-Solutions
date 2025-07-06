@@ -34,7 +34,7 @@ public class UsuarioController {
         }).collect(Collectors.toList());
     }
 
-    @PostMapping
+    @PostMapping("/insertar")
     public void insertar(@RequestBody UsuarioDTO dto){
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(dto, Usuario.class);
