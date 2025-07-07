@@ -18,7 +18,7 @@ public class Reserva_boleto {
 
     @ManyToOne
     @JoinColumn(name = "idUsuario", nullable = false)
-    private Usuario usuario;
+    private Usuarios usuario;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idPago", nullable = false)
@@ -31,7 +31,7 @@ public class Reserva_boleto {
     public Reserva_boleto() {
     }
 
-    public Reserva_boleto(int idReservaBoleto, BigDecimal ticketAmountReservaBoleto, int seatQuantityReservaBoleto, Usuario usuario, Pago pago, Asiento asiento) {
+    public Reserva_boleto(int idReservaBoleto, BigDecimal ticketAmountReservaBoleto, int seatQuantityReservaBoleto, Usuarios usuario, Pago pago, Asiento asiento) {
         this.idReservaBoleto = idReservaBoleto;
         this.ticketAmountReservaBoleto = ticketAmountReservaBoleto;
         this.seatQuantityReservaBoleto = seatQuantityReservaBoleto;
@@ -64,11 +64,11 @@ public class Reserva_boleto {
         this.seatQuantityReservaBoleto = seatQuantityReservaBoleto;
     }
 
-    public Usuario getUsuario() {
+    public Usuarios getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(Usuarios usuario) {
         this.usuario = usuario;
     }
 

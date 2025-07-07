@@ -1,7 +1,7 @@
 package pe.edu.upc.pts.dtos;
 
 import pe.edu.upc.pts.entities.Item;
-import pe.edu.upc.pts.entities.Usuario;
+import pe.edu.upc.pts.entities.Usuarios;
 
 import java.time.LocalDate;
 
@@ -10,7 +10,7 @@ public class Item_usuarioDTO {
     private int travelQualificationItemUsuario;
     private LocalDate travelDateItemUsuario;
     private Item item;
-    private Usuario usuario;
+    private Usuarios usuario;
 
     public int getIdItemUsuario() {
         return idItemUsuario;
@@ -44,11 +44,11 @@ public class Item_usuarioDTO {
         this.item = item;
     }
 
-    public Usuario getUsuario() {
+    public Usuarios getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(Usuarios usuario) {
         this.usuario = usuario;
     }
 }

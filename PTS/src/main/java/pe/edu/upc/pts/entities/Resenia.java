@@ -22,7 +22,7 @@ public class Resenia {
 
     @ManyToOne
     @JoinColumn(name="idUsuario")
-    private Usuario usuario;
+    private Usuarios usuario;
 
     @ManyToOne
     @JoinColumn(name="idViaje")
@@ -31,7 +31,7 @@ public class Resenia {
     public Resenia() {
     }
 
-    public Resenia(int idResenia, LocalTime publicationDateResenia, int likesResenia, String contentResenia, Usuario usuario, Viaje viaje) {
+    public Resenia(int idResenia, LocalTime publicationDateResenia, int likesResenia, String contentResenia, Usuarios usuario, Viaje viaje) {
         this.idResenia = idResenia;
         this.publicationDateResenia = publicationDateResenia;
         this.likesResenia = likesResenia;
@@ -72,11 +72,11 @@ public class Resenia {
         this.contentResenia = contentResenia;
     }
 
-    public Usuario getUsuario() {
+    public Usuarios getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(Usuarios usuario) {
         this.usuario = usuario;
     }
 

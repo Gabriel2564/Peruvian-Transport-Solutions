@@ -1,6 +1,6 @@
 package pe.edu.upc.pts.dtos;
 
-import pe.edu.upc.pts.entities.Rol;
+import pe.edu.upc.pts.entities.Role;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ public class ListarUsuarioDTO {
     private Long id;
     private String username;
     private Boolean enabled;
-    private List<Rol> roles;
+    private List<Role> roles;
 
     public Long getId() {
         return id;
@@ -34,11 +34,11 @@ public class ListarUsuarioDTO {
         this.enabled = enabled;
     }
 
-    public List<Rol> getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Rol> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
 }

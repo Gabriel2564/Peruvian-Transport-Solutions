@@ -23,12 +23,12 @@ public class Item_usuario {
 
     @ManyToOne
     @JoinColumn(name="idUsuario")
-    private Usuario usuario;
+    private Usuarios usuario;
 
     public Item_usuario() {
     }
 
-    public Item_usuario(int idItemUsuario, int travelQualificationItemUsuario, LocalDate travelDateItemUsuario, Item item, Usuario usuario) {
+    public Item_usuario(int idItemUsuario, int travelQualificationItemUsuario, LocalDate travelDateItemUsuario, Item item, Usuarios usuario) {
         this.idItemUsuario = idItemUsuario;
         this.travelQualificationItemUsuario = travelQualificationItemUsuario;
         this.travelDateItemUsuario = travelDateItemUsuario;
@@ -68,11 +68,11 @@ public class Item_usuario {
         this.item = item;
     }
 
-    public Usuario getUsuario() {
+    public Usuarios getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(Usuarios usuario) {
         this.usuario = usuario;
     }
 }

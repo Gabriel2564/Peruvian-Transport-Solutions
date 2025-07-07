@@ -1,6 +1,6 @@
 package pe.edu.upc.pts.dtos;
 
-import pe.edu.upc.pts.entities.Usuario;
+import pe.edu.upc.pts.entities.Usuarios;
 import pe.edu.upc.pts.entities.Viaje;
 
 import java.time.LocalTime;
@@ -10,7 +10,7 @@ public class ReseniaDTO {
     private LocalTime publicationDateResenia;
     private int likesResenia;
     private String contentResenia;
-    private Usuario usuario;
+    private Usuarios usuario;
     private Viaje viaje;
 
     public int getIdResenia() {
@@ -45,11 +45,11 @@ public class ReseniaDTO {
         this.contentResenia = contentResenia;
     }
 
-    public Usuario getUsuario() {
+    public Usuarios getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(Usuarios usuario) {
         this.usuario = usuario;
     }
 

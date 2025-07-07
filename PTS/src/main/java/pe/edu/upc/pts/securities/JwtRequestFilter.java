@@ -1,6 +1,5 @@
 package pe.edu.upc.pts.securities;
 
-
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -17,7 +16,6 @@ import pe.edu.upc.pts.serviceImplements.JwtUserDetailsService;
 
 import java.io.IOException;
 
-//Clase 6
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
     @Autowired

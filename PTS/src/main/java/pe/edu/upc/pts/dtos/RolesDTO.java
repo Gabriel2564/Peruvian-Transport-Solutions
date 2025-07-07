@@ -1,11 +1,8 @@
 package pe.edu.upc.pts.dtos;
 
-import pe.edu.upc.pts.entities.Usuario;
-
-public class RolDTO {
+public class RolesDTO {
     private Long id;
     private String rol;
-    private Usuario usuario;
 
     public Long getId() {
         return id;
@@ -23,11 +20,4 @@ public class RolDTO {
         this.rol = rol;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
 }
