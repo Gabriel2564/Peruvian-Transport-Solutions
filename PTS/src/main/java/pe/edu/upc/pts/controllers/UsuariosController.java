@@ -42,13 +42,13 @@ public class UsuariosController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'LECTOR', 'COLABORADOR', 'AUTOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR')")
     public void delete(@PathVariable ("id") Integer id){
         uS.delete(id);
     }
 
     @PutMapping("/modificar")
-    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'LECTOR', 'COLABORADOR', 'AUTOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR')")
     public void modificar(@RequestBody UserSecurityDTO dto){
         ModelMapper m=new ModelMapper();
         Usuarios u=m.map(dto, Usuarios.class);

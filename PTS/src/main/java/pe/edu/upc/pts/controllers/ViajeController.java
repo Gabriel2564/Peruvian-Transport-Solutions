@@ -21,7 +21,7 @@ public class ViajeController {
     private IViajeService vS;
 
     @GetMapping("/listar")
-    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR', 'TURISTA')")
     public List<ViajeDTO> listar(){
         return vS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
