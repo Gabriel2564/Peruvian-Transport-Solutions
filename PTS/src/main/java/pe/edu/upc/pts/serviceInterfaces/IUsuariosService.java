@@ -11,6 +11,5 @@ public interface IUsuariosService {
     public Usuarios listId (int id);
     public void delete (int id);
     public void update (Usuarios usuarios);
-    public List<String[]> QuantityUsuarioByRol();
     public Usuarios findById(int id);
 }

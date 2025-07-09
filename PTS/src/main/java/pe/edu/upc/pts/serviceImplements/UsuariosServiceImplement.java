@@ -54,10 +54,6 @@ public class UsuariosServiceImplement implements IUsuariosService {
 
         uR.save(usuarioExistente);
     }
-    @Override
-    public List<String[]> QuantityUsuarioByRol() {
-        return uR.QuantityUsuarioByRol();
-    }
 
     @Override
     public Usuarios findById(int id) {

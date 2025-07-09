@@ -55,20 +55,5 @@ public class UsuariosController {
         uS.update(u);
     }
 
-    @GetMapping("/usuarioRol")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
-    public List<UsuarioByRolDTO> query1() {
-        List<String[]> filaLista = uS.QuantityUsuarioByRol();
-        List<UsuarioByRolDTO> dtoLista = new ArrayList<>();
-
-        for (String[] columna : filaLista) {
-            UsuarioByRolDTO dto = new UsuarioByRolDTO();
-            dto.setNameRol(columna[0]);
-            dto.setQuantityUsuario(Integer.parseInt(columna[1]));
-            dtoLista.add(dto);
-        }
-        return dtoLista;
-    }
-
 
 }

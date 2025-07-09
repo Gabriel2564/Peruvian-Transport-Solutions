@@ -13,11 +13,6 @@ import java.util.Optional;
 public interface IUsuariosRepository extends JpaRepository<Usuarios, Integer> {
     public Usuarios findOneByUsername(String username);
 
-    @Query(value = "SELECT r.rol AS Rol, COUNT(*) AS QuantityUsers " +
-            "FROM rol r INNER JOIN usuario u " +
-            "ON r.id_usuario = u.id " +
-            "GROUP BY r.rol", nativeQuery = true)
-    List<String[]> QuantityUsuarioByRol();
 
     @Query("SELECT u FROM Usuarios u WHERE u.idUsuario = :id")
     Optional<Usuarios> findUsuarioById(@Param("id") int id);
