@@ -52,13 +52,14 @@ public class ReseniaController {
     }
 
     @GetMapping("/busquedaPorNombre")
-    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'TURISTA', 'CONDUCTOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR')")
     public List<ReseniaByUsernameDTO> Mayor() {
         List<String[]> filaLista = rS.QuantityReseniaByUsuario();
         List<ReseniaByUsernameDTO> dtoLista = new ArrayList<>();
 
         for (String[] columna : filaLista) {
             ReseniaByUsernameDTO dto = new ReseniaByUsernameDTO();
+            dto.setUsername(columna[0]);
             dto.setQuantityResenia(Integer.parseInt(columna[1]));
             dtoLista.add(dto);
         }
