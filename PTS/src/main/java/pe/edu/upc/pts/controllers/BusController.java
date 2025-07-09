@@ -21,7 +21,7 @@ public class BusController {
     private IBusService bS;
 
     @GetMapping("/listar")
-    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'CONDUCTOR', 'TURISTA')")
     public List<BusDTO> listar(){
         return bS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
